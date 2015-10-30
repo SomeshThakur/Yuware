@@ -7,6 +7,7 @@ package yuware;
 
 import com.alee.laf.WebLookAndFeel;
 import java.awt.Desktop;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URI;
@@ -27,6 +28,7 @@ public class Yuware extends javax.swing.JFrame {
      */
     public Yuware() {
         initComponents();
+        setIcon();
     }
 
     /**
@@ -180,4 +182,11 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+    setTitle("Yuware™");
+    setIconImage(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("icon.png")));
+    Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+    }
 }
