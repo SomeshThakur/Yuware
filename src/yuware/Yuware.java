@@ -56,7 +56,7 @@ public class Yuware extends javax.swing.JFrame {
 
         jMenu1.setText("Thread");
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdacon.png"))); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdaicon.png"))); // NOI18N
         jMenuItem2.setText("XDA Thread");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
