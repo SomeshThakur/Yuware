@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author UDAY
+ * @author Somesh Thakur
  */
 public class Yuware extends javax.swing.JFrame {
 
