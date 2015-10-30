@@ -6,6 +6,12 @@
 package yuware;
 
 import com.alee.laf.WebLookAndFeel;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,21 +38,46 @@ public class Yuware extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("Thread");
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdacon.png"))); // NOI18N
+        jMenuItem2.setText("XDA Thread");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/yucon copy.png"))); // NOI18N
+        jMenuItem3.setText("YUOfficialForum");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Help");
+
+        jMenuItem4.setText("Guide(Coming Soon)");
+        jMenu2.add(jMenuItem4);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("About");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon("C:\\Users\\UDAY\\Desktop\\Yuware_stuff\\yucon copy.png")); // NOI18N
         jMenuItem1.setText("Yuware");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,8 +105,24 @@ public class Yuware extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    JOptionPane.showMessageDialog(null,"","",JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(null,"Yuware is free software for YU devices \n It was designed for User Friendly GUI, Easy to use and Premium look purpose","About",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("http://forum.xda-developers.com/yureka/development/windows-yuware2013266073-t3193757"));
+        } catch (IOException | URISyntaxException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+          try {
+            Desktop.getDesktop().browse(new URI("http://forums.yuplaygod.com/threads/windows-yuware%E2%84%A2-gui.21967"));
+        } catch (IOException | URISyntaxException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,6 +157,7 @@ public class Yuware extends javax.swing.JFrame {
             public void run() {
                 WebLookAndFeel.install (true);
                 WebLookAndFeel.setDecorateFrames(true);
+                WebLookAndFeel.setDecorateAllWindows(true);
                 new Yuware().setVisible(true);
             }
         });
@@ -121,5 +169,8 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 }
