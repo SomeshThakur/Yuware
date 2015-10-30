@@ -74,7 +74,7 @@ public class Yuware extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    JOptionPane.showMessageDialog(null,"","",JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(null,"Yuware is free software for YU devices \n It was designed for User Friendly GUI, Easy to use and Premium look porpose","",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
