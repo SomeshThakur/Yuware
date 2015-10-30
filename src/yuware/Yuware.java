@@ -7,11 +7,13 @@ package yuware;
 
 import com.alee.laf.WebLookAndFeel;
 import java.awt.Desktop;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -105,7 +107,12 @@ public class Yuware extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    JOptionPane.showMessageDialog(null,"Yuware is free software for YU devices \n It was designed for User Friendly GUI, Easy to use and Premium look purpose","About",JOptionPane.INFORMATION_MESSAGE);
+         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("About.png")));
+        JOptionPane.showMessageDialog(null," Yuware is free software for YU devices \n"
+                + " It was designed for User Friendly GUI, Easy to use and Premium look purpose. \n"
+                + " All Copyrights© reserved by Somesh Thakur. \n(The Dev behind this software)"
+                + "     Contact : Someshthakur33@gmail.com \n"
+                + "  Version :- 2.5 ","About",JOptionPane.INFORMATION_MESSAGE, icon);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
