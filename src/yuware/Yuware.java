@@ -6,11 +6,17 @@
 package yuware;
 
 import com.alee.laf.WebLookAndFeel;
+import static com.alee.managers.style.SupportedComponent.textArea;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
@@ -18,6 +24,8 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -61,9 +69,10 @@ public class Yuware extends javax.swing.JFrame {
         adbpath = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
-        adblog = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        adblog = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -160,8 +169,6 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
 
-        adblog.setEditable(false);
-
         jButton7.setText("ADB devices");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,6 +177,16 @@ public class Yuware extends javax.swing.JFrame {
         });
 
         jButton8.setText("Clear");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        adblog.setEditable(false);
+        adblog.setColumns(20);
+        adblog.setRows(5);
+        jScrollPane1.setViewportView(adblog);
 
         jMenu1.setText("Thread");
 
@@ -219,6 +236,19 @@ public class Yuware extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3))
+                    .addComponent(jLabel4)
+                    .addComponent(jButton4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -236,82 +266,62 @@ public class Yuware extends javax.swing.JFrame {
                             .addComponent(jLabel2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(adbpath, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6)
-                        .addGap(16, 16, 16))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton8))
-                                .addComponent(adblog, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(adbpath, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton6))
+                        .addComponent(jButton7))
+                    .addComponent(jLabel5)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton8)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton7)
                             .addComponent(jButton8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(adblog, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(71, 71, 71)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5))
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DSelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(adbpath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Byureka)
-                    .addComponent(Byuphoria)
-                    .addComponent(Byunique)
-                    .addComponent(jToggleButton1))
-                .addGap(15, 15, 15)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addContainerGap(97, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(adbpath, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton6)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel2)
+                        .addGap(11, 11, 11)
+                        .addComponent(DSelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Byureka)
+                            .addComponent(Byuphoria)
+                            .addComponent(Byunique)
+                            .addComponent(jToggleButton1))
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         pack();
@@ -399,8 +409,16 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-
+        try {
+            adb();
+        } catch (IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        clear();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -443,7 +461,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JToggleButton Byureka;
     private javax.swing.JTextField DSelected;
     private javax.swing.ButtonGroup Devices;
-    private javax.swing.JTextField adblog;
+    private javax.swing.JTextArea adblog;
     private javax.swing.JTextField adbpath;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -465,6 +483,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 
@@ -473,7 +492,7 @@ public class Yuware extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("icon.png")));
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
-
+        adblog.setLineWrap(true);
     }
 
     private void reboot() throws IOException {
@@ -517,5 +536,25 @@ public class Yuware extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Sideloaded Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
+    }
+
+    private void adb() throws IOException {
+        clear();
+        String line;
+        String path = adbpath.getText();
+        String[] command = {"adb", "devices"};
+        ProcessBuilder builder = new ProcessBuilder(command);
+        builder.directory(new File(path));
+        builder.redirectErrorStream(true);
+        Process process = builder.start();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        while ((line = reader.readLine()) != null) {
+            adblog.append("\n" + line);
+            process.destroy();
+        }
+    }
+
+    private void clear() {
+        adblog.setText("");
     }
 }
