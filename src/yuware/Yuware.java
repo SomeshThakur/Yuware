@@ -76,6 +76,7 @@ public class Yuware extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         fblog = new javax.swing.JTextArea();
+        jButton10 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -209,6 +210,13 @@ public class Yuware extends javax.swing.JFrame {
         fblog.setRows(5);
         jScrollPane2.setViewportView(fblog);
 
+        jButton10.setText("Install App");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Thread");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdacon.png"))); // NOI18N
@@ -267,7 +275,10 @@ public class Yuware extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3))
                     .addComponent(jLabel4)
-                    .addComponent(jButton4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton10)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,7 +367,9 @@ public class Yuware extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton4)
+                            .addComponent(jButton10))))
                 .addGap(149, 149, 149))
         );
 
@@ -468,6 +481,14 @@ public class Yuware extends javax.swing.JFrame {
         clear2();
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        try {
+            installApp();
+        } catch (IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -514,6 +535,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JTextField adbpath;
     private javax.swing.JTextArea fblog;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -653,5 +675,23 @@ public class Yuware extends javax.swing.JFrame {
 
     private void clear2() {
         fblog.setText("");
+    }
+
+    private void installApp() throws IOException {
+        String path = adbpath.getText();
+        FileFilter filter = new FileNameExtensionFilter("Apk files", "apk");
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileFilter(filter);
+        chooser.addChoosableFileFilter(filter);
+        int result = chooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File choosen = chooser.getSelectedFile();
+            String pathoffile = choosen.getAbsolutePath();
+            adblog.setText("Installing App " + pathoffile);
+            Process re = Runtime.getRuntime().exec(path + "\\adb install " + "\"" + pathoffile + "\"");
+            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+            JOptionPane.showMessageDialog(null, "Installed App Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+
     }
 }
