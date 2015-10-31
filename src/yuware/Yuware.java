@@ -6,17 +6,13 @@
 package yuware;
 
 import com.alee.laf.WebLookAndFeel;
-import static com.alee.managers.style.SupportedComponent.textArea;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
@@ -24,8 +20,6 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -41,6 +35,11 @@ public class Yuware extends javax.swing.JFrame {
     public Yuware() {
         initComponents();
         setIcon();
+        try {
+            startADB();
+        } catch (IOException | InterruptedException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -68,11 +67,15 @@ public class Yuware extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         adbpath = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        Byurekap = new javax.swing.JToggleButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         adblog = new javax.swing.JTextArea();
+        jButton5 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        fblog = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -161,11 +164,11 @@ public class Yuware extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Adb path");
 
-        Devices.add(jToggleButton1);
-        jToggleButton1.setText("Yureka+");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        Devices.add(Byurekap);
+        Byurekap.setText("Yureka+");
+        Byurekap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                ByurekapActionPerformed(evt);
             }
         });
 
@@ -187,6 +190,24 @@ public class Yuware extends javax.swing.JFrame {
         adblog.setColumns(20);
         adblog.setRows(5);
         jScrollPane1.setViewportView(adblog);
+
+        jButton5.setText("Fastboot Devices");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText("Clear");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        fblog.setColumns(20);
+        fblog.setRows(5);
+        jScrollPane2.setViewportView(fblog);
 
         jMenu1.setText("Thread");
 
@@ -258,7 +279,7 @@ public class Yuware extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(Byureka)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jToggleButton1)
+                                    .addComponent(Byurekap)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(Byuphoria)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -267,40 +288,55 @@ public class Yuware extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGap(18, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel5)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(adbpath, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton6))
-                        .addComponent(jButton7))
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton8)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(47, 47, 47))
+                            .addComponent(jButton6)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton8))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton9))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton7)
-                            .addComponent(jButton8))
+                            .addComponent(jButton8)
+                            .addComponent(jButton5)
+                            .addComponent(jButton9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(adbpath, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton6)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(71, 71, 71)
                         .addComponent(jLabel2)
                         .addGap(11, 11, 11)
                         .addComponent(DSelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -309,7 +345,7 @@ public class Yuware extends javax.swing.JFrame {
                             .addComponent(Byureka)
                             .addComponent(Byuphoria)
                             .addComponent(Byunique)
-                            .addComponent(jToggleButton1))
+                            .addComponent(Byurekap))
                         .addGap(15, 15, 15)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -321,7 +357,7 @@ public class Yuware extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)))
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addGap(149, 149, 149))
         );
 
         pack();
@@ -403,10 +439,10 @@ public class Yuware extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void ByurekapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ByurekapActionPerformed
         DSelected.setText("Yureka+ selected!");
-        Byureka.setSelected(true);    // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+        Byurekap.setSelected(true);    // TODO add your handling code here:
+    }//GEN-LAST:event_ByurekapActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         try {
@@ -419,6 +455,18 @@ public class Yuware extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         clear();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            fastboot();
+        } catch (IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        clear2();
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -459,17 +507,21 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JToggleButton Byunique;
     private javax.swing.JToggleButton Byuphoria;
     private javax.swing.JToggleButton Byureka;
+    private javax.swing.JToggleButton Byurekap;
     private javax.swing.JTextField DSelected;
     private javax.swing.ButtonGroup Devices;
     private javax.swing.JTextArea adblog;
     private javax.swing.JTextField adbpath;
+    private javax.swing.JTextArea fblog;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -484,7 +536,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {
@@ -493,6 +545,7 @@ public class Yuware extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         adblog.setLineWrap(true);
+        fblog.setLineWrap(true);
     }
 
     private void reboot() throws IOException {
@@ -542,11 +595,7 @@ public class Yuware extends javax.swing.JFrame {
         clear();
         String line;
         String path = adbpath.getText();
-        String[] command = {"adb", "devices"};
-        ProcessBuilder builder = new ProcessBuilder(command);
-        builder.directory(new File(path));
-        builder.redirectErrorStream(true);
-        Process process = builder.start();
+        Process process = Runtime.getRuntime().exec(path + "\\adb devices");
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         while ((line = reader.readLine()) != null) {
             adblog.append("\n" + line);
@@ -556,5 +605,53 @@ public class Yuware extends javax.swing.JFrame {
 
     private void clear() {
         adblog.setText("");
+    }
+
+    private void startADB() throws IOException, InterruptedException {
+        Runtime.getRuntime().exec("cmd /c ADB-starter.bat", null, new File("C:/Program Files/Yuware™"));
+    }
+
+    private void fastboot() throws IOException {
+        if (Byureka.isSelected() || Byurekap.isSelected()) {
+            clear2();
+            String line;
+            String path = adbpath.getText();
+            Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf devices");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            if ((line = reader.readLine()) != null) {
+                fblog.append("\n" + line);
+                process.destroy();
+            } else {
+                fblog.setText("No device found");
+            }
+        } else if (Byuphoria.isSelected()) {
+            clear2();
+            String line;
+            String path = adbpath.getText();
+            Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 devices");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            if ((line = reader.readLine()) != null) {
+                fblog.append("\n" + line);
+                process.destroy();
+            } else {
+                fblog.setText("No device found");
+            }
+        } else if (Byunique.isSelected()) {
+            clear2();
+            String line;
+            String path = adbpath.getText();
+            Process process = Runtime.getRuntime().exec(path + "\\fastboot devices");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            if ((line = reader.readLine()) != null) {
+                fblog.append("\n" + line);
+                process.destroy();
+            } else {
+                fblog.setText("No device found");
+            }
+        }
+    }
+
+    private void clear2() {
+        fblog.setText("");
     }
 }
