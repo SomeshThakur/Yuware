@@ -83,6 +83,7 @@ public class Yuware extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -254,6 +255,13 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
 
+        jButton14.setText("Flash recovery.img");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Thread");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdacon.png"))); // NOI18N
@@ -315,7 +323,9 @@ public class Yuware extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton13))
+                        .addComponent(jButton13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton14))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -426,7 +436,8 @@ public class Yuware extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton12)
-                            .addComponent(jButton13)))
+                            .addComponent(jButton13)
+                            .addComponent(jButton14)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -576,6 +587,14 @@ public class Yuware extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        try {
+            flashrcvry();
+        } catch (IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton14ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -626,6 +645,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -864,9 +884,9 @@ public class Yuware extends javax.swing.JFrame {
     }
 
     private void lockBL() throws IOException {
-       int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Locking bootloader will Lock bootloader."
-                +" Next time when you unlock bootloader then it wipe all data\n"+
-               " I am not responsible for any damage caused to your device.\n"
+        int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Locking bootloader will Lock bootloader."
+                + " Next time when you unlock bootloader then it wipe all data\n"
+                + " I am not responsible for any damage caused to your device.\n"
                 + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
         if (y == JOptionPane.YES_OPTION) {
             if (Byureka.isSelected() || Byurekap.isSelected()) {
@@ -908,5 +928,74 @@ public class Yuware extends javax.swing.JFrame {
             }
         }
     }
-    }
 
+    private void flashrcvry() throws IOException {
+        int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Flashing recovery will replace current recovery permanently"
+                + " \n"
+                + " I am not responsible for any damage caused to your device.\n"
+                + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
+        if (y == JOptionPane.YES_OPTION) {
+            if (Byureka.isSelected() || Byurekap.isSelected()) {
+                clear2();
+                String line;
+                String path = adbpath.getText();
+                FileFilter filter = new FileNameExtensionFilter("img files", "img");
+                JFileChooser chooser = new JFileChooser();
+                chooser.setFileFilter(filter);
+                chooser.addChoosableFileFilter(filter);
+                int result = chooser.showOpenDialog(this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File choosen = chooser.getSelectedFile();
+                    Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf flash recovery \"" + choosen.getAbsolutePath() + "\"");
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    if ((line = reader.readLine()) != null) {
+                        fblog.append("\n" + line);
+                        process.destroy();
+                    } else {
+                        fblog.setText("No device found");
+                    }
+                }
+            } else if (Byuphoria.isSelected()) {
+                clear2();
+                String line;
+                String path = adbpath.getText();
+                FileFilter filter = new FileNameExtensionFilter("img files", "img");
+                JFileChooser chooser = new JFileChooser();
+                chooser.setFileFilter(filter);
+                chooser.addChoosableFileFilter(filter);
+                int result = chooser.showOpenDialog(this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File choosen = chooser.getSelectedFile();
+                    Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 flash recovery \"" + choosen.getAbsolutePath() + "\"");
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    if ((line = reader.readLine()) != null) {
+                        fblog.append("\n" + line);
+                        process.destroy();
+                    } else {
+                        fblog.setText("No device found");
+                    }
+                }
+            } else if (Byunique.isSelected()) {
+                clear2();
+                String line;
+                String path = adbpath.getText();
+                FileFilter filter = new FileNameExtensionFilter("img files", "img");
+                JFileChooser chooser = new JFileChooser();
+                chooser.setFileFilter(filter);
+                chooser.addChoosableFileFilter(filter);
+                int result = chooser.showOpenDialog(this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File choosen = chooser.getSelectedFile();
+                    Process process = Runtime.getRuntime().exec(path + "\\fastboot flash recovery \"" + choosen.getAbsolutePath() + "\"");
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    if ((line = reader.readLine()) != null) {
+                        fblog.append("\n" + line);
+                        process.destroy();
+                    } else {
+                        fblog.setText("No device found");
+                    }
+                }
+            }
+        }
+    }
+}
