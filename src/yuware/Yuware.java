@@ -848,36 +848,42 @@ public class Yuware extends javax.swing.JFrame {
                 String line;
                 String path = adbpath.getText();
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem unlock");
+                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                JOptionPane.showMessageDialog(null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 if ((line = reader.readLine()) != null) {
                     fblog.append("\n" + line);
                     process.destroy();
                 } else {
-                    fblog.setText("No device found");
+                    fblog.setText("Done!");
                 }
             } else if (Byuphoria.isSelected()) {
                 clear2();
                 String line;
                 String path = adbpath.getText();
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem unlock");
+                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                JOptionPane.showMessageDialog(null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 if ((line = reader.readLine()) != null) {
                     fblog.append("\n" + line);
                     process.destroy();
                 } else {
-                    fblog.setText("No device found");
+                    fblog.setText("Done!");
                 }
             } else if (Byunique.isSelected()) {
                 clear2();
                 String line;
                 String path = adbpath.getText();
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot oem unlock-go");
+                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                JOptionPane.showMessageDialog(null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 if ((line = reader.readLine()) != null) {
                     fblog.append("\n" + line);
                     process.destroy();
                 } else {
-                    fblog.setText("No device found");
+                    fblog.setText("Done!");
                 }
             }
         }
@@ -894,36 +900,42 @@ public class Yuware extends javax.swing.JFrame {
                 String line;
                 String path = adbpath.getText();
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem lock");
+                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                JOptionPane.showMessageDialog(null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 if ((line = reader.readLine()) != null) {
                     fblog.append("\n" + line);
                     process.destroy();
                 } else {
-                    fblog.setText("No device found");
+                    fblog.setText("Done!");
                 }
             } else if (Byuphoria.isSelected()) {
                 clear2();
                 String line;
                 String path = adbpath.getText();
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem lock");
+                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                JOptionPane.showMessageDialog(null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 if ((line = reader.readLine()) != null) {
                     fblog.append("\n" + line);
                     process.destroy();
                 } else {
-                    fblog.setText("No device found");
+                    fblog.setText("Done!");
                 }
             } else if (Byunique.isSelected()) {
                 clear2();
                 String line;
                 String path = adbpath.getText();
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot oem lock-go");
+                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                JOptionPane.showMessageDialog(null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 if ((line = reader.readLine()) != null) {
                     fblog.append("\n" + line);
                     process.destroy();
                 } else {
-                    fblog.setText("No device found");
+                    fblog.setText("Done!");
                 }
             }
         }
@@ -947,12 +959,14 @@ public class Yuware extends javax.swing.JFrame {
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File choosen = chooser.getSelectedFile();
                     Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf flash recovery \"" + choosen.getAbsolutePath() + "\"");
+                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                JOptionPane.showMessageDialog(null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                     if ((line = reader.readLine()) != null) {
                         fblog.append("\n" + line);
                         process.destroy();
                     } else {
-                        fblog.setText("No device found");
+                        fblog.setText("Done!");
                     }
                 }
             } else if (Byuphoria.isSelected()) {
@@ -967,12 +981,14 @@ public class Yuware extends javax.swing.JFrame {
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File choosen = chooser.getSelectedFile();
                     Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 flash recovery \"" + choosen.getAbsolutePath() + "\"");
+                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                JOptionPane.showMessageDialog(null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                     if ((line = reader.readLine()) != null) {
                         fblog.append("\n" + line);
                         process.destroy();
                     } else {
-                        fblog.setText("No device found");
+                        fblog.setText("Done!");
                     }
                 }
             } else if (Byunique.isSelected()) {
@@ -987,12 +1003,14 @@ public class Yuware extends javax.swing.JFrame {
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File choosen = chooser.getSelectedFile();
                     Process process = Runtime.getRuntime().exec(path + "\\fastboot flash recovery \"" + choosen.getAbsolutePath() + "\"");
+                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                JOptionPane.showMessageDialog(null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                     if ((line = reader.readLine()) != null) {
                         fblog.append("\n" + line);
                         process.destroy();
                     } else {
-                        fblog.setText("No device found");
+                        fblog.setText("Done!");
                     }
                 }
             }
