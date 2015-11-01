@@ -77,6 +77,7 @@ public class Yuware extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         fblog = new javax.swing.JTextArea();
         jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -217,6 +218,13 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
 
+        jButton11.setText("Insatll Multiple Apps");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Thread");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdacon.png"))); // NOI18N
@@ -228,7 +236,7 @@ public class Yuware extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/yucon copy.png"))); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/yucon.png"))); // NOI18N
         jMenuItem3.setText("YUOfficialForum");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,8 +285,10 @@ public class Yuware extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton10)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton11)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,8 +379,9 @@ public class Yuware extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton4)
-                            .addComponent(jButton10))))
-                .addGap(149, 149, 149))
+                            .addComponent(jButton10)
+                            .addComponent(jButton11))))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         pack();
@@ -489,6 +500,14 @@ public class Yuware extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        try {
+            installMulApp();
+        } catch (IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -536,6 +555,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JTextArea fblog;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -694,4 +714,33 @@ public class Yuware extends javax.swing.JFrame {
         }
 
     }
+
+    private void installMulApp() throws IOException {
+    String pathA = System.getProperty("user.home") + "\\Desktop";
+    File appfolder = new File(pathA+"\\Apks folder");
+    appfolder.mkdir();
+    JOptionPane.showMessageDialog(null," Place all your apks under folder named \"Apks Folder\".\n Folder is on your desktop.","",JOptionPane.INFORMATION_MESSAGE);
+    int y = JOptionPane.showConfirmDialog(null," DID YOU PLACED ALL YOUR APKS UNDER \"Apks folder\"??"
+            + "\n Note: If you are testing then please place atleast one apk in folder","Warning!",JOptionPane.YES_NO_OPTION);
+    if(y==JOptionPane.YES_OPTION){
+   Process copy = Runtime.getRuntime().exec("xcopy \""+pathA+"\\Apks folder\\*\" \"C:\\Program Files\\Yuware™\\Apks folder\" /s /i");
+        try {
+            copy.waitFor();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    Process install = Runtime.getRuntime().exec("cmd /c APK-Installer.bat", null, new File("C:/Program Files/Yuware™"));
+        try {
+            install.waitFor();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    Process delete = Runtime.getRuntime().exec("cmd /c delete.bat", null,new File("C:/Program Files/Yuware™/Apks folder"));
+        try {
+            delete.waitFor();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
 }
