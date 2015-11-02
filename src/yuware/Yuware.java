@@ -609,7 +609,7 @@ public class Yuware extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         try {
             installMulApp();
-        } catch (IOException ex) {
+        } catch (IOException | InterruptedException ex) {
             Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton11ActionPerformed
@@ -903,32 +903,29 @@ public class Yuware extends javax.swing.JFrame {
 
     }
 
-    private void installMulApp() throws IOException {
+    private void installMulApp() throws IOException, InterruptedException {
         String pathA = System.getProperty("user.home") + "\\Desktop";
         File appfolder = new File(pathA + "\\Apks folder");
         appfolder.mkdir();
         JOptionPane.showMessageDialog(null, " Place all your apks under folder named \"Apks Folder\".\n Folder is on your desktop.", "", JOptionPane.INFORMATION_MESSAGE);
         int y = JOptionPane.showConfirmDialog(null, " DID YOU PLACED ALL YOUR APKS UNDER \"Apks folder\"??"
+                + " \n It takes time to install all apps please check your phone for apps. Have patience!!! "
                 + "\n Note: If you are testing then please place atleast one apk in folder", "Warning!", JOptionPane.YES_NO_OPTION);
         if (y == JOptionPane.YES_OPTION) {
             Process copy = Runtime.getRuntime().exec("xcopy \"" + pathA + "\\Apks folder\\*\" \"C:\\Program Files\\Yuware™\\Apks folder\" /s /i");
-            try {
-                copy.waitFor();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            copy.waitFor();
+
             Process install = Runtime.getRuntime().exec("cmd /c APK-Installer.bat", null, new File("C:/Program Files/Yuware™"));
-            try {
-                install.waitFor();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            install.waitFor();
+            
             Process delete = Runtime.getRuntime().exec("cmd /c delete.bat", null, new File("C:/Program Files/Yuware™/Apks folder"));
-            try {
-                delete.waitFor();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            delete.waitFor();
+
+            Process log = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\Apks folder\\log.txt\" \"" + pathA + "\\Apks folder\" /i");
+            log.waitFor();
+
+            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+            JOptionPane.showMessageDialog(null, " All apks were installed.\n Check Log file placed in Apks folder for more info!", "Sucess!", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
 
