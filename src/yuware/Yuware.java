@@ -620,7 +620,7 @@ public class Yuware extends javax.swing.JFrame {
         } else {
             try {
                 unlockBL();
-            } catch (IOException ex) {
+            } catch (IOException | InterruptedException ex) {
                 Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -923,7 +923,7 @@ public class Yuware extends javax.swing.JFrame {
         }
     }
 
-    private void unlockBL() throws IOException {
+    private void unlockBL() throws IOException, InterruptedException {
         int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Unlocking bootloader will wipe all DATA."
                 + " Including internal storage !!!\n"
                 + " I am not responsible for any damage caused to your device.\n"
@@ -933,7 +933,9 @@ public class Yuware extends javax.swing.JFrame {
                 clear2();
                 String line;
                 String path = adbpath.getText();
+                JOptionPane.showMessageDialog(null," Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"","Waiting for confirmation!",JOptionPane.INFORMATION_MESSAGE);
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem unlock");
+                process.waitFor();
                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                 JOptionPane.showMessageDialog(null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -947,7 +949,9 @@ public class Yuware extends javax.swing.JFrame {
                 clear2();
                 String line;
                 String path = adbpath.getText();
+                JOptionPane.showMessageDialog(null," Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"","Waiting for confirmation!",JOptionPane.INFORMATION_MESSAGE);
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem unlock");
+                process.waitFor();
                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                 JOptionPane.showMessageDialog(null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -961,7 +965,9 @@ public class Yuware extends javax.swing.JFrame {
                 clear2();
                 String line;
                 String path = adbpath.getText();
+                JOptionPane.showMessageDialog(null," Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"","Waiting for confirmation!",JOptionPane.INFORMATION_MESSAGE);
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot oem unlock-go");
+                process.waitFor();
                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                 JOptionPane.showMessageDialog(null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -985,6 +991,7 @@ public class Yuware extends javax.swing.JFrame {
                 clear2();
                 String line;
                 String path = adbpath.getText();
+                JOptionPane.showMessageDialog(null," Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"","Waiting for confirmation!",JOptionPane.INFORMATION_MESSAGE);
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem lock");
                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                 JOptionPane.showMessageDialog(null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -999,6 +1006,7 @@ public class Yuware extends javax.swing.JFrame {
                 clear2();
                 String line;
                 String path = adbpath.getText();
+                
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem lock");
                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                 JOptionPane.showMessageDialog(null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1068,7 +1076,7 @@ public class Yuware extends javax.swing.JFrame {
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File choosen = chooser.getSelectedFile();
                     Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 flash recovery \"" + choosen.getAbsolutePath() + "\"");
-                     process.waitFor();
+                    process.waitFor();
                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                     JOptionPane.showMessageDialog(null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -1091,7 +1099,7 @@ public class Yuware extends javax.swing.JFrame {
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File choosen = chooser.getSelectedFile();
                     Process process = Runtime.getRuntime().exec(path + "\\fastboot flash recovery \"" + choosen.getAbsolutePath() + "\"");
-                     process.waitFor();
+                    process.waitFor();
                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                     JOptionPane.showMessageDialog(null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -1220,48 +1228,47 @@ public class Yuware extends javax.swing.JFrame {
 
     private void rebootFbSys() throws IOException {
         if (Byureka.isSelected() || Byurekap.isSelected()) {
-                clear2();
-                String line;
-                String path = adbpath.getText();
-                Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf reboot");
-                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                JOptionPane.showMessageDialog(null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                if ((line = reader.readLine()) != null) {
-                    fblog.append("\n" + line);
-                    process.destroy();
-                } else {
-                    fblog.setText("Done!");
-                }
-            } else if (Byuphoria.isSelected()) {
-                clear2();
-                String line;
-                String path = adbpath.getText();
-                Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 reboot");
-                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                JOptionPane.showMessageDialog(null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                if ((line = reader.readLine()) != null) {
-                    fblog.append("\n" + line);
-                    process.destroy();
-                } else {
-                    fblog.setText("Done!");
-                }
-            } else if (Byunique.isSelected()) {
-                clear2();
-                String line;
-                String path = adbpath.getText();
-                Process process = Runtime.getRuntime().exec(path + "\\fastboot reboot");
-                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                JOptionPane.showMessageDialog(null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                if ((line = reader.readLine()) != null) {
-                    fblog.append("\n" + line);
-                    process.destroy();
-                } else {
-                    fblog.setText("Done!");
-                }
+            clear2();
+            String line;
+            String path = adbpath.getText();
+            Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf reboot");
+            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+            JOptionPane.showMessageDialog(null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            if ((line = reader.readLine()) != null) {
+                fblog.append("\n" + line);
+                process.destroy();
+            } else {
+                fblog.setText("Done!");
+            }
+        } else if (Byuphoria.isSelected()) {
+            clear2();
+            String line;
+            String path = adbpath.getText();
+            Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 reboot");
+            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+            JOptionPane.showMessageDialog(null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            if ((line = reader.readLine()) != null) {
+                fblog.append("\n" + line);
+                process.destroy();
+            } else {
+                fblog.setText("Done!");
+            }
+        } else if (Byunique.isSelected()) {
+            clear2();
+            String line;
+            String path = adbpath.getText();
+            Process process = Runtime.getRuntime().exec(path + "\\fastboot reboot");
+            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+            JOptionPane.showMessageDialog(null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            if ((line = reader.readLine()) != null) {
+                fblog.append("\n" + line);
+                process.destroy();
+            } else {
+                fblog.setText("Done!");
             }
         }
     }
-
+}
