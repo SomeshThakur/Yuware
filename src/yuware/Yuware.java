@@ -85,6 +85,7 @@ public class Yuware extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -270,6 +271,13 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
 
+        jButton16.setText("Device INFO");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Thread");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdacon.png"))); // NOI18N
@@ -393,6 +401,8 @@ public class Yuware extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton16)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -459,7 +469,9 @@ public class Yuware extends javax.swing.JFrame {
                             .addComponent(adbpath, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton6))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton15)
+                    .addComponent(jButton16))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -639,6 +651,14 @@ public class Yuware extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton15ActionPerformed
 
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        try {
+            deviceInfo();
+        } catch (IOException | InterruptedException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -691,6 +711,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1138,6 +1159,39 @@ public class Yuware extends javax.swing.JFrame {
                     }
                 }
             }
+        }
+    }
+
+    private void deviceInfo() throws IOException, InterruptedException {
+        int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Make sure your is booted in fastboot mode!"
+                + " \n"
+                + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
+        if (y == JOptionPane.YES_OPTION) {
+            if (Byureka.isSelected() || Byurekap.isSelected()) {
+                clear2();
+                String line;
+                String path = adbpath.getText();
+                Process process = Runtime.getRuntime().exec("cmd /c yurekainfo.bat", null, new File("C:/Program Files/Yuware™"));
+                process.waitFor();
+                Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yureka(+)_DeviceInfo.txt"));
+                process.destroy();
+            }
+        } else if (Byuphoria.isSelected()) {
+            clear2();
+            String line;
+            String path = adbpath.getText();
+            Process process = Runtime.getRuntime().exec("cmd /c yuphoriainfo.bat", null, new File("C:/Program Files/Yuware™"));
+            process.waitFor();
+            Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yuphoria_DeviceInfo.txt"));
+            process.destroy();
+        } else if (Byunique.isSelected()) {
+            clear2();
+            String line;
+            String path = adbpath.getText();
+            Process process = Runtime.getRuntime().exec("cmd /c yuniqueinfo.bat", null, new File("C:/Program Files/Yuware™"));
+            process.waitFor();
+            Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yunique_DeviceInfo.txt"));
+            process.destroy();
         }
     }
 }
