@@ -660,21 +660,30 @@ public class Yuware extends javax.swing.JFrame {
                 Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        try {
-            deviceInfo();
-        } catch (IOException | InterruptedException ex) {
-            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        if (Devices.getSelection() == null) {
+            JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            try {
+                deviceInfo();
+            } catch (IOException | InterruptedException ex) {
+                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        try {
-            rebootFbSys();
-        } catch (IOException ex) {
-            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        if (Devices.getSelection() == null) {
+            JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            try {
+                rebootFbSys();
+            } catch (IOException ex) {
+                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton17ActionPerformed
 
@@ -933,7 +942,7 @@ public class Yuware extends javax.swing.JFrame {
                 clear2();
                 String line;
                 String path = adbpath.getText();
-                JOptionPane.showMessageDialog(null," Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"","Waiting for confirmation!",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem unlock");
                 process.waitFor();
                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
@@ -949,7 +958,7 @@ public class Yuware extends javax.swing.JFrame {
                 clear2();
                 String line;
                 String path = adbpath.getText();
-                JOptionPane.showMessageDialog(null," Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"","Waiting for confirmation!",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem unlock");
                 process.waitFor();
                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
@@ -965,7 +974,7 @@ public class Yuware extends javax.swing.JFrame {
                 clear2();
                 String line;
                 String path = adbpath.getText();
-                JOptionPane.showMessageDialog(null," Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"","Waiting for confirmation!",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot oem unlock-go");
                 process.waitFor();
                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
@@ -991,7 +1000,7 @@ public class Yuware extends javax.swing.JFrame {
                 clear2();
                 String line;
                 String path = adbpath.getText();
-                JOptionPane.showMessageDialog(null," Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"","Waiting for confirmation!",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem lock");
                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                 JOptionPane.showMessageDialog(null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -1006,7 +1015,7 @@ public class Yuware extends javax.swing.JFrame {
                 clear2();
                 String line;
                 String path = adbpath.getText();
-                
+
                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem lock");
                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                 JOptionPane.showMessageDialog(null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
