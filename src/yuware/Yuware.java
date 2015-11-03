@@ -11,6 +11,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
@@ -18,6 +20,7 @@ import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
@@ -759,6 +762,31 @@ public class Yuware extends javax.swing.JFrame {
                 WebLookAndFeel.setDecorateFrames(true);
                 WebLookAndFeel.setDecorateAllWindows(true);
                 new Yuware().setVisible(true);
+                BufferedReader br = null;
+                try {
+                    br = new BufferedReader(new FileReader(("C:/Program Files/Yuware™/dsmsg.txt")));
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    while ("0".equals(br.readLine())) {
+                        JCheckBox cb = new JCheckBox("Do not show this message again.");
+                        String msg = " Make sure your device is connected with USB cable to PC \n"
+                                + " Install proper drivers if the device doesn't show in ADB devices.\n"
+                                + " Yuware™ will freeze if the device is not connected or drivers are not installed.";
+                        Object[] msgContent = {msg, cb};
+                        JOptionPane.showMessageDialog(null, msgContent, "Warning!!", JOptionPane.INFORMATION_MESSAGE);
+                        if (cb.isSelected()) {
+                            try {
+                                Process exec = Runtime.getRuntime().exec("cmd /c dsmsgY.bat", null, new File("C:/Program Files/Yuware™"));
+                            } catch (IOException ex) {
+                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
