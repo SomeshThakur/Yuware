@@ -958,7 +958,7 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-  String path = adbpath.getText();
+        String path = adbpath.getText();
         try {
             Process recent = Runtime.getRuntime().exec(path + "\\adb shell input swipe 360 1100 360 100");
         } catch (IOException ex) {
@@ -967,7 +967,7 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
-String path = adbpath.getText();
+        String path = adbpath.getText();
         try {
             Process recent = Runtime.getRuntime().exec(path + "\\adb shell input swipe 360 100 360 1100");
         } catch (IOException ex) {
@@ -977,13 +977,13 @@ String path = adbpath.getText();
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
         String path = adbpath.getText();
-        String msg = JOptionPane.showInputDialog(null,"");
-        if(!(msg == null)){
-        try {
-            String value = msg.replaceAll("\\s","%s");
-            Process recent = Runtime.getRuntime().exec(path + "\\adb shell input text \""+value+"\"");
-        } catch (IOException ex) {
-        }
+        String msg = JOptionPane.showInputDialog(null, "");
+        if (!(msg == null)) {
+            try {
+                String value = msg.replaceAll("\\s", "%s");
+                Process recent = Runtime.getRuntime().exec(path + "\\adb shell input text \"" + value + "\"");
+            } catch (IOException ex) {
+            }
         }
     }//GEN-LAST:event_jButton31ActionPerformed
 
