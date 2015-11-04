@@ -666,8 +666,8 @@ public class Yuware extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("About.png")));
         JOptionPane.showMessageDialog(null, " Yuware is free software for YU devices \n"
-                + " It was designed for User Friendly GUI, Easy to use and Premium look purpose. \n"
-                + " All Copyrights© reserved by Somesh Thakur. \n(The Dev behind this software)"
+                + " It is designed for User Friendly GUI, Easy to use and Premium look purpose. \n"
+                + " All Copyrights© are reserved by Somesh Thakur. \n (The Dev behind this software)"
                 + "     Contact : Someshthakur33@gmail.com \n"
                 + "  Version :- 2.5 ", "About", JOptionPane.INFORMATION_MESSAGE, icon);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
