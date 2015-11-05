@@ -107,8 +107,6 @@ public class Yuware extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jButton33 = new javax.swing.JButton();
         jButton31 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jButton25 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jButton24 = new javax.swing.JButton();
         Brecorder = new javax.swing.JButton();
@@ -117,6 +115,8 @@ public class Yuware extends javax.swing.JFrame {
         jButton29 = new javax.swing.JButton();
         jButton32 = new javax.swing.JButton();
         jButton34 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jButton25 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -454,32 +454,6 @@ public class Yuware extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Mostly Used", jPanel3);
 
-        jButton25.setText("Power Off");
-        jButton25.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton25ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton25)
-                .addContainerGap(202, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton25)
-                .addContainerGap(74, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Power Opt", jPanel4);
-
         jButton24.setText("Screenshot");
         jButton24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -580,6 +554,32 @@ public class Yuware extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Swipe", jPanel6);
+
+        jButton25.setText("Power Off");
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton25)
+                .addContainerGap(202, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton25)
+                .addContainerGap(74, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Power Opt", jPanel4);
 
         jMenu1.setText("Thread");
 
@@ -1129,7 +1129,7 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton31ActionPerformed
 
     private void BrecorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BrecorderActionPerformed
-       JOptionPane.showMessageDialog(null," A commad promt will appear now! Close it to stop recording.\n Video will be saved in your internal storage with the name of \"CURRENT-YEAR-DATE-MONT-TIME-ScreenRecorder.mp4","",JOptionPane.INFORMATION_MESSAGE);
+       JOptionPane.showMessageDialog(null," A command prompt will appear now! Close it to stop recording.\n Video will be saved in your internal storage.\n With the name of \"CURRENT-YEAR-DATE-MONTH-TIME-YUScreenRecorder.mp4","",JOptionPane.INFORMATION_MESSAGE);
         try {
             Process process = Runtime.getRuntime().exec("cmd /c recorder.bat", null, new File("C:/Program Files/Yuware™"));
         } catch (IOException ex) {
