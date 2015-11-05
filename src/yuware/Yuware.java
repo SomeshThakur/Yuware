@@ -1168,7 +1168,7 @@ public class Yuware extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1205,7 +1205,7 @@ public class Yuware extends javax.swing.JFrame {
                 try {
                     while ("0".equals(br.readLine())) {
                         JCheckBox cb = new JCheckBox("Do not show this message again.");
-                        String msg = " Make sure your device is connected with USB cable to PC \n"
+                        String msg = " Make sure your device is connected with USB cable to PC and USB Debugging enabled \n"
                                 + " Install proper drivers if the device doesn't show in ADB devices.\n"
                                 + " Yuware™ will freeze if the device is not connected or drivers are not installed.";
                         Object[] msgContent = {msg, cb};
