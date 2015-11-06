@@ -1331,6 +1331,7 @@ public class Yuware extends javax.swing.JFrame {
 
     private void sideload() throws IOException {
         String path = adbpath.getText();
+        String line;
         int c = JOptionPane.showConfirmDialog(null, " Make sure your device is boot into recovery mode and set in sideload mode\n"
                 + " Else boot into recovery by clicking on \"Reboot to recovery\" option"
                 + "\n In recovery goto Advance > Sideload", "Warning!", JOptionPane.YES_NO_OPTION);
@@ -1344,7 +1345,11 @@ public class Yuware extends javax.swing.JFrame {
                 File choosen = chooser.getSelectedFile();
                 String pathoffile = choosen.getAbsolutePath();
                 adblog.setText("Sideloading " + pathoffile);
-                Process re = Runtime.getRuntime().exec(path + "\\adb sideload " + pathoffile );
+                Process as = Runtime.getRuntime().exec(path + "\\adb sideload " + pathoffile );
+                BufferedReader reader = new BufferedReader(new InputStreamReader(as.getInputStream()));
+                while ((line = reader.readLine()) != null) {
+                adblog.append("\n" + line);
+                }
                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                 JOptionPane.showMessageDialog(null, "Sideloaded Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
             }
