@@ -1344,7 +1344,7 @@ public class Yuware extends javax.swing.JFrame {
                 File choosen = chooser.getSelectedFile();
                 String pathoffile = choosen.getAbsolutePath();
                 adblog.setText("Sideloading " + pathoffile);
-                Process re = Runtime.getRuntime().exec(path + "\\adb sideload" + "\"" + pathoffile + "\"");
+                Process re = Runtime.getRuntime().exec(path + "\\adb sideload " + pathoffile );
                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                 JOptionPane.showMessageDialog(null, "Sideloaded Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
             }
