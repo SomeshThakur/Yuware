@@ -258,7 +258,7 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setText("Insatll Multiple Apps");
+        jButton11.setText("Install Multiple Apps");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -1357,7 +1357,7 @@ public class Yuware extends javax.swing.JFrame {
     }
 
     private void sideload() throws IOException {
-        String path = adbpath.getText();
+        final String path = adbpath.getText();
 
         int c = JOptionPane.showConfirmDialog(null, " Make sure your device is boot into recovery mode and set in sideload mode\n"
                 + " Else boot into recovery by clicking on \"Reboot to recovery\" option"
@@ -1370,13 +1370,13 @@ public class Yuware extends javax.swing.JFrame {
             int result = chooser.showOpenDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
                 File choosen = chooser.getSelectedFile();
-                String pathoffile = choosen.getAbsolutePath();
+                final String pathoffile = choosen.getAbsolutePath();
                 adblog.setText("Sideloading " + pathoffile);
-                final Process as = Runtime.getRuntime().exec(path + "\\adb sideload " + pathoffile);
                 new Thread() {
                     @Override
                     public void run() {
                         try {
+                            final Process as = Runtime.getRuntime().exec(path + "\\adb sideload " + pathoffile);
                             String line;
                             BufferedReader reader = new BufferedReader(new InputStreamReader(as.getInputStream()));
                             while ((line = reader.readLine()) != null) {
