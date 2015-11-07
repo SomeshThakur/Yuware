@@ -605,7 +605,12 @@ public class Yuware extends javax.swing.JFrame {
 
         jMenu2.setText("Help");
 
-        jMenuItem4.setText("Guide(Coming Soon)");
+        jMenuItem4.setText("Guide");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -1163,6 +1168,14 @@ public class Yuware extends javax.swing.JFrame {
             Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton34ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        try {     
+            Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Guide.docx"));
+        } catch (IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
