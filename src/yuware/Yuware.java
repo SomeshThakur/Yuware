@@ -119,6 +119,7 @@ public class Yuware extends javax.swing.JFrame {
         jButton25 = new javax.swing.JButton();
         jButton35 = new javax.swing.JButton();
         jButton36 = new javax.swing.JButton();
+        jButton37 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -597,6 +598,13 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
 
+        jButton37.setText("Push File");
+        jButton37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton37ActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Thread");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdacon.png"))); // NOI18N
@@ -690,7 +698,9 @@ public class Yuware extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton11))
+                                .addComponent(jButton11)
+                                .addGap(3, 3, 3)
+                                .addComponent(jButton37))
                             .addComponent(jLabel6)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -808,7 +818,8 @@ public class Yuware extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButton4)
                                     .addComponent(jButton10)
-                                    .addComponent(jButton11))
+                                    .addComponent(jButton11)
+                                    .addComponent(jButton37))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1201,12 +1212,24 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-        flashAll();
+        if (Devices.getSelection() == null) {
+            JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            flashAll();
+        }
     }//GEN-LAST:event_jButton35ActionPerformed
 
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
-        formatAll();
+        if (Devices.getSelection() == null) {
+            JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            formatAll();
+        }
     }//GEN-LAST:event_jButton36ActionPerformed
+
+    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
+        push();
+    }//GEN-LAST:event_jButton37ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1310,6 +1333,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JButton jButton34;
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
+    private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -2198,38 +2222,65 @@ public class Yuware extends javax.swing.JFrame {
                     @Override
                     public void run() {
                         try {
-                                Process formatting = Runtime.getRuntime().exec("cmd /c start \"Formating all partitions\" ytformatall.bat", null, new File("C:/Program Files/Yuware™"));
-                                formatting.waitFor();
+                            Process formatting = Runtime.getRuntime().exec("cmd /c start \"Formating all partitions\" ytformatall.bat", null, new File("C:/Program Files/Yuware™"));
+                            formatting.waitFor();
                         } catch (IOException | InterruptedException ex) {
                             Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 }.start();
-            } else if(Byuphoria.isSelected()){
-                    new Thread() {
+            } else if (Byuphoria.isSelected()) {
+                new Thread() {
                     @Override
                     public void run() {
                         try {
-                                Process formatting = Runtime.getRuntime().exec("cmd /c start \"Formating all partitions\" ylformatall.bat", null, new File("C:/Program Files/Yuware™"));
-                                formatting.waitFor();
+                            Process formatting = Runtime.getRuntime().exec("cmd /c start \"Formating all partitions\" ylformatall.bat", null, new File("C:/Program Files/Yuware™"));
+                            formatting.waitFor();
                         } catch (IOException | InterruptedException ex) {
                             Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 }.start();
-            } else if (Byunique.isSelected()){
-                    new Thread() {
+            } else if (Byunique.isSelected()) {
+                new Thread() {
                     @Override
                     public void run() {
                         try {
-                                Process formatting = Runtime.getRuntime().exec("cmd /c start \"Formating all partitions\" yjformatall.bat", null, new File("C:/Program Files/Yuware™"));
-                                formatting.waitFor();
+                            Process formatting = Runtime.getRuntime().exec("cmd /c start \"Formating all partitions\" yjformatall.bat", null, new File("C:/Program Files/Yuware™"));
+                            formatting.waitFor();
                         } catch (IOException | InterruptedException ex) {
                             Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 }.start();
             }
+        }
+    }
+
+    private void push() {
+        final String path = adbpath.getText();
+        JFileChooser chooser = new JFileChooser();
+        int result = chooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File choosen = chooser.getSelectedFile();
+            final String pathoffile = choosen.getAbsolutePath();
+            adblog.setText("Pushing file " + pathoffile);
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        String line;
+                        Process re = Runtime.getRuntime().exec(path + "\\adb push " + "\"" + pathoffile + "\"" + " /sdcard/");
+                        re.waitFor();
+                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                .getResource("done.png")));
+                        JOptionPane.showMessageDialog(
+                                null, "Pushed file Sucessfully!\n It is saved in your internal storage", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                    } catch (IOException | InterruptedException ex) {
+                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }.start();
         }
     }
 }
