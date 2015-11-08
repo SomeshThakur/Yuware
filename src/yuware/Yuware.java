@@ -117,6 +117,8 @@ public class Yuware extends javax.swing.JFrame {
         jButton34 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jButton25 = new javax.swing.JButton();
+        jButton35 = new javax.swing.JButton();
+        jButton36 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -581,6 +583,20 @@ public class Yuware extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Power Opt", jPanel4);
 
+        jButton35.setText("Flash All Partitions");
+        jButton35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton35ActionPerformed(evt);
+            }
+        });
+
+        jButton36.setText("Format All Partitions");
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Thread");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdacon.png"))); // NOI18N
@@ -636,91 +652,94 @@ public class Yuware extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(DSelected, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(Byureka)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(Byurekap)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(Byuphoria)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(Byunique)))
+                            .addComponent(jLabel2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(DSelected, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(Byureka)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(Byurekap)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(Byuphoria)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(Byunique)))
-                                    .addComponent(jLabel2)))
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel1))
+                                .addComponent(jButton12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton14))
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton3))
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton12)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton14))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton11))
-                                    .addComponent(jLabel6))))
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton11))
+                            .addComponent(jLabel6)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton35)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton36))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton17)))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton8))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton8))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton9))
-                                    .addComponent(jScrollPane2)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton19))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(adbpath, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jButton6)))
-                                    .addComponent(jLabel9)
-                                    .addComponent(jButton18)
-                                    .addComponent(jLabel10))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(jButton5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton9))
+                            .addComponent(jScrollPane2)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton17)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton19))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(adbpath, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButton6)))
+                            .addComponent(jLabel9)
+                            .addComponent(jButton18)
+                            .addComponent(jLabel10))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -797,11 +816,15 @@ public class Yuware extends javax.swing.JFrame {
                                     .addComponent(jButton12)
                                     .addComponent(jButton13)
                                     .addComponent(jButton14))
-                                .addGap(15, 15, 15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButton15)
                                     .addComponent(jButton16)
-                                    .addComponent(jButton17)))
+                                    .addComponent(jButton17))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton35)
+                                    .addComponent(jButton36)))
                             .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1170,12 +1193,20 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        try {     
+        try {
             Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Guide.docx"));
         } catch (IOException ex) {
             Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
+        flashAll();
+    }//GEN-LAST:event_jButton35ActionPerformed
+
+    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
+        formatAll();
+    }//GEN-LAST:event_jButton36ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1211,7 +1242,7 @@ public class Yuware extends javax.swing.JFrame {
                 new Yuware().setVisible(true);
                 BufferedReader br = null;
                 try {
-                    br = new BufferedReader(new FileReader(("C:/Program Files/Yuware™/dsmsg.txt")));
+                    br = new BufferedReader(new FileReader(("C:\\Program Files\\Yuware™\\dsmsg.txt")));
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1277,6 +1308,8 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton34;
+    private javax.swing.JButton jButton35;
+    private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -2056,6 +2089,147 @@ public class Yuware extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Yuware.class
                     .getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void flashAll() {
+        int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Flashing partitions will replace ALL current partitions.\n"
+                + "\n !! Select system.img partition from list of all your partitions !! \n"
+                + "\n I am not responsible for any damage caused to your device.\n"
+                + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
+        if (y == JOptionPane.YES_OPTION) {
+            if (Byureka.isSelected() || Byurekap.isSelected()) {
+                clear2();
+                final String path = adbpath.getText();
+                FileFilter filter = new FileNameExtensionFilter("img files", "img");
+                JFileChooser chooser = new JFileChooser();
+                chooser.setDialogTitle("Select system.img");
+                chooser.setFileFilter(filter);
+                chooser.addChoosableFileFilter(filter);
+                chooser.setCurrentDirectory(new File(System.getProperty("user.home") + "\\Desktop"));
+                int result = chooser.showOpenDialog(this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    final File choosen = chooser.getSelectedFile();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                Process process = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\fastboot.exe\" " + "\"" + choosen.getParent() + "\"");
+                                process.waitFor();
+                                Process flashall = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\yurekaflasher.bat\" " + "\"" + choosen.getParent() + "\"");
+                                flashall.waitFor();
+                                Process flashing = Runtime.getRuntime().exec("cmd /c start \"Flashing all Partitions on Yureka/Yureka+\" yurekaflasher.bat", null, new File(choosen.getParent()));
+                                process.waitFor();
+                            } catch (IOException | InterruptedException ex) {
+                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }.start();
+                }
+            } else if (Byuphoria.isSelected()) {
+                clear2();
+                final String path = adbpath.getText();
+                FileFilter filter = new FileNameExtensionFilter("img files", "img");
+                JFileChooser chooser = new JFileChooser();
+                chooser.setDialogTitle("Select system.img");
+                chooser.setFileFilter(filter);
+                chooser.addChoosableFileFilter(filter);
+                chooser.setCurrentDirectory(new File(System.getProperty("user.home") + "\\Desktop"));
+                int result = chooser.showOpenDialog(this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    final File choosen = chooser.getSelectedFile();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                Process process = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\fastboot.exe\" " + "\"" + choosen.getParent() + "\"");
+                                process.waitFor();
+                                Process flashall = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\yuphoriaflasher.bat\" " + "\"" + choosen.getParent() + "\"");
+                                flashall.waitFor();
+                                Process flashing = Runtime.getRuntime().exec("cmd /c start \"Flashing all Partitions on Yuphoria\" yuphoriaflasher.bat", null, new File(choosen.getParent()));
+                                process.waitFor();
+                            } catch (IOException | InterruptedException ex) {
+                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }.start();
+                }
+            } else if (Byunique.isSelected()) {
+                clear2();
+                final String path = adbpath.getText();
+                FileFilter filter = new FileNameExtensionFilter("img files", "img");
+                JFileChooser chooser = new JFileChooser();
+                chooser.setDialogTitle("Select system.img");
+                chooser.setFileFilter(filter);
+                chooser.addChoosableFileFilter(filter);
+                chooser.setCurrentDirectory(new File(System.getProperty("user.home") + "\\Desktop"));
+                int result = chooser.showOpenDialog(this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    final File choosen = chooser.getSelectedFile();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                Process process = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\fastboot.exe\" " + "\"" + choosen.getParent() + "\"");
+                                process.waitFor();
+                                Process flashall = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\yuniqueflasher.bat\" " + "\"" + choosen.getParent() + "\"");
+                                flashall.waitFor();
+                                Process flashing = Runtime.getRuntime().exec("cmd /c start \"Flashing all Partitions on Yunique\" yuniqueflasher.bat", null, new File(choosen.getParent()));
+                                process.waitFor();
+                            } catch (IOException | InterruptedException ex) {
+                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }.start();
+                }
+            }
+        }
+
+    }
+
+    private void formatAll() {
+        int y = JOptionPane.showConfirmDialog(null, "**** Read Carefully ****\n"
+                + " Formatting all partitions will wipe all current partitions on your device!!!\n"
+                + " I am not responsible for any damaged caused\n"
+                + " Do you wish to continue?", "", JOptionPane.YES_NO_OPTION);
+        if (y == JOptionPane.YES_OPTION) {
+            if (Byureka.isSelected() | Byurekap.isSelected()) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                                Process formatting = Runtime.getRuntime().exec("cmd /c start \"Formating all partitions\" ytformatall.bat", null, new File("C:/Program Files/Yuware™"));
+                                formatting.waitFor();
+                        } catch (IOException | InterruptedException ex) {
+                            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }.start();
+            } else if(Byuphoria.isSelected()){
+                    new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                                Process formatting = Runtime.getRuntime().exec("cmd /c start \"Formating all partitions\" ylformatall.bat", null, new File("C:/Program Files/Yuware™"));
+                                formatting.waitFor();
+                        } catch (IOException | InterruptedException ex) {
+                            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }.start();
+            } else if (Byunique.isSelected()){
+                    new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                                Process formatting = Runtime.getRuntime().exec("cmd /c start \"Formating all partitions\" yjformatall.bat", null, new File("C:/Program Files/Yuware™"));
+                                formatting.waitFor();
+                        } catch (IOException | InterruptedException ex) {
+                            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }.start();
+            }
         }
     }
 }
