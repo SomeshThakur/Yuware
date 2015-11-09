@@ -4,3 +4,8 @@ Everything is coded in JAVA only.
 A third party Libarary is been used for Look and feel of JFrames. You can find it in my code.
 All work is free and open source that doesnt means i had not spend much time. I had spent hours of time in coding perfect way. If you use my work or code please mention proper credits
 Feel free to send pull requests whenever you think a better code can replace it.
+
+Credits :-
+1) DooMLoRD for Flashing tools and Guides
+2) AyushTyagi for Guide of Yunique
+3) PDA net for drivers 
