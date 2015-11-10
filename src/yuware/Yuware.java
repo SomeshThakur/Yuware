@@ -2005,36 +2005,53 @@ public class Yuware extends javax.swing.JFrame {
     }
 
     private void deviceInfo() throws IOException, InterruptedException {
-        int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Make sure your is booted in fastboot mode!"
-                + " \n"
-                + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
-        if (y == JOptionPane.YES_OPTION) {
-            if (Byureka.isSelected() || Byurekap.isSelected()) {
-                clear2();
-                String line;
-                String path = adbpath.getText();
-                Process process = Runtime.getRuntime().exec("cmd /c yurekainfo.bat", null, new File("C:/Program Files/Yuware™"));
-                process.waitFor();
-                Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yureka(+)_DeviceInfo.txt"));
-                process.destroy();
+        new Thread() {
+            @Override
+            public void run() {
+                int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Make sure your is booted in fastboot mode!"
+                        + " \n"
+                        + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
+                if (y == JOptionPane.YES_OPTION) {
+                    if (Byureka.isSelected() || Byurekap.isSelected()) {
+                        try {
+                            clear2();
+                            String line;
+                            String path = adbpath.getText();
+                            Process process = Runtime.getRuntime().exec("cmd /c yurekainfo.bat", null, new File("C:/Program Files/Yuware™"));
+                            process.waitFor();
+                            Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yureka(+)_DeviceInfo.txt"));
+                            process.destroy();
+                        } catch (IOException | InterruptedException ex) {
+                            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                } else if (Byuphoria.isSelected()) {
+                    try {
+                        clear2();
+                        String line;
+                        String path = adbpath.getText();
+                        Process process = Runtime.getRuntime().exec("cmd /c yuphoriainfo.bat", null, new File("C:/Program Files/Yuware™"));
+                        process.waitFor();
+                        Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yuphoria_DeviceInfo.txt"));
+                        process.destroy();
+                    } catch (IOException | InterruptedException ex) {
+                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else if (Byunique.isSelected()) {
+                    try {
+                        clear2();
+                        String line;
+                        String path = adbpath.getText();
+                        Process process = Runtime.getRuntime().exec("cmd /c yuniqueinfo.bat", null, new File("C:/Program Files/Yuware™"));
+                        process.waitFor();
+                        Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yunique_DeviceInfo.txt"));
+                        process.destroy();
+                    } catch (IOException | InterruptedException ex) {
+                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
-        } else if (Byuphoria.isSelected()) {
-            clear2();
-            String line;
-            String path = adbpath.getText();
-            Process process = Runtime.getRuntime().exec("cmd /c yuphoriainfo.bat", null, new File("C:/Program Files/Yuware™"));
-            process.waitFor();
-            Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yuphoria_DeviceInfo.txt"));
-            process.destroy();
-        } else if (Byunique.isSelected()) {
-            clear2();
-            String line;
-            String path = adbpath.getText();
-            Process process = Runtime.getRuntime().exec("cmd /c yuniqueinfo.bat", null, new File("C:/Program Files/Yuware™"));
-            process.waitFor();
-            Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yunique_DeviceInfo.txt"));
-            process.destroy();
-        }
+        }.start();
     }
 
     private void rebootFbSys() throws IOException {
