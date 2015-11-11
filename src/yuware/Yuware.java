@@ -95,7 +95,7 @@ public class Yuware extends javax.swing.JFrame {
         jButton18 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        DCTab = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
@@ -126,6 +126,9 @@ public class Yuware extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -455,7 +458,7 @@ public class Yuware extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Mostly Used", jPanel3);
+        DCTab.addTab("Mostly Used", jPanel3);
 
         jButton24.setText("Screenshot");
         jButton24.addActionListener(new java.awt.event.ActionListener() {
@@ -495,7 +498,7 @@ public class Yuware extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        jTabbedPane1.addTab("Screen", jPanel5);
+        DCTab.addTab("Screen", jPanel5);
 
         jButton30.setText("Swipe Down");
         jButton30.addActionListener(new java.awt.event.ActionListener() {
@@ -556,7 +559,7 @@ public class Yuware extends javax.swing.JFrame {
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Swipe", jPanel6);
+        DCTab.addTab("Swipe", jPanel6);
 
         jButton25.setText("Power Off");
         jButton25.addActionListener(new java.awt.event.ActionListener() {
@@ -582,7 +585,7 @@ public class Yuware extends javax.swing.JFrame {
                 .addContainerGap(74, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Power Opt", jPanel4);
+        DCTab.addTab("Power Opt", jPanel4);
 
         jButton35.setText("Flash All Partitions");
         jButton35.addActionListener(new java.awt.event.ActionListener() {
@@ -638,6 +641,26 @@ public class Yuware extends javax.swing.JFrame {
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
+
+        jMenu4.setText("Features");
+
+        jMenuItem6.setText("Enable DC");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
+
+        jMenuItem5.setText("Disable DC");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu4);
 
         jMenu3.setText("About");
 
@@ -736,7 +759,7 @@ public class Yuware extends javax.swing.JFrame {
                                 .addComponent(jButton9))
                             .addComponent(jScrollPane2)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DCTab, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton19))
                     .addGroup(layout.createSequentialGroup()
@@ -836,7 +859,7 @@ public class Yuware extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButton35)
                                     .addComponent(jButton36)))
-                            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(DCTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1231,6 +1254,16 @@ public class Yuware extends javax.swing.JFrame {
         push();
     }//GEN-LAST:event_jButton37ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        DCTab.setVisible(false);
+        jLabel10.setVisible(false);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+       DCTab.setVisible(true);
+        jLabel10.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1298,6 +1331,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JToggleButton Byuphoria;
     private javax.swing.JToggleButton Byureka;
     private javax.swing.JToggleButton Byurekap;
+    private javax.swing.JTabbedPane DCTab;
     private javax.swing.JTextField DSelected;
     private javax.swing.ButtonGroup Devices;
     private javax.swing.JTextArea adblog;
@@ -1354,18 +1388,20 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {
