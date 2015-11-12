@@ -1227,11 +1227,18 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        try {
-            Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Guide.docx"));
-        } catch (IOException ex) {
-            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new Thread(){
+            @Override
+            public void run(){
+                try {
+                    adblog.append("\n Opening Guide.docx");
+                    Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Guide.docx"));
+                    clear();
+                } catch (IOException ex) {
+                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }.start();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
@@ -1257,11 +1264,15 @@ public class Yuware extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         DCTab.setVisible(false);
         jLabel10.setVisible(false);
+        jMenuItem5.setVisible(false);
+        jMenuItem6.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-       DCTab.setVisible(true);
+        DCTab.setVisible(true);
         jLabel10.setVisible(true);
+        jMenuItem5.setVisible(true);
+        jMenuItem6.setVisible(false);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
@@ -1412,6 +1423,7 @@ public class Yuware extends javax.swing.JFrame {
         adblog.setLineWrap(true);
         adblog.setToolTipText("Connected Devices");
         fblog.setLineWrap(true);
+        jMenuItem6.setVisible(false);
     }
 
     private void reboot() throws IOException {
