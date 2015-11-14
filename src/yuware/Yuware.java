@@ -1227,9 +1227,9 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        new Thread(){
+        new Thread() {
             @Override
-            public void run(){
+            public void run() {
                 try {
                     adblog.append("\n Opening Guide.docx");
                     Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Guide.docx"));
@@ -1433,9 +1433,10 @@ public class Yuware extends javax.swing.JFrame {
                 try {
                     String path = adbpath.getText();
                     Process re = Runtime.getRuntime().exec(path + "\\adb reboot");
+                    re.waitFor();
                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                     JOptionPane.showMessageDialog(null, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                } catch (IOException ex) {
+                } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -1449,9 +1450,10 @@ public class Yuware extends javax.swing.JFrame {
                 String path = adbpath.getText();
                 try {
                     Process re = Runtime.getRuntime().exec(path + "\\adb reboot recovery");
+                    re.waitFor();
                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                     JOptionPane.showMessageDialog(null, "Rebooted to recovery Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                } catch (IOException ex) {
+                } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -1465,9 +1467,10 @@ public class Yuware extends javax.swing.JFrame {
                 try {
                     String path = adbpath.getText();
                     Process re = Runtime.getRuntime().exec(path + "\\adb reboot-bootloader");
+                    re.waitFor();
                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                     JOptionPane.showMessageDialog(null, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                } catch (IOException ex) {
+                } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -1519,7 +1522,7 @@ public class Yuware extends javax.swing.JFrame {
         Process process = Runtime.getRuntime().exec(path + "\\adb devices");
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         while ((line = reader.readLine()) != null) {
-            adblog.append("\n" + line);
+            adblog.append(line);
             process.destroy();
         }
     }
@@ -1533,43 +1536,60 @@ public class Yuware extends javax.swing.JFrame {
     }
 
     private void fastboot() throws IOException {
-        if (Byureka.isSelected() || Byurekap.isSelected()) {
-            clear2();
-            String line;
-            String path = adbpath.getText();
-            Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf devices");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            if ((line = reader.readLine()) != null) {
-                fblog.append("\n" + line);
-                process.destroy();
-            } else {
-                fblog.setText("No device found");
+        new Thread() {
+            @Override
+            public void run() {
+                if (Byureka.isSelected() || Byurekap.isSelected()) {
+                    try {
+                        clear2();
+                        String line;
+                        String path = adbpath.getText();
+                        Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf devices");
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                        if ((line = reader.readLine()) != null) {
+                            fblog.append("\n" + line);
+                            process.destroy();
+                        } else {
+                            fblog.setText("No device found");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else if (Byuphoria.isSelected()) {
+                    try {
+                        clear2();
+                        String line;
+                        String path = adbpath.getText();
+                        Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 devices");
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                        if ((line = reader.readLine()) != null) {
+                            fblog.append("\n" + line);
+                            process.destroy();
+                        } else {
+                            fblog.setText("No device found");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else if (Byunique.isSelected()) {
+                    try {
+                        clear2();
+                        String line;
+                        String path = adbpath.getText();
+                        Process process = Runtime.getRuntime().exec(path + "\\fastboot devices");
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                        if ((line = reader.readLine()) != null) {
+                            fblog.append("\n" + line);
+                            process.destroy();
+                        } else {
+                            fblog.setText("No device found");
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
-        } else if (Byuphoria.isSelected()) {
-            clear2();
-            String line;
-            String path = adbpath.getText();
-            Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 devices");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            if ((line = reader.readLine()) != null) {
-                fblog.append("\n" + line);
-                process.destroy();
-            } else {
-                fblog.setText("No device found");
-            }
-        } else if (Byunique.isSelected()) {
-            clear2();
-            String line;
-            String path = adbpath.getText();
-            Process process = Runtime.getRuntime().exec(path + "\\fastboot devices");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            if ((line = reader.readLine()) != null) {
-                fblog.append("\n" + line);
-                process.destroy();
-            } else {
-                fblog.setText("No device found");
-            }
-        }
+        }.start();
     }
 
     private void clear2() {
@@ -1592,11 +1612,12 @@ public class Yuware extends javax.swing.JFrame {
                 public void run() {
                     try {
                         Process re = Runtime.getRuntime().exec(path + "\\adb install " + "\"" + pathoffile + "\"");
+                        re.waitFor();
                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                 .getResource("done.png")));
                         JOptionPane.showMessageDialog(
                                 null, "Installed App Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                    } catch (IOException ex) {
+                    } catch (IOException | InterruptedException ex) {
                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
