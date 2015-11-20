@@ -6,6 +6,6 @@ All work is free and open source that doesnt means i had not spend much time. I 
 Feel free to send pull requests whenever you think a better code can replace it.
 
 Credits :-
-1) DooMLoRD for Flashing tools and Guides
-2) AyushTyagi for Guide of Yunique and
-3) PDA net for drivers 
+1) DooMLoRD for Flashing tools and Guides.
+2) AyushTyagi for Guide of Yunique. and
+3) PDA net for drivers. 
