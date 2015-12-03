@@ -1378,8 +1378,7 @@ public class Yuware extends javax.swing.JFrame {
                     while ("0".equals(br.readLine())) {
                         JCheckBox cb = new JCheckBox("Do not show this message again.");
                         String msg = " Make sure your device is connected with USB cable to PC and USB Debugging enabled \n"
-                                + " Install proper drivers if the device doesn't show in ADB devices.\n"
-                                + " Yuware™ will freeze if the device is not connected or drivers are not installed.";
+                                + " Install proper drivers if the device doesn't show in ADB devices.\n";
                         Object[] msgContent = {msg, cb};
                         JOptionPane.showMessageDialog(null, msgContent, "Warning!!", JOptionPane.INFORMATION_MESSAGE);
                         if (cb.isSelected()) {
