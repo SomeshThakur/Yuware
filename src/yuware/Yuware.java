@@ -6,6 +6,7 @@
 package yuware;
 
 import com.alee.laf.WebLookAndFeel;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -124,6 +125,9 @@ public class Yuware extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jButton35 = new javax.swing.JButton();
         jButton36 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Dstatus = new javax.swing.JTextArea();
+        jLabel12 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -691,6 +695,24 @@ public class Yuware extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Flashing Partitions", jPanel7);
 
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        Dstatus.setEditable(false);
+        Dstatus.setColumns(20);
+        Dstatus.setFont(new java.awt.Font("Monospaced", 1, 13)); // NOI18N
+        Dstatus.setRows(5);
+        Dstatus.setToolTipText("Device Status");
+        jScrollPane3.setViewportView(Dstatus);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel12.setText("Follow me on Google+");
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel12MouseReleased(evt);
+            }
+        });
+
         jMenu1.setText("Thread");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdacon.png"))); // NOI18N
@@ -768,17 +790,21 @@ public class Yuware extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(DSelected, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(Byureka)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Byurekap)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Byuphoria)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Byunique)))
-                            .addComponent(jLabel2)))
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(DSelected, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(Byureka)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Byurekap)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Byuphoria)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Byunique))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel1))
@@ -829,7 +855,6 @@ public class Yuware extends javax.swing.JFrame {
                                     .addComponent(jScrollPane2)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(DCTab, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel5)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -837,7 +862,8 @@ public class Yuware extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jButton6)))
                                     .addComponent(jLabel9)
-                                    .addComponent(jButton18))
+                                    .addComponent(jButton18)
+                                    .addComponent(DCTab, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -845,6 +871,8 @@ public class Yuware extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton19))))
         );
         layout.setVerticalGroup(
@@ -872,13 +900,20 @@ public class Yuware extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton19)
+                            .addComponent(jLabel12)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(DSelected, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(Byureka)
@@ -917,11 +952,10 @@ public class Yuware extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTabbedPane1))
-                            .addComponent(DCTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton19))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(DCTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(20, 20, 20))))
         );
 
         pack();
@@ -953,18 +987,36 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void ByurekaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ByurekaActionPerformed
+        Dstatus.setText("");
         DSelected.setText("Yureka selected!");
         Byureka.setSelected(true);
+        try {
+            DStatus();
+        } catch (IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ByurekaActionPerformed
 
     private void ByuphoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ByuphoriaActionPerformed
+        Dstatus.setText("");
         DSelected.setText("Yuphoria selected!");
         Byuphoria.setSelected(true);
+        try {
+            DStatus();
+        } catch (IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ByuphoriaActionPerformed
 
     private void ByuniqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ByuniqueActionPerformed
+        Dstatus.setText("");
         DSelected.setText("Yunique selected!");
         Byunique.setSelected(true);
+        try {
+            DStatus();
+        } catch (IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ByuniqueActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1004,8 +1056,14 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void ByurekapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ByurekapActionPerformed
+        Dstatus.setText("");
         DSelected.setText("Yureka+ selected!");
-        Byurekap.setSelected(true);    // TODO add your handling code here:
+        Byurekap.setSelected(true);
+        try {
+            DStatus();
+        } catch (IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ByurekapActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1244,7 +1302,7 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton31ActionPerformed
 
     private void BrecorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BrecorderActionPerformed
-        JOptionPane.showMessageDialog(null, " A command prompt will appear now! Close it to stop recording.\n Video will be saved in your internal storage.\n With the name of \"CURRENT-YEAR-DATE-MONTH-TIME-YUScreenRecorder.mp4", "", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, " A command prompt will appear now! Close it to stop recording.\n Video will be saved in your internal storage.\n With the name of \"CURRENT-YEAR-DATE-MONTH-TIME-YuwareScreenRecorder.mp4", "", JOptionPane.INFORMATION_MESSAGE);
         try {
             Process process = Runtime.getRuntime().exec("cmd /c recorder.bat", null, new File("C:/Program Files/Yuware™"));
         } catch (IOException ex) {
@@ -1336,6 +1394,14 @@ public class Yuware extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton19ActionPerformed
 
+    private void jLabel12MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseReleased
+        try {
+            Desktop.getDesktop().browse(new URI("https://plus.google.com/u/0/106205687174772057721/posts"));
+        } catch (URISyntaxException | IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel12MouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -1405,6 +1471,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JTabbedPane DCTab;
     private javax.swing.JTextField DSelected;
     private javax.swing.ButtonGroup Devices;
+    private javax.swing.JTextArea Dstatus;
     private javax.swing.JTextArea adblog;
     private javax.swing.JTextField adbpath;
     private javax.swing.JTextArea fblog;
@@ -1448,6 +1515,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1476,6 +1544,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 
@@ -1586,7 +1655,14 @@ public class Yuware extends javax.swing.JFrame {
         Process process = Runtime.getRuntime().exec(path + "\\adb devices");
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         while ((line = reader.readLine()) != null) {
-            adblog.append("\n"+line);
+            adblog.append("\n" + line);
+            if (line.endsWith("device")) {
+                Dstatus.setText("Connected!");
+            } else if (line.endsWith("attached ")) {
+                Dstatus.setText("Not found!");
+            } else if (line.endsWith("unauthorized")) {
+                Dstatus.setText("Unauthorized!");
+            }
             process.destroy();
         }
     }
@@ -2025,10 +2101,6 @@ public class Yuware extends javax.swing.JFrame {
         }
     }
 
-    private void checkD() {
-
-    }
-
     private void bootrcvry() throws IOException {
         int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Booting recovery will replace current recovery temporarily"
                 + " \n"
@@ -2432,5 +2504,53 @@ public class Yuware extends javax.swing.JFrame {
                 }
             }.start();
         }
+    }
+
+    private void DStatus() throws IOException {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    fastboot();
+                    Thread.sleep(50);
+                } catch (IOException | InterruptedException ex) {
+                }
+                String line2 = fblog.getText();
+                try {
+                    Thread.sleep(15);
+                } catch (InterruptedException ex) {
+                }
+                clear2();
+                String line;
+                String path = adbpath.getText();
+                Process process = null;
+                try {
+                    process = Runtime.getRuntime().exec(path + "\\adb devices");
+                } catch (IOException ex) {
+                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                try {
+                    while ((line = reader.readLine()) != null) {
+                        if (line.endsWith("device") || line2.endsWith("fastboot")) {
+                            Dstatus.setText("Connected!");
+                            Dstatus.setForeground(Color.GREEN);
+                            Dstatus.setBackground(Color.BLUE);
+                        } else if (line.endsWith("attached ")) {
+                            Dstatus.setText("Not found!");
+                            Dstatus.setForeground(Color.red);
+                            Dstatus.setBackground(Color.lightGray);
+                        } else if (line.endsWith("unauthorized")) {
+                            Dstatus.setText("Unauthorized!");
+                            Dstatus.setForeground(Color.yellow);
+                            Dstatus.setBackground(Color.BLACK);
+                        }
+                        process.destroy();
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }.start();
     }
 }
