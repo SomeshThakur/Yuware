@@ -658,7 +658,7 @@ public class Yuware extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Recovery", jPanel2);
 
-        jButton35.setText("Flash All Partitions");
+        jButton35.setText("Flash Fastboot images");
         jButton35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton35ActionPerformed(evt);
@@ -678,19 +678,19 @@ public class Yuware extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton35)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton36)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton35)
+                    .addComponent(jButton36))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton35)
-                    .addComponent(jButton36))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addComponent(jButton35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jButton36)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Flashing Partitions", jPanel7);
@@ -1565,16 +1565,24 @@ public class Yuware extends javax.swing.JFrame {
             public void run() {
                 try {
                     DStatus();
-                    Thread.sleep(50);
+                    Thread.sleep(100);
                     String tmp = Dstatus.getText();
-                    if ("Connected!".equals(tmp)) {
-                        String path = adbpath.getText();
-                        Process re = Runtime.getRuntime().exec(path + "\\adb reboot");
-                        re.waitFor();
-                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                        JOptionPane.showMessageDialog(null, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                    if (null != tmp) {
+                        switch (tmp) {
+                            case "Connected!":
+                                String path = adbpath.getText();
+                                Process re = Runtime.getRuntime().exec(path + "\\adb reboot");
+                                re.waitFor();
+                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                                JOptionPane.showMessageDialog(null, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                break;
+                            case "Fastboot!":
+                                JOptionPane.showMessageDialog(null, "This Option will work if your device is connected on Switch ON mode\nFor rebooting from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                                break;
+                        }
                     }
                 } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
@@ -1677,13 +1685,6 @@ public class Yuware extends javax.swing.JFrame {
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         while ((line = reader.readLine()) != null) {
             adblog.append("\n" + line);
-            if (line.endsWith("device")) {
-                Dstatus.setText("Connected!");
-            } else if (line.endsWith("attached ")) {
-                Dstatus.setText("Not found!");
-            } else if (line.endsWith("unauthorized")) {
-                Dstatus.setText("Unauthorized!");
-            }
             process.destroy();
         }
     }
@@ -1758,31 +1759,42 @@ public class Yuware extends javax.swing.JFrame {
     }
 
     private void installApp() throws IOException {
-        final String path = adbpath.getText();
-        FileFilter filter = new FileNameExtensionFilter("Apk files", "apk");
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileFilter(filter);
-        chooser.addChoosableFileFilter(filter);
-        int result = chooser.showOpenDialog(this);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File choosen = chooser.getSelectedFile();
-            final String pathoffile = choosen.getAbsolutePath();
-            adblog.setText("Installing App " + pathoffile);
-            new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        Process re = Runtime.getRuntime().exec(path + "\\adb install " + "\"" + pathoffile + "\"");
-                        re.waitFor();
-                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                .getResource("done.png")));
-                        JOptionPane.showMessageDialog(
-                                null, "Installed App Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                    } catch (IOException | InterruptedException ex) {
-                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            DStatus();
+            Thread.sleep(100);
+            String tmp = Dstatus.getText();
+            if("Connected!".equals(tmp)){
+            final String path = adbpath.getText();
+            FileFilter filter = new FileNameExtensionFilter("Apk files", "apk");
+            JFileChooser chooser = new JFileChooser();
+            chooser.setFileFilter(filter);
+            chooser.addChoosableFileFilter(filter);
+            int result = chooser.showOpenDialog(this);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File choosen = chooser.getSelectedFile();
+                final String pathoffile = choosen.getAbsolutePath();
+                adblog.setText("Installing App " + pathoffile);
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            Process re = Runtime.getRuntime().exec(path + "\\adb install " + "\"" + pathoffile + "\"");
+                            re.waitFor();
+                            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                    .getResource("done.png")));
+                            JOptionPane.showMessageDialog(
+                                    null, "Installed App Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                        } catch (IOException | InterruptedException ex) {
+                            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
-                }
-            }.start();
+                }.start();
+            }
+            }else{
+            JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -1805,6 +1817,8 @@ public class Yuware extends javax.swing.JFrame {
 
                         Process copy = Runtime.getRuntime().exec("xcopy \"" + pathA + "\\Apks folder\\*\" \"C:\\Program Files\\Yuware™\\Apks folder\" /s /i");
                         copy.waitFor();
+
+                        adblog.setText("Installing Apps!");
 
                         Process install = Runtime.getRuntime().exec("cmd /c APK-Installer.bat", null, new File("C:/Program Files/Yuware™"));
                         install.waitFor();
@@ -1845,168 +1859,188 @@ public class Yuware extends javax.swing.JFrame {
         new Thread() {
             @Override
             public void run() {
-                int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Unlocking bootloader will wipe all DATA."
-                        + " Including internal storage !!!\n"
-                        + " I am not responsible for any damage caused to your device.\n"
-                        + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
-                if (y == JOptionPane.YES_OPTION) {
-                    if (Byureka.isSelected() || Byurekap.isSelected()) {
-                        try {
-                            clear2();
-                            String line;
-                            String path = adbpath.getText();
-                            JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
-                            Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem unlock");
-                            process.waitFor();
-                            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                    .getResource("done.png")));
-                            JOptionPane.showMessageDialog(
-                                    null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                            if ((line = reader.readLine()) != null) {
-                                fblog.append("\n" + line);
-                                process.destroy();
-                            } else {
-                                fblog.setText("Done!");
+                try {
+                    DStatus();
+                    Thread.sleep(300);
+                    String tmp = Dstatus.getText();
+                    if ("Fastboot!".equals(tmp)) {
+                        int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Unlocking bootloader will wipe all DATA."
+                                + " Including internal storage !!!\n"
+                                + " I am not responsible for any damage caused to your device.\n"
+                                + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
+                        if (y == JOptionPane.YES_OPTION) {
+                            if (Byureka.isSelected() || Byurekap.isSelected()) {
+                                try {
+                                    clear2();
+                                    String line;
+                                    String path = adbpath.getText();
+                                    JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                                    Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem unlock");
+                                    process.waitFor();
+                                    final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                            .getResource("done.png")));
+                                    JOptionPane.showMessageDialog(
+                                            null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                    if ((line = reader.readLine()) != null) {
+                                        fblog.append("\n" + line);
+                                        process.destroy();
+                                    } else {
+                                        fblog.setText("Done!");
+                                    }
+                                } catch (IOException | InterruptedException ex) {
+                                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            } else if (Byuphoria.isSelected()) {
+                                try {
+                                    clear2();
+                                    String line;
+                                    String path = adbpath.getText();
+                                    JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                                    Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem unlock");
+                                    process.waitFor();
+                                    final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                            .getResource("done.png")));
+                                    JOptionPane.showMessageDialog(
+                                            null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                    if ((line = reader.readLine()) != null) {
+                                        fblog.append("\n" + line);
+                                        process.destroy();
+                                    } else {
+                                        fblog.setText("Done!");
+                                    }
+                                } catch (IOException | InterruptedException ex) {
+                                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            } else if (Byunique.isSelected()) {
+                                try {
+                                    clear2();
+                                    String line;
+                                    String path = adbpath.getText();
+                                    JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                                    Process process = Runtime.getRuntime().exec(path + "\\fastboot oem unlock-go");
+                                    process.waitFor();
+                                    final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                            .getResource("done.png")));
+                                    JOptionPane.showMessageDialog(
+                                            null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                    if ((line = reader.readLine()) != null) {
+                                        fblog.append("\n" + line);
+                                        process.destroy();
+                                    } else {
+                                        fblog.setText("Done!");
+                                    }
+                                } catch (IOException | InterruptedException ex) {
+                                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }
-                        } catch (IOException | InterruptedException ex) {
-                            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    } else if (Byuphoria.isSelected()) {
-                        try {
-                            clear2();
-                            String line;
-                            String path = adbpath.getText();
-                            JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
-                            Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem unlock");
-                            process.waitFor();
-                            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                    .getResource("done.png")));
-                            JOptionPane.showMessageDialog(
-                                    null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                            if ((line = reader.readLine()) != null) {
-                                fblog.append("\n" + line);
-                                process.destroy();
-                            } else {
-                                fblog.setText("Done!");
-                            }
-                        } catch (IOException | InterruptedException ex) {
-                            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    } else if (Byunique.isSelected()) {
-                        try {
-                            clear2();
-                            String line;
-                            String path = adbpath.getText();
-                            JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
-                            Process process = Runtime.getRuntime().exec(path + "\\fastboot oem unlock-go");
-                            process.waitFor();
-                            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                    .getResource("done.png")));
-                            JOptionPane.showMessageDialog(
-                                    null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                            if ((line = reader.readLine()) != null) {
-                                fblog.append("\n" + line);
-                                process.destroy();
-                            } else {
-                                fblog.setText("Done!");
-                            }
-                        } catch (IOException | InterruptedException ex) {
-                            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
                     }
+                } catch (IOException | InterruptedException ex) {
                 }
             }
         }.start();
     }
 
     private void lockBL() throws IOException {
-        int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Locking bootloader will Lock bootloader."
-                + " Next time when you unlock bootloader then it wipe all data\n"
-                + " I am not responsible for any damage caused to your device.\n"
-                + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
-        if (y == JOptionPane.YES_OPTION) {
-            if (Byureka.isSelected() || Byurekap.isSelected()) {
-                clear2();
-                final String path = adbpath.getText();
-                JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
-                new Thread() {
-                    @Override
-                    public void run() {
-                        try {
-                            Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem lock");
-                            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                    .getResource("done.png")));
-                            JOptionPane.showMessageDialog(
-                                    null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                            String line;
-                            if ((line = reader.readLine()) != null) {
-                                fblog.append("\n" + line);
-                                process.destroy();
-                            } else {
-                                fblog.setText("Done!");
+        try {
+            DStatus();
+            Thread.sleep(300);
+            String tmp = Dstatus.getText();
+            if ("Fastboot!".equals(tmp)) {
+                int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Locking bootloader will Lock bootloader."
+                        + " Next time when you unlock bootloader then it wipe all data\n"
+                        + " I am not responsible for any damage caused to your device.\n"
+                        + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
+                if (y == JOptionPane.YES_OPTION) {
+                    if (Byureka.isSelected() || Byurekap.isSelected()) {
+                        clear2();
+                        final String path = adbpath.getText();
+                        JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem lock");
+                                    final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                            .getResource("done.png")));
+                                    JOptionPane.showMessageDialog(
+                                            null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                    String line;
+                                    if ((line = reader.readLine()) != null) {
+                                        fblog.append("\n" + line);
+                                        process.destroy();
+                                    } else {
+                                        fblog.setText("Done!");
+                                    }
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }
-                        } catch (IOException ex) {
-                            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }.start();
-            } else if (Byuphoria.isSelected()) {
-                clear2();
-                final String path = adbpath.getText();
-                JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
-                new Thread() {
-                    @Override
-                    public void run() {
-                        try {
-                            Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem lock");
-                            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                    .getResource("done.png")));
-                            JOptionPane.showMessageDialog(
-                                    null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                            String line;
-                            if ((line = reader.readLine()) != null) {
-                                fblog.append("\n" + line);
-                                process.destroy();
-                            } else {
-                                fblog.setText("Done!");
+                        }.start();
+                    } else if (Byuphoria.isSelected()) {
+                        clear2();
+                        final String path = adbpath.getText();
+                        JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem lock");
+                                    final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                            .getResource("done.png")));
+                                    JOptionPane.showMessageDialog(
+                                            null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                    String line;
+                                    if ((line = reader.readLine()) != null) {
+                                        fblog.append("\n" + line);
+                                        process.destroy();
+                                    } else {
+                                        fblog.setText("Done!");
+                                    }
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }
-                        } catch (IOException ex) {
-                            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }.start();
-            } else if (Byunique.isSelected()) {
-                clear2();
-                final String path = adbpath.getText();
-                JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
-                new Thread() {
-                    @Override
-                    public void run() {
-                        try {
-                            Process process = Runtime.getRuntime().exec(path + "\\fastboot oem lock");
-                            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                    .getResource("done.png")));
-                            JOptionPane.showMessageDialog(
-                                    null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                            String line;
-                            if ((line = reader.readLine()) != null) {
-                                fblog.append("\n" + line);
-                                process.destroy();
-                            } else {
-                                fblog.setText("Done!");
+                        }.start();
+                    } else if (Byunique.isSelected()) {
+                        clear2();
+                        final String path = adbpath.getText();
+                        JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Process process = Runtime.getRuntime().exec(path + "\\fastboot oem lock");
+                                    final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                            .getResource("done.png")));
+                                    JOptionPane.showMessageDialog(
+                                            null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                    String line;
+                                    if ((line = reader.readLine()) != null) {
+                                        fblog.append("\n" + line);
+                                        process.destroy();
+                                    } else {
+                                        fblog.setText("Done!");
+                                    }
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }
-                        } catch (IOException ex) {
-                            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        }.start();
                     }
-                }.start();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
             }
+        } catch (IOException | InterruptedException ex) {
         }
     }
 
@@ -2533,7 +2567,7 @@ public class Yuware extends javax.swing.JFrame {
             public void run() {
                 try {
                     fastboot();
-                    Thread.sleep(50);
+                    Thread.sleep(100);
                 } catch (IOException | InterruptedException ex) {
                 }
                 String line2 = fblog.getText();
@@ -2554,9 +2588,15 @@ public class Yuware extends javax.swing.JFrame {
                 try {
                     while ((line = reader.readLine()) != null) {
                         if (line.endsWith("device") || line2.endsWith("fastboot")) {
-                            Dstatus.setText("Connected!");
-                            Dstatus.setForeground(Color.GREEN);
-                            Dstatus.setBackground(Color.BLUE);
+                            if (line2.endsWith("fastboot")) {
+                                Dstatus.setText("Fastboot!");
+                                Dstatus.setForeground(Color.GREEN);
+                                Dstatus.setBackground(Color.BLUE);
+                            } else {
+                                Dstatus.setText("Connected!");
+                                Dstatus.setForeground(Color.GREEN);
+                                Dstatus.setBackground(Color.BLUE);
+                            }
                         } else if (line.endsWith("attached ")) {
                             Dstatus.setText("Not found!");
                             Dstatus.setForeground(Color.red);
