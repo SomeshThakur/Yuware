@@ -1564,11 +1564,18 @@ public class Yuware extends javax.swing.JFrame {
             @Override
             public void run() {
                 try {
-                    String path = adbpath.getText();
-                    Process re = Runtime.getRuntime().exec(path + "\\adb reboot");
-                    re.waitFor();
-                    final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                    JOptionPane.showMessageDialog(null, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                    DStatus();
+                    Thread.sleep(50);
+                    String tmp = Dstatus.getText();
+                    if ("Connected!".equals(tmp)) {
+                        String path = adbpath.getText();
+                        Process re = Runtime.getRuntime().exec(path + "\\adb reboot");
+                        re.waitFor();
+                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                        JOptionPane.showMessageDialog(null, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1582,10 +1589,17 @@ public class Yuware extends javax.swing.JFrame {
             public void run() {
                 String path = adbpath.getText();
                 try {
-                    Process re = Runtime.getRuntime().exec(path + "\\adb reboot recovery");
-                    re.waitFor();
-                    final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                    JOptionPane.showMessageDialog(null, "Rebooted to recovery Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                    DStatus();
+                    Thread.sleep(50);
+                    String tmp = Dstatus.getText();
+                    if ("Connected!".equals(tmp)) {
+                        Process re = Runtime.getRuntime().exec(path + "\\adb reboot recovery");
+                        re.waitFor();
+                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                        JOptionPane.showMessageDialog(null, "Rebooted to recovery Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1598,11 +1612,18 @@ public class Yuware extends javax.swing.JFrame {
             @Override
             public void run() {
                 try {
-                    String path = adbpath.getText();
-                    Process re = Runtime.getRuntime().exec(path + "\\adb reboot-bootloader");
-                    re.waitFor();
-                    final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                    JOptionPane.showMessageDialog(null, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                    DStatus();
+                    Thread.sleep(50);
+                    String tmp = Dstatus.getText();
+                    if ("Connected!".equals(tmp)) {
+                        String path = adbpath.getText();
+                        Process re = Runtime.getRuntime().exec(path + "\\adb reboot-bootloader");
+                        re.waitFor();
+                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                        JOptionPane.showMessageDialog(null, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                 }
