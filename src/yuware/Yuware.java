@@ -2635,6 +2635,7 @@ public class Yuware extends javax.swing.JFrame {
                     String path = adbpath.getText();
                     Process process = Runtime.getRuntime().exec(path + "\\adb devices"); 
                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    process.waitFor();
                     try {
                         while ((line = reader.readLine()) != null) {
                             if (line.endsWith("device") || line2.endsWith("fastboot")) {
