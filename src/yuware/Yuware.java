@@ -128,6 +128,7 @@ public class Yuware extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         Dstatus = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -139,6 +140,7 @@ public class Yuware extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -707,9 +709,18 @@ public class Yuware extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setText("Follow me on Google+");
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jLabel12MouseReleased(evt);
+            }
+        });
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/refreshY.png"))); // NOI18N
+        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel13MouseReleased(evt);
             }
         });
 
@@ -769,6 +780,7 @@ public class Yuware extends javax.swing.JFrame {
 
         jMenu3.setText("About");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/yucon.png"))); // NOI18N
         jMenuItem1.setText("Yuware");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -776,6 +788,15 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem1);
+
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/github.png"))); // NOI18N
+        jMenuItem7.setText("Github");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem7);
 
         jMenuBar1.add(jMenu3);
 
@@ -804,7 +825,10 @@ public class Yuware extends javax.swing.JFrame {
                                         .addComponent(Byuphoria)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(Byunique))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel13))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel1))
@@ -913,7 +937,8 @@ public class Yuware extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(DSelected, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(jLabel13))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(Byureka)
@@ -1402,6 +1427,22 @@ public class Yuware extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel12MouseReleased
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("http://someshthakur.github.io/Yuware/"));
+        } catch (URISyntaxException | IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jLabel13MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseReleased
+        try {
+            DStatus();
+        } catch (IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel13MouseReleased
+
     /**
      * @param args the command line arguments
      */
@@ -1516,6 +1557,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1535,6 +1577,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1565,7 +1608,7 @@ public class Yuware extends javax.swing.JFrame {
             public void run() {
                 try {
                     DStatus();
-                    Thread.sleep(100);
+                    Thread.sleep(300);
                     String tmp = Dstatus.getText();
                     if (null != tmp) {
                         switch (tmp) {
@@ -1595,18 +1638,26 @@ public class Yuware extends javax.swing.JFrame {
         new Thread() {
             @Override
             public void run() {
-                String path = adbpath.getText();
                 try {
                     DStatus();
-                    Thread.sleep(50);
+                    Thread.sleep(300);
                     String tmp = Dstatus.getText();
-                    if ("Connected!".equals(tmp)) {
-                        Process re = Runtime.getRuntime().exec(path + "\\adb reboot recovery");
-                        re.waitFor();
-                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                        JOptionPane.showMessageDialog(null, "Rebooted to recovery Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                    if (null != tmp) {
+                        switch (tmp) {
+                            case "Connected!":
+                                String path = adbpath.getText();
+                                Process re = Runtime.getRuntime().exec(path + "\\adb reboot recovery");
+                                re.waitFor();
+                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                                JOptionPane.showMessageDialog(null, "Rebooted to recovery Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                break;
+                            case "Fastboot!":
+                                JOptionPane.showMessageDialog(null, "This Option will work if your device is connected on Switch ON mode\nRebooting to recovery directly from fastboot is not possible!\nFor rebooting to system from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                                break;
+                        }
                     }
                 } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
@@ -1621,16 +1672,24 @@ public class Yuware extends javax.swing.JFrame {
             public void run() {
                 try {
                     DStatus();
-                    Thread.sleep(50);
+                    Thread.sleep(300);
                     String tmp = Dstatus.getText();
-                    if ("Connected!".equals(tmp)) {
-                        String path = adbpath.getText();
-                        Process re = Runtime.getRuntime().exec(path + "\\adb reboot-bootloader");
-                        re.waitFor();
-                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                        JOptionPane.showMessageDialog(null, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                    if (null != tmp) {
+                        switch (tmp) {
+                            case "Connected!":
+                                String path = adbpath.getText();
+                                Process re = Runtime.getRuntime().exec(path + "\\adb reboot-bootloader");
+                                re.waitFor();
+                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                                JOptionPane.showMessageDialog(null, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                break;
+                            case "Fastboot!":
+                                JOptionPane.showMessageDialog(null, "Your device is already in Fastboot mode!", "", JOptionPane.INFORMATION_MESSAGE);
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                                break;
+                        }
                     }
                 } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
@@ -1763,35 +1822,35 @@ public class Yuware extends javax.swing.JFrame {
             DStatus();
             Thread.sleep(100);
             String tmp = Dstatus.getText();
-            if("Connected!".equals(tmp)){
-            final String path = adbpath.getText();
-            FileFilter filter = new FileNameExtensionFilter("Apk files", "apk");
-            JFileChooser chooser = new JFileChooser();
-            chooser.setFileFilter(filter);
-            chooser.addChoosableFileFilter(filter);
-            int result = chooser.showOpenDialog(this);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                File choosen = chooser.getSelectedFile();
-                final String pathoffile = choosen.getAbsolutePath();
-                adblog.setText("Installing App " + pathoffile);
-                new Thread() {
-                    @Override
-                    public void run() {
-                        try {
-                            Process re = Runtime.getRuntime().exec(path + "\\adb install " + "\"" + pathoffile + "\"");
-                            re.waitFor();
-                            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                    .getResource("done.png")));
-                            JOptionPane.showMessageDialog(
-                                    null, "Installed App Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                        } catch (IOException | InterruptedException ex) {
-                            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+            if ("Connected!".equals(tmp)) {
+                final String path = adbpath.getText();
+                FileFilter filter = new FileNameExtensionFilter("Apk files", "apk");
+                JFileChooser chooser = new JFileChooser();
+                chooser.setFileFilter(filter);
+                chooser.addChoosableFileFilter(filter);
+                int result = chooser.showOpenDialog(this);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File choosen = chooser.getSelectedFile();
+                    final String pathoffile = choosen.getAbsolutePath();
+                    adblog.setText("Installing App " + pathoffile);
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                Process re = Runtime.getRuntime().exec(path + "\\adb install " + "\"" + pathoffile + "\"");
+                                re.waitFor();
+                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                        .getResource("done.png")));
+                                JOptionPane.showMessageDialog(
+                                        null, "Installed App Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                            } catch (IOException | InterruptedException ex) {
+                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
-                    }
-                }.start();
-            }
-            }else{
-            JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                    }.start();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (InterruptedException ex) {
             Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
@@ -2567,48 +2626,43 @@ public class Yuware extends javax.swing.JFrame {
             public void run() {
                 try {
                     fastboot();
-                    Thread.sleep(100);
-                } catch (IOException | InterruptedException ex) {
-                }
-                String line2 = fblog.getText();
-                try {
-                    Thread.sleep(15);
-                } catch (InterruptedException ex) {
-                }
-                clear2();
-                String line;
-                String path = adbpath.getText();
-                Process process = null;
-                try {
-                    process = Runtime.getRuntime().exec(path + "\\adb devices");
-                } catch (IOException ex) {
-                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                try {
-                    while ((line = reader.readLine()) != null) {
-                        if (line.endsWith("device") || line2.endsWith("fastboot")) {
-                            if (line2.endsWith("fastboot")) {
-                                Dstatus.setText("Fastboot!");
-                                Dstatus.setForeground(Color.GREEN);
-                                Dstatus.setBackground(Color.BLUE);
-                            } else {
-                                Dstatus.setText("Connected!");
-                                Dstatus.setForeground(Color.GREEN);
-                                Dstatus.setBackground(Color.BLUE);
+                    Thread.sleep(300);
+                    String line2 = fblog.getText();
+                    //Thread.sleep(25);
+                    clear2();
+                    fblog.setText("");
+                    String line;
+                    String path = adbpath.getText();
+                    Process process = Runtime.getRuntime().exec(path + "\\adb devices"); 
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    try {
+                        while ((line = reader.readLine()) != null) {
+                            if (line.endsWith("device") || line2.endsWith("fastboot")) {
+                                if (line2.endsWith("fastboot")) {
+                                    Dstatus.setText("Fastboot!");
+                                    Dstatus.setForeground(Color.GREEN);
+                                    Dstatus.setBackground(Color.BLUE);
+                                } else {
+                                    Dstatus.setText("Connected!");
+                                    Dstatus.setForeground(Color.GREEN);
+                                    Dstatus.setBackground(Color.BLUE);
+                                }
+                            } else if (line.endsWith("attached ")) {
+                                Dstatus.setText("Not found!");
+                                Dstatus.setForeground(Color.red);
+                                Dstatus.setBackground(Color.lightGray);
+                            } else if (line.endsWith("unauthorized")) {
+                                Dstatus.setText("Unauthorized!");
+                                Dstatus.setForeground(Color.yellow);
+                                Dstatus.setBackground(Color.BLACK);
                             }
-                        } else if (line.endsWith("attached ")) {
-                            Dstatus.setText("Not found!");
-                            Dstatus.setForeground(Color.red);
-                            Dstatus.setBackground(Color.lightGray);
-                        } else if (line.endsWith("unauthorized")) {
-                            Dstatus.setText("Unauthorized!");
-                            Dstatus.setForeground(Color.yellow);
-                            Dstatus.setBackground(Color.BLACK);
+                            process.destroy();
                         }
                         process.destroy();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (IOException ex) {
+                } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
