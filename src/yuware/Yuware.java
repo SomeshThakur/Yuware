@@ -1888,7 +1888,7 @@ public class Yuware extends javax.swing.JFrame {
 
                         adblog.setText("Installing Apps!");
 
-                        Process install = Runtime.getRuntime().exec("cmd /c APK-Installer.bat", null, new File("C:/Program Files/Yuware™"));
+                        Process install = Runtime.getRuntime().exec("cmd /c start APK-Installer.bat", null, new File("C:/Program Files/Yuware™"));
                         install.waitFor();
 
                         Process delete = Runtime.getRuntime().exec("cmd /c delete.bat", null, new File("C:/Program Files/Yuware™/Apks folder"));
