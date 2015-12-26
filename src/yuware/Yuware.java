@@ -43,7 +43,6 @@ public class Yuware extends javax.swing.JFrame {
         try {
             startADB();
         } catch (IOException | InterruptedException ex) {
-            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -1753,7 +1752,17 @@ public class Yuware extends javax.swing.JFrame {
     }
 
     private void startADB() throws IOException, InterruptedException {
-        Runtime.getRuntime().exec("cmd /c ADB-starter.bat", null, new File("C:/Program Files/Yuware™"));
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Process p = Runtime.getRuntime().exec("cmd /c ADB-starter.bat", null, new File("C:/Program Files/Yuware™"));
+                    p.waitFor();
+                    p.destroy();
+                } catch (IOException | InterruptedException ex) {
+                }
+            }
+        }.start();
     }
 
     private void fastboot() throws IOException {
@@ -2633,7 +2642,7 @@ public class Yuware extends javax.swing.JFrame {
                     fblog.setText("");
                     String line;
                     String path = adbpath.getText();
-                    Process process = Runtime.getRuntime().exec(path + "\\adb devices"); 
+                    Process process = Runtime.getRuntime().exec(path + "\\adb devices");
                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                     process.waitFor();
                     try {
