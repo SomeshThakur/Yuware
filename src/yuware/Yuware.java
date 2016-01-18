@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -128,6 +129,7 @@ public class Yuware extends javax.swing.JFrame {
         Dstatus = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        Byutopia = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -141,7 +143,7 @@ public class Yuware extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/title.png"))); // NOI18N
@@ -723,6 +725,14 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
 
+        Devices.add(Byutopia);
+        Byutopia.setText("Yutopia");
+        Byutopia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ByutopiaActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Thread");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdacon.png"))); // NOI18N
@@ -821,13 +831,15 @@ public class Yuware extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Byuphoria)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Byunique))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel13))))))
+                                        .addComponent(jLabel13))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Byuphoria)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Byunique)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Byutopia))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel1))
@@ -854,7 +866,7 @@ public class Yuware extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -871,7 +883,7 @@ public class Yuware extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                                         .addComponent(jButton5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton9))
@@ -943,7 +955,8 @@ public class Yuware extends javax.swing.JFrame {
                                     .addComponent(Byureka)
                                     .addComponent(Byuphoria)
                                     .addComponent(Byunique)
-                                    .addComponent(Byurekap))
+                                    .addComponent(Byurekap)
+                                    .addComponent(Byutopia))
                                 .addGap(15, 15, 15)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
@@ -1442,6 +1455,17 @@ public class Yuware extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel13MouseReleased
 
+    private void ByutopiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ByutopiaActionPerformed
+        Dstatus.setText("");
+        DSelected.setText("Yutopia selected!");
+        Byutopia.setSelected(true);
+        try {
+            DStatus();
+        } catch (IOException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ByutopiaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1508,6 +1532,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JToggleButton Byuphoria;
     private javax.swing.JToggleButton Byureka;
     private javax.swing.JToggleButton Byurekap;
+    private javax.swing.JToggleButton Byutopia;
     private javax.swing.JTabbedPane DCTab;
     private javax.swing.JTextField DSelected;
     private javax.swing.ButtonGroup Devices;
@@ -1785,7 +1810,7 @@ public class Yuware extends javax.swing.JFrame {
                     } catch (IOException ex) {
                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } else if (Byuphoria.isSelected()) {
+                } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
                     try {
                         clear2();
                         String line;
@@ -1959,7 +1984,7 @@ public class Yuware extends javax.swing.JFrame {
                                 } catch (IOException | InterruptedException ex) {
                                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-                            } else if (Byuphoria.isSelected()) {
+                            } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
                                 try {
                                     clear2();
                                     String line;
@@ -2051,7 +2076,7 @@ public class Yuware extends javax.swing.JFrame {
                                 }
                             }
                         }.start();
-                    } else if (Byuphoria.isSelected()) {
+                    } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
                         clear2();
                         final String path = adbpath.getText();
                         JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
@@ -2152,7 +2177,7 @@ public class Yuware extends javax.swing.JFrame {
                         }
                     }.start();
                 }
-            } else if (Byuphoria.isSelected()) {
+            } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
                 clear2();
                 final String path = adbpath.getText();
                 FileFilter filter = new FileNameExtensionFilter("img files", "img");
@@ -2262,7 +2287,7 @@ public class Yuware extends javax.swing.JFrame {
                         }
                     }.start();
                 }
-            } else if (Byuphoria.isSelected()) {
+            } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
                 clear2();
                 final String path = adbpath.getText();
                 FileFilter filter = new FileNameExtensionFilter("img files", "img");
@@ -2353,7 +2378,7 @@ public class Yuware extends javax.swing.JFrame {
                             Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
-                } else if (Byuphoria.isSelected()) {
+                } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
                     try {
                         clear2();
                         String line;
@@ -2406,7 +2431,7 @@ public class Yuware extends javax.swing.JFrame {
                     } catch (IOException ex) {
                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } else if (Byuphoria.isSelected()) {
+                } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
                     try {
                         clear2();
                         String line;
@@ -2454,6 +2479,7 @@ public class Yuware extends javax.swing.JFrame {
     private void drivers() {
         JOptionPane.showMessageDialog(null, " Follow all instructions for Installing drivers by PDA Net software.", "Warning!", JOptionPane.INFORMATION_MESSAGE);
         try {
+
             Runtime.getRuntime().exec("C:/Program Files/Yuware™/Pda");
         } catch (IOException ex) {
             Logger.getLogger(Yuware.class
@@ -2495,7 +2521,7 @@ public class Yuware extends javax.swing.JFrame {
                         }
                     }.start();
                 }
-            } else if (Byuphoria.isSelected()) {
+            } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
                 clear2();
                 final String path = adbpath.getText();
                 FileFilter filter = new FileNameExtensionFilter("img files", "img");
@@ -2574,7 +2600,7 @@ public class Yuware extends javax.swing.JFrame {
                         }
                     }
                 }.start();
-            } else if (Byuphoria.isSelected()) {
+            } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
                 new Thread() {
                     @Override
                     public void run() {
