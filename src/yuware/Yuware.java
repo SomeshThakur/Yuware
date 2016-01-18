@@ -143,7 +143,7 @@ public class Yuware extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/title.png"))); // NOI18N
@@ -2477,11 +2477,31 @@ public class Yuware extends javax.swing.JFrame {
     }
 
     private void drivers() {
-        JOptionPane.showMessageDialog(null, " Follow all instructions for Installing drivers by PDA Net software.", "Warning!", JOptionPane.INFORMATION_MESSAGE);
         try {
-
-            Runtime.getRuntime().exec("C:/Program Files/Yuware™/Pda");
-        } catch (IOException ex) {
+            int y = JOptionPane.showConfirmDialog(null, " Do want to Download The drivers from official site ?"
+                    + "\n Or if you press \"NO\" then the PDA installation will begin!", "Confirmation!", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (y == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, " Follow all instructions for Installing drivers by PDA Net software.", "Warning!", JOptionPane.INFORMATION_MESSAGE);
+                Runtime.getRuntime().exec("C:/Program Files/Yuware™/Pda");
+            } else if (y == JOptionPane.YES_OPTION) {
+                if (Byureka.isSelected() || Byurekap.isSelected()) {
+                    JOptionPane.showMessageDialog(null, " Sorry! But Official drivers are not available for Yureka or Yureka plus"
+                            + "\n How ever the official team is working on it..."
+                            + "\n Continue your drivers installation with PDA net!");
+                } else if (Byuphoria.isSelected()) {
+                    Desktop.getDesktop().browse(new URI("http://www.yuplaygod.com/files/YUPHORIA/YUPHORIA_drivers-v1.0.zip"));
+                } else if (Byutopia.isSelected()) {
+                    Desktop.getDesktop().browse(new URI("http://www.yuplaygod.com/files/YUTOPIA/YUTOPIA_adb_and_fastboot_packages.7z"));
+                } else if (Byunique.isSelected()) {
+                    int x = JOptionPane.showConfirmDialog(null, " Yunique drivers are installed by System itself or by PDA"
+                            + "\n But if you want to install manually then follow the official"
+                            + "\n Should i open Guide for you ?", "Information", JOptionPane.YES_NO_OPTION);
+                    if (x == JOptionPane.YES_OPTION) {
+                        Desktop.getDesktop().browse(new URI("http://forums.yuplaygod.com/threads/official-how-to-yunique-drivers-installation.23266/"));
+                    }
+                }
+            }
+        } catch (IOException | URISyntaxException ex) {
             Logger.getLogger(Yuware.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
