@@ -130,6 +130,8 @@ public class Yuware extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         Byutopia = new javax.swing.JToggleButton();
+        jLabel14 = new javax.swing.JLabel();
+        Bforced = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -139,6 +141,8 @@ public class Yuware extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -656,7 +660,7 @@ public class Yuware extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton14)
                     .addComponent(jButton15))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Recovery", jPanel2);
@@ -691,7 +695,7 @@ public class Yuware extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton35)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jButton36)
                 .addContainerGap())
         );
@@ -732,6 +736,11 @@ public class Yuware extends javax.swing.JFrame {
                 ByutopiaActionPerformed(evt);
             }
         });
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 153, 255));
+
+        Bforced.setText("forcedmode");
 
         jMenu1.setText("Thread");
 
@@ -784,6 +793,22 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem5);
+
+        jMenuItem8.setText("Enable Forced Mode");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem8);
+
+        jMenuItem9.setText("Disable Forced Mode");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem9);
 
         jMenuBar1.add(jMenu4);
 
@@ -905,7 +930,10 @@ public class Yuware extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel14)
+                        .addGap(63, 63, 63)
+                        .addComponent(Bforced)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton19))))
@@ -988,11 +1016,15 @@ public class Yuware extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTabbedPane1))
+                                .addComponent(jTabbedPane1)
+                                .addGap(20, 20, 20))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(DCTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(20, 20, 20))))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel14)
+                                    .addComponent(Bforced))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
 
         pack();
@@ -1466,6 +1498,21 @@ public class Yuware extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ByutopiaActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        Bforced.setSelected(true);
+        jLabel14.setVisible(true);
+        jLabel14.setText("Forced Mode is Enabled!");
+        jMenuItem8.setVisible(false);
+        jMenuItem9.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        Bforced.setSelected(false);
+        jLabel14.setVisible(false);
+        jMenuItem9.setVisible(false);
+        jMenuItem8.setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1527,6 +1574,7 @@ public class Yuware extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton Bforced;
     private javax.swing.JButton Brecorder;
     private javax.swing.JToggleButton Byunique;
     private javax.swing.JToggleButton Byuphoria;
@@ -1582,6 +1630,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1602,6 +1651,8 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1624,6 +1675,9 @@ public class Yuware extends javax.swing.JFrame {
         adblog.setToolTipText("Connected Devices");
         fblog.setLineWrap(true);
         jMenuItem6.setVisible(false);
+        jMenuItem9.setVisible(false);
+        Bforced.setVisible(false);
+        jLabel14.setVisible(false);
     }
 
     private void reboot() throws IOException {
@@ -1955,6 +2009,11 @@ public class Yuware extends javax.swing.JFrame {
                 try {
                     DStatus();
                     Thread.sleep(300);
+                    if(Bforced.isSelected()){
+                         Dstatus.setText("Fastboot!");
+                            Dstatus.setForeground(Color.LIGHT_GRAY);
+                            Dstatus.setBackground(Color.BLACK);
+                    }
                     String tmp = Dstatus.getText();
                     if ("Fastboot!".equals(tmp)) {
                         int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Unlocking bootloader will wipe all DATA."
@@ -2042,6 +2101,11 @@ public class Yuware extends javax.swing.JFrame {
     private void lockBL() throws IOException {
         try {
             DStatus();
+            if(Bforced.isSelected()){
+                         Dstatus.setText("Fastboot!");
+                            Dstatus.setForeground(Color.LIGHT_GRAY);
+                            Dstatus.setBackground(Color.BLACK);
+                    }
             Thread.sleep(300);
             String tmp = Dstatus.getText();
             if ("Fastboot!".equals(tmp)) {
@@ -2692,27 +2756,33 @@ public class Yuware extends javax.swing.JFrame {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                     process.waitFor();
                     try {
-                        while ((line = reader.readLine()) != null) {
-                            if (line.endsWith("device") || line2.endsWith("fastboot")) {
-                                if (line2.endsWith("fastboot")) {
-                                    Dstatus.setText("Fastboot!");
-                                    Dstatus.setForeground(Color.GREEN);
-                                    Dstatus.setBackground(Color.BLUE);
-                                } else {
-                                    Dstatus.setText("Connected!");
-                                    Dstatus.setForeground(Color.GREEN);
-                                    Dstatus.setBackground(Color.BLUE);
+                        if (Bforced.isSelected() == false) {
+                            while ((line = reader.readLine()) != null) {
+                                if (line.endsWith("device") || line2.endsWith("fastboot")) {
+                                    if (line2.endsWith("fastboot")) {
+                                        Dstatus.setText("Fastboot!");
+                                        Dstatus.setForeground(Color.GREEN);
+                                        Dstatus.setBackground(Color.BLUE);
+                                    } else {
+                                        Dstatus.setText("Connected!");
+                                        Dstatus.setForeground(Color.GREEN);
+                                        Dstatus.setBackground(Color.BLUE);
+                                    }
+                                } else if (line.endsWith("attached ")) {
+                                    Dstatus.setText("Not found!");
+                                    Dstatus.setForeground(Color.red);
+                                    Dstatus.setBackground(Color.lightGray);
+                                } else if (line.endsWith("unauthorized")) {
+                                    Dstatus.setText("Unauthorized!");
+                                    Dstatus.setForeground(Color.yellow);
+                                    Dstatus.setBackground(Color.BLACK);
                                 }
-                            } else if (line.endsWith("attached ")) {
-                                Dstatus.setText("Not found!");
-                                Dstatus.setForeground(Color.red);
-                                Dstatus.setBackground(Color.lightGray);
-                            } else if (line.endsWith("unauthorized")) {
-                                Dstatus.setText("Unauthorized!");
-                                Dstatus.setForeground(Color.yellow);
-                                Dstatus.setBackground(Color.BLACK);
+                                process.destroy();
                             }
-                            process.destroy();
+                        } else {
+                            Dstatus.setText("Connected!");
+                            Dstatus.setForeground(Color.LIGHT_GRAY);
+                            Dstatus.setBackground(Color.BLACK);
                         }
                         process.destroy();
                     } catch (IOException ex) {
