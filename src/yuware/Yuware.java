@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -132,6 +131,9 @@ public class Yuware extends javax.swing.JFrame {
         Byutopia = new javax.swing.JToggleButton();
         jLabel14 = new javax.swing.JLabel();
         Bforced = new javax.swing.JToggleButton();
+        jLabel15 = new javax.swing.JLabel();
+        jButton38 = new javax.swing.JButton();
+        jButton39 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -742,6 +744,23 @@ public class Yuware extends javax.swing.JFrame {
 
         Bforced.setText("forcedmode");
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel15.setText("Bakup And Restore");
+
+        jButton38.setText("Backup All Data");
+        jButton38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton38ActionPerformed(evt);
+            }
+        });
+
+        jButton39.setText("Restore All Data");
+        jButton39.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton39ActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Thread");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdacon.png"))); // NOI18N
@@ -921,9 +940,18 @@ public class Yuware extends javax.swing.JFrame {
                                             .addComponent(adbpath, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jButton6)))
-                                    .addComponent(jLabel9)
-                                    .addComponent(jButton18)
-                                    .addComponent(DCTab, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(DCTab, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jButton18))
+                                        .addGap(67, 67, 67)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel15)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jButton38)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jButton39)))))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -988,13 +1016,16 @@ public class Yuware extends javax.swing.JFrame {
                                 .addGap(15, 15, 15)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel9))
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel15))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButton1)
                                     .addComponent(jButton2)
                                     .addComponent(jButton3)
-                                    .addComponent(jButton18))
+                                    .addComponent(jButton18)
+                                    .addComponent(jButton38)
+                                    .addComponent(jButton39))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
@@ -1513,6 +1544,14 @@ public class Yuware extends javax.swing.JFrame {
         jMenuItem8.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
+        backup();
+    }//GEN-LAST:event_jButton38ActionPerformed
+
+    private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
+        restore();
+    }//GEN-LAST:event_jButton39ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1619,6 +1658,8 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
+    private javax.swing.JButton jButton38;
+    private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -1631,6 +1672,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2009,10 +2051,10 @@ public class Yuware extends javax.swing.JFrame {
                 try {
                     DStatus();
                     Thread.sleep(300);
-                    if(Bforced.isSelected()){
-                         Dstatus.setText("Fastboot!");
-                            Dstatus.setForeground(Color.LIGHT_GRAY);
-                            Dstatus.setBackground(Color.BLACK);
+                    if (Bforced.isSelected()) {
+                        Dstatus.setText("Fastboot!");
+                        Dstatus.setForeground(Color.LIGHT_GRAY);
+                        Dstatus.setBackground(Color.BLACK);
                     }
                     String tmp = Dstatus.getText();
                     if ("Fastboot!".equals(tmp)) {
@@ -2101,11 +2143,11 @@ public class Yuware extends javax.swing.JFrame {
     private void lockBL() throws IOException {
         try {
             DStatus();
-            if(Bforced.isSelected()){
-                         Dstatus.setText("Fastboot!");
-                            Dstatus.setForeground(Color.LIGHT_GRAY);
-                            Dstatus.setBackground(Color.BLACK);
-                    }
+            if (Bforced.isSelected()) {
+                Dstatus.setText("Fastboot!");
+                Dstatus.setForeground(Color.LIGHT_GRAY);
+                Dstatus.setBackground(Color.BLACK);
+            }
             Thread.sleep(300);
             String tmp = Dstatus.getText();
             if ("Fastboot!".equals(tmp)) {
@@ -2793,5 +2835,83 @@ public class Yuware extends javax.swing.JFrame {
                 }
             }
         }.start();
+    }
+
+    private void backup() {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    DStatus();
+                    Thread.sleep(300);
+                    String tmp = Dstatus.getText();
+                    if (null != tmp) {
+                        switch (tmp) {
+                            case "Connected!":
+                                String path = adbpath.getText();
+                                final String pathA = System.getProperty("user.home") + "\\Desktop";
+                                File f = new File(pathA + "\\Backup\\");
+                                f.mkdir();
+                                Process backup = Runtime.getRuntime().exec("cmd /c backup.bat", null, new File("C:/Program Files/Yuware™"));
+                                backup.waitFor();
+                                break;
+                            case "Fastboot!":
+                                JOptionPane.showMessageDialog(null, "This Option will work if your device is connected on Switch ON mode\nFor rebooting from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                                break;
+                        }
+                    }
+                } catch (IOException | InterruptedException ex) {
+                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }.start();
+    }
+
+    private void restore() {
+
+        try {
+            DStatus();
+            Thread.sleep(300);
+            String tmp = Dstatus.getText();
+            if (null != tmp) {
+                switch (tmp) {
+                    case "Connected!":
+                        JOptionPane.showMessageDialog(null,"Select the ADB Backup which has been stored on your desktop in folder \"Backup\"");
+                        final String path = adbpath.getText();
+                        FileFilter filter = new FileNameExtensionFilter("ab files", "ab");
+                        JFileChooser chooser = new JFileChooser();
+                        chooser.setFileFilter(filter);
+                        chooser.addChoosableFileFilter(filter);
+                        int result = chooser.showOpenDialog(this);
+                        if (result == JFileChooser.APPROVE_OPTION) {
+                            final File choosen = chooser.getSelectedFile();
+                            new Thread() {
+                                @Override
+                                public void run() {
+                                    Process restore;
+                                    try {
+                                        restore = Runtime.getRuntime().exec("cmd start "+path + "adb restore " + choosen.getAbsolutePath());
+                                        restore.waitFor();
+                                    } catch (IOException | InterruptedException ex) {
+                                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }.start();
+                        }
+                        break;
+                    case "Fastboot!":
+                        JOptionPane.showMessageDialog(null, "This Option will work if your device is connected on Switch ON mode\nFor rebooting from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                }
+            }
+        } catch (IOException | InterruptedException ex) {
+            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
