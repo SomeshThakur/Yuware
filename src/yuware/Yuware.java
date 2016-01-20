@@ -1067,7 +1067,7 @@ public class Yuware extends javax.swing.JFrame {
                 + " It is designed for User Friendly GUI, Easy to use and Premium look purpose. \n"
                 + " All Copyrights© are reserved by Somesh Thakur. \n (The Dev behind this software)"
                 + "     Contact : Someshthakur33@gmail.com \n"
-                + "  Version :- 3.5 ", "About", JOptionPane.INFORMATION_MESSAGE, icon);
+                + "  Version :- 4.0 ", "About", JOptionPane.INFORMATION_MESSAGE, icon);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
