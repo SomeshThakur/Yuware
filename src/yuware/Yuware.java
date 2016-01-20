@@ -2879,7 +2879,6 @@ public class Yuware extends javax.swing.JFrame {
             if (null != tmp) {
                 switch (tmp) {
                     case "Connected!":
-                        JOptionPane.showMessageDialog(null,"Select the ADB Backup which has been stored on your desktop in folder \"Backup\"");
                         final String path = adbpath.getText();
                         FileFilter filter = new FileNameExtensionFilter("ab files", "ab");
                         JFileChooser chooser = new JFileChooser();
@@ -2893,8 +2892,13 @@ public class Yuware extends javax.swing.JFrame {
                                 public void run() {
                                     Process restore;
                                     try {
-                                        restore = Runtime.getRuntime().exec("cmd start "+path + "adb restore " + choosen.getAbsolutePath());
+                                        JOptionPane.showMessageDialog(null, " Open phone and continue the restoring process instructions!", "Message", JOptionPane.INFORMATION_MESSAGE);
+                                        clear();
+                                        adblog.setText("Restoring Backup...");
+                                        restore = Runtime.getRuntime().exec(path + "adb restore " + choosen.getAbsolutePath());
                                         restore.waitFor();
+                                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                                        JOptionPane.showMessageDialog(null, "Backup restored sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                     } catch (IOException | InterruptedException ex) {
                                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                                     }
