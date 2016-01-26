@@ -1442,10 +1442,20 @@ public class Yuware extends javax.swing.JFrame {
 
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
         String path = adbpath.getText();
-        try {
-            Process clear = Runtime.getRuntime().exec(path + "\\adb shell input tap 660 86");
-        } catch (IOException ex) {
-            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+        if (!(Devices.getSelection() == null)) {
+            try {
+                if (Byureka.isSelected() || Byuphoria.isSelected() || Byunique.isSelected()) {
+                    Process clear = Runtime.getRuntime().exec(path + "\\adb shell input tap 660 86");
+                } else if (Byurekap.isSelected()) {
+                    Process clear = Runtime.getRuntime().exec(path + "\\adb shell input tap 1320 172");
+                } else if (Byutopia.isSelected()) {
+                    Process clear = Runtime.getRuntime().exec(path + "\\adb shell input tap 2640 344");
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Select Your Device first", "Oops", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton33ActionPerformed
 
@@ -1589,10 +1599,10 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel16FocusGained
 
     private void jLabel16MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseReleased
-    JOptionPane.showMessageDialog(null," Forced Mode is dummy simulation of Device"
-            + "\n It Makes the state of Device as Connected"
-            + "\n It is useful when your device is being not listed but can take coomands"
-            + "\n Try to use it only if you have Device connected and Not able to detect.","Information",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, " Forced Mode is dummy simulation of Device"
+                + "\n It Makes the state of Device as Connected"
+                + "\n It is useful when your device is being not listed but can take coomands"
+                + "\n Try to use it only if you have Device connected and Not able to detect.", "Information", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jLabel16MouseReleased
 
     /**
@@ -1818,8 +1828,8 @@ public class Yuware extends javax.swing.JFrame {
                                 JOptionPane.showMessageDialog(null, "Rebooted to recovery Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                 break;
                             case "Recovery!":
-                                 JOptionPane.showMessageDialog(null,"Your Device is already in recovery mode!","Oops!",JOptionPane.INFORMATION_MESSAGE);
-                                 break;
+                                JOptionPane.showMessageDialog(null, "Your Device is already in recovery mode!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+                                break;
                             case "Fastboot!":
                                 JOptionPane.showMessageDialog(null, "This Option will work if your device is connected on Switch ON mode\nRebooting to recovery directly from fastboot is not possible!\nFor rebooting to system from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
                                 break;
