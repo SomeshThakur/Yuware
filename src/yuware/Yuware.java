@@ -1778,6 +1778,7 @@ public class Yuware extends javax.swing.JFrame {
                     if (null != tmp) {
                         switch (tmp) {
                             case "Connected!":
+                            case "Recovery!":
                                 String path = adbpath.getText();
                                 Process re = Runtime.getRuntime().exec(path + "\\adb reboot");
                                 re.waitFor();
@@ -1816,6 +1817,9 @@ public class Yuware extends javax.swing.JFrame {
                                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
                                 JOptionPane.showMessageDialog(null, "Rebooted to recovery Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                 break;
+                            case "Recovery!":
+                                 JOptionPane.showMessageDialog(null,"Your Device is already in recovery mode!","Oops!",JOptionPane.INFORMATION_MESSAGE);
+                                 break;
                             case "Fastboot!":
                                 JOptionPane.showMessageDialog(null, "This Option will work if your device is connected on Switch ON mode\nRebooting to recovery directly from fastboot is not possible!\nFor rebooting to system from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
                                 break;
@@ -1842,6 +1846,7 @@ public class Yuware extends javax.swing.JFrame {
                     if (null != tmp) {
                         switch (tmp) {
                             case "Connected!":
+                            case "Recovery!":
                                 String path = adbpath.getText();
                                 Process re = Runtime.getRuntime().exec(path + "\\adb reboot-bootloader");
                                 re.waitFor();
@@ -2859,6 +2864,10 @@ public class Yuware extends javax.swing.JFrame {
                                     Dstatus.setText("Not found!");
                                     Dstatus.setForeground(Color.red);
                                     Dstatus.setBackground(Color.lightGray);
+                                } else if (line.endsWith("recovery")) {
+                                    Dstatus.setText("Recovery!");
+                                    Dstatus.setForeground(Color.CYAN);
+                                    Dstatus.setBackground(Color.BLACK);
                                 } else if (line.endsWith("unauthorized")) {
                                     Dstatus.setText("Unauthorized!");
                                     Dstatus.setForeground(Color.yellow);
