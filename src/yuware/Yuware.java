@@ -879,58 +879,55 @@ public class Yuware extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(DSelected, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(Byureka)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Byurekap)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel13))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Byuphoria)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Byunique)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Byutopia))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(DSelected, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(Byureka)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(Byurekap)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel13))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(Byuphoria)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(Byunique)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(Byutopia))))))
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton3))
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton11)
-                                        .addGap(3, 3, 3)
-                                        .addComponent(jButton37))
-                                    .addComponent(jLabel6))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton11)
+                                .addGap(3, 3, 3)
+                                .addComponent(jButton37))
+                            .addComponent(jLabel6)))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -947,7 +944,7 @@ public class Yuware extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                                         .addComponent(jButton5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton9))
@@ -2039,6 +2036,8 @@ public class Yuware extends javax.swing.JFrame {
                         }
                     }.start();
                 }
+            } else if ("Recovery!".endsWith(tmp)) {
+                JOptionPane.showMessageDialog(null, "Your Device is in recovery mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -2049,58 +2048,44 @@ public class Yuware extends javax.swing.JFrame {
     }
 
     private void installMulApp() throws IOException, InterruptedException {
-        final String pathA = System.getProperty("user.home") + "\\Desktop";
-        File appfolder = new File(pathA + "\\Apks folder");
-        appfolder.mkdir();
-        JOptionPane.showMessageDialog(null, " Place all your apks under folder named \"Apks Folder\".\n Folder is on your desktop.", "", JOptionPane.INFORMATION_MESSAGE);
-        int y = JOptionPane.showConfirmDialog(null, " DID YOU PLACED ALL YOUR APKS UNDER \"Apks folder\"??"
-                + " \n It takes time to install all apps please check your phone for apps. Have patience!!! "
-                + "\n Note: If you are testing then please place atleast one apk in folder", "Warning!", JOptionPane.YES_NO_OPTION);
-        if (y == JOptionPane.YES_OPTION) {
-            new Thread() {
-                @Override
-                public void run() {
-                    try {
-                        Process deleteDL = Runtime.getRuntime().exec("cmd /c del log.txt", null, new File(pathA + "\\Apks folder\\"));
-                        deleteDL.waitFor();
+        String tmp = Dstatus.getText();
+        if ("Connected!".equals(tmp)) {
+            final String pathA = System.getProperty("user.home") + "\\Desktop";
+            File appfolder = new File(pathA + "\\Apks folder");
+            appfolder.mkdir();
+            JOptionPane.showMessageDialog(null, " Place all your apks under folder named \"Apks Folder\".\n Folder is on your desktop.", "", JOptionPane.INFORMATION_MESSAGE);
+            int y = JOptionPane.showConfirmDialog(null, " DID YOU PLACED ALL YOUR APKS UNDER \"Apks folder\"??"
+                    + " \n It takes time to install all apps please check your phone for apps. Have patience!!! "
+                    + "\n Note: Do not place any other stuff in that folder, it may be deleted.", "Warning!", JOptionPane.YES_NO_OPTION);
+            if (y == JOptionPane.YES_OPTION) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            Process deleteDL = Runtime.getRuntime().exec("cmd /c del log.txt", null, new File(pathA + "\\Apks folder\\"));
+                            deleteDL.waitFor();
 
-                        Process copy = Runtime.getRuntime().exec("xcopy \"" + pathA + "\\Apks folder\\*\" \"C:\\Program Files\\Yuware™\\Apks folder\" /s /i");
-                        copy.waitFor();
+                            Process copy = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\Apks folder\\*\" \"" + pathA + "\\Apks folder\" /s /i");
+                            copy.waitFor();
 
-                        adblog.setText("Installing Apps!");
+                            Process install = Runtime.getRuntime().exec("cmd /c start APK-Installer.bat", null, new File(pathA + "\\Apks folder"));
+                            install.waitFor();
 
-                        Process install = Runtime.getRuntime().exec("cmd /c start APK-Installer.bat", null, new File("C:/Program Files/Yuware™"));
-                        install.waitFor();
-
-                        Process delete = Runtime.getRuntime().exec("cmd /c delete.bat", null, new File("C:/Program Files/Yuware™/Apks folder"));
-                        delete.waitFor();
-
-                        Process log = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\Apks folder\\log.txt\" \"" + pathA + "\\Apks folder\" /i");
-                        log.waitFor();
-
-                        Process deleteL = Runtime.getRuntime().exec("cmd /c deleteL.bat", null, new File("C:/Program Files/Yuware™/Apks folder"));
-                        deleteL.waitFor();
-
-                        clear();
-                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                .getResource("done.png")));
-                        JOptionPane.showMessageDialog(
-                                null, " All apks were installed.\n Check Log file placed in Apks folder for more info!", "Sucess!", JOptionPane.INFORMATION_MESSAGE, icon);
-                    } catch (IOException | InterruptedException ex) {
-                        Logger.getLogger(Yuware.class
-                                .getName()).log(Level.SEVERE, null, ex);
+                            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                    .getResource("done.png")));
+                            JOptionPane.showMessageDialog(
+                                    null, " All apks were started installing...\n Check Log file placed in Apks folder for more info!", "Sucess!", JOptionPane.INFORMATION_MESSAGE, icon);
+                        } catch (IOException | InterruptedException ex) {
+                            Logger.getLogger(Yuware.class
+                                    .getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
-                }
-            }.start();
-
-            new Thread() {
-                @Override
-                public void run() {
-                    clear();
-                    adblog.setText(" Installing All apks...\n Please wait!");
-
-                }
-            }.start();
+                }.start();
+            }
+        } else if ("Recovery!".endsWith(tmp)) {
+            JOptionPane.showMessageDialog(null, "Your Device is in recovery mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
