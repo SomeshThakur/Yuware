@@ -2901,7 +2901,7 @@ public class Yuware extends javax.swing.JFrame {
                     if (null != tmp) {
                         switch (tmp) {
                             case "Connected!":
-                                JOptionPane.showMessageDialog(null,"Your backup will be stored in a folder name BACKUP on your desktop","Message!",JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Your backup will be stored in a folder name BACKUP on your desktop", "Message!", JOptionPane.INFORMATION_MESSAGE);
                                 String path = adbpath.getText();
                                 final String pathA = System.getProperty("user.home") + "\\Desktop";
                                 File f = new File(pathA + "\\Backup\\");
@@ -2933,7 +2933,7 @@ public class Yuware extends javax.swing.JFrame {
             if (null != tmp) {
                 switch (tmp) {
                     case "Connected!":
-                        JOptionPane.showMessageDialog(null,"Select the .ab file which is a ADB backup file","Message!",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Select the .ab file which is a ADB backup file", "Message!", JOptionPane.INFORMATION_MESSAGE);
                         final String path = adbpath.getText();
                         FileFilter filter = new FileNameExtensionFilter("ab files", "ab");
                         JFileChooser chooser = new JFileChooser();
