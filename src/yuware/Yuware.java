@@ -2038,6 +2038,8 @@ public class Yuware extends javax.swing.JFrame {
                 }
             } else if ("Recovery!".equals(tmp)) {
                 JOptionPane.showMessageDialog(null, "Your Device is in recovery mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            } else if ("Fastboot!".equalsIgnoreCase(tmp)) {
+                JOptionPane.showMessageDialog(null, "Your Device is in Fastboot mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -2084,6 +2086,8 @@ public class Yuware extends javax.swing.JFrame {
             }
         } else if ("Recovery!".equals(tmp)) {
             JOptionPane.showMessageDialog(null, "Your Device is in recovery mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+        } else if ("Fastboot!".equalsIgnoreCase(tmp)) {
+            JOptionPane.showMessageDialog(null, "Your Device is in Fastboot mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
         }
