@@ -13,11 +13,16 @@ import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -149,6 +154,7 @@ public class Yuware extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -867,6 +873,15 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem7);
+
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/update.png"))); // NOI18N
+        jMenuItem10.setText("Check for Update");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem10);
 
         jMenuBar1.add(jMenu3);
 
@@ -1602,6 +1617,45 @@ public class Yuware extends javax.swing.JFrame {
                 + "\n Try to use it only if you have Device connected and Not able to detect.", "Information", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jLabel16MouseReleased
 
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    jLabel14.setVisible(true);
+                    jLabel14.setText("Checking for Update Available...");
+                    File v = new File("C:\\Program Files\\Yuware™\\version.txt");
+                    v.getAbsoluteFile().delete();
+                    Thread.sleep(200);
+                    URL website = new URL("https://raw.githubusercontent.com/SomeshThakur/Yuware/master/src/yuware/version.txt");
+                    ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+                    FileOutputStream fos = new FileOutputStream("C:\\Program Files\\Yuware™\\version.txt");
+                    fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+                    BufferedReader br = new BufferedReader(new FileReader(("C:\\Program Files\\Yuware™\\version.txt")));
+                    String ver = br.readLine();
+                    double Lv = Double.parseDouble(ver);
+                    double Cv = 4.0;
+                    jLabel14.setVisible(false);
+                    if (Lv > Cv) {
+                        String msg1 = "Download now";
+                        String msg2 = "I will do it later";
+                        Object[] msg = {msg1, msg2};
+                        int y = JOptionPane.showOptionDialog(null, " Download now\n Available version: " + Lv + "\n Current Version: " + Cv, "Update Avaible",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null ,msg,msg[0]);
+                    if(y==JOptionPane.YES_OPTION){
+                     Desktop.getDesktop().browse(new URI("http://forums.yuplaygod.com/threads/windows-yuware%E2%84%A2-gui.21967"));
+                    }
+                    } else {
+                        JOptionPane.showMessageDialog(null, " No Update available!\n Your Yuware is Latest", "Up-To-Date", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException | InterruptedException | URISyntaxException ex) {
+                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }.start();
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1738,6 +1792,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
