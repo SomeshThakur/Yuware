@@ -1640,10 +1640,10 @@ public class Yuware extends javax.swing.JFrame {
                         String msg1 = "Download now";
                         String msg2 = "I will do it later";
                         Object[] msg = {msg1, msg2};
-                        int y = JOptionPane.showOptionDialog(null, " Download now\n Available version: " + Lv + "\n Current Version: " + Cv, "Update Avaible",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null ,msg,msg[0]);
-                    if(y==JOptionPane.YES_OPTION){
-                     Desktop.getDesktop().browse(new URI("http://forums.yuplaygod.com/threads/windows-yuware%E2%84%A2-gui.21967"));
-                    }
+                        int y = JOptionPane.showOptionDialog(null, " Download now\n Available version: " + Lv + "\n Current Version: " + Cv, "Update Avaible", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msg, msg[0]);
+                        if (y == JOptionPane.YES_OPTION) {
+                            Desktop.getDesktop().browse(new URI("http://forums.yuplaygod.com/threads/windows-yuware%E2%84%A2-gui.21967"));
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, " No Update available!\n Your Yuware is Latest", "Up-To-Date", JOptionPane.INFORMATION_MESSAGE);
                     }
