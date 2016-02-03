@@ -17,7 +17,9 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
+import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -1621,7 +1623,10 @@ public class Yuware extends javax.swing.JFrame {
         new Thread() {
             @Override
             public void run() {
+                Socket sock = new Socket();
+                InetSocketAddress addr = new InetSocketAddress("www.google.com", 80);
                 try {
+                    sock.connect(addr);
                     jLabel14.setVisible(true);
                     jLabel14.setText("Checking for Update Available...");
                     File v = new File("C:\\Program Files\\Yuware™\\version.txt");
@@ -1647,10 +1652,13 @@ public class Yuware extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, " No Update available!\n Your Yuware is Latest", "Up-To-Date", JOptionPane.INFORMATION_MESSAGE);
                     }
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException | InterruptedException | URISyntaxException ex) {
-                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception e) {
+                    javax.swing.JOptionPane.showMessageDialog(null, " No Internet Connection!\n Connect to internet and try again...", "Error!", JOptionPane.ERROR_MESSAGE);
+                } finally {
+                    try {
+                        sock.close();
+                    } catch (Exception e) {
+                    }
                 }
             }
         }.start();
