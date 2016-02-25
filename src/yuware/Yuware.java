@@ -1110,7 +1110,7 @@ public class Yuware extends javax.swing.JFrame {
                 + " It is designed for User Friendly GUI, Easy to use and Premium look purpose. \n"
                 + " All Copyrights© are reserved by Somesh Thakur. \n (The Dev behind this software)"
                 + "     Contact : Someshthakur33@gmail.com \n"
-                + "  Version :- 4.0 ", "About", JOptionPane.INFORMATION_MESSAGE, icon);
+                + "  Version :- 4.5 ", "About", JOptionPane.INFORMATION_MESSAGE, icon);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -1638,7 +1638,7 @@ public class Yuware extends javax.swing.JFrame {
                     BufferedReader br = new BufferedReader(new FileReader(("C:\\Program Files\\Yuware™\\version.txt")));
                     String ver = br.readLine();
                     double Lv = Double.parseDouble(ver);
-                    double Cv = 4.0;
+                    double Cv = 4.5;
                     jLabel14.setVisible(false);
                     if (Lv > Cv) {
                         String msg1 = "Download now";
