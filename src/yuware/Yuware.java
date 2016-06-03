@@ -157,8 +157,13 @@ public class Yuware extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/title.png"))); // NOI18N
 
@@ -1662,6 +1667,17 @@ public class Yuware extends javax.swing.JFrame {
             }
         }.start();
     }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int y = JOptionPane.showConfirmDialog(null, "Do you really want to exit ? ", "Warning!", JOptionPane.YES_NO_OPTION);
+        if (y == JOptionPane.YES_OPTION) {
+            try {
+                Runtime.getRuntime().exec("taskkill /F /IM adb.exe");
+            } catch (IOException ex) {
+            }
+            System.exit(0);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
