@@ -1525,7 +1525,12 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton36ActionPerformed
 
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
-        push();
+        new Thread() {
+            @Override
+            public void run() {
+                push();
+            }
+        }.start();
     }//GEN-LAST:event_jButton37ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
