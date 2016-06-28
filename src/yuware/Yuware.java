@@ -9,6 +9,7 @@ import com.alee.laf.WebLookAndFeel;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
@@ -49,6 +50,14 @@ public class Yuware extends javax.swing.JFrame {
         try {
             startADB();
         } catch (IOException | InterruptedException ex) {
+        }
+        try {
+            BufferedReader brr = new BufferedReader(new FileReader(("C:\\Program Files\\Yuware™\\dncu.txt")));
+            if ("0".equals(brr.readLine())) {
+                checkUpdate();
+            }
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
         }
     }
 
@@ -1627,48 +1636,7 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel16MouseReleased
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        new Thread() {
-            @Override
-            public void run() {
-                Socket sock = new Socket();
-                InetSocketAddress addr = new InetSocketAddress("www.google.com", 80);
-                try {
-                    sock.connect(addr);
-                    jLabel14.setVisible(true);
-                    jLabel14.setText("Checking for Update Available...");
-                    File v = new File("C:\\Program Files\\Yuware™\\version.txt");
-                    v.getAbsoluteFile().delete();
-                    Thread.sleep(200);
-                    URL website = new URL("https://raw.githubusercontent.com/SomeshThakur/Yuware/master/src/yuware/version.txt");
-                    ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-                    FileOutputStream fos = new FileOutputStream("C:\\Program Files\\Yuware™\\version.txt");
-                    fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-                    BufferedReader br = new BufferedReader(new FileReader(("C:\\Program Files\\Yuware™\\version.txt")));
-                    String ver = br.readLine();
-                    double Lv = Double.parseDouble(ver);
-                    double Cv = 5.0;
-                    jLabel14.setVisible(false);
-                    if (Lv > Cv) {
-                        String msg1 = "Download now";
-                        String msg2 = "I will do it later";
-                        Object[] msg = {msg1, msg2};
-                        int y = JOptionPane.showOptionDialog(null, " Download now\n Available version: " + Lv + "\n Current Version: " + Cv, "Update Avaible", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msg, msg[0]);
-                        if (y == JOptionPane.YES_OPTION) {
-                            Desktop.getDesktop().browse(new URI("http://forums.yuplaygod.com/threads/windows-yuware%E2%84%A2-gui.21967"));
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, " No Update available!\n Your Yuware is Latest", "Up-To-Date", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                } catch (Exception e) {
-                    javax.swing.JOptionPane.showMessageDialog(null, " No Internet Connection!\n Connect to internet and try again...", "Error!", JOptionPane.ERROR_MESSAGE);
-                } finally {
-                    try {
-                        sock.close();
-                    } catch (Exception e) {
-                    }
-                }
-            }
-        }.start();
+        checkUpdate();
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -3055,5 +3023,100 @@ public class Yuware extends javax.swing.JFrame {
         } catch (IOException | InterruptedException ex) {
             Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void checkUpdate() {
+        new Thread() {
+            @Override
+            public void run() {
+                Socket sock = new Socket();
+                InetSocketAddress addr = new InetSocketAddress("www.google.com", 80);
+                JCheckBox cb = new JCheckBox("Do not check update on startup!");
+                try {
+                    sock.connect(addr);
+                    jLabel14.setVisible(true);
+                    jLabel14.setText("Checking for Update Available...");
+                    File v = new File("C:\\Program Files\\Yuware™\\version.txt");
+                    v.getAbsoluteFile().delete();
+                    Thread.sleep(200);
+                    URL website = new URL("https://raw.githubusercontent.com/SomeshThakur/Yuware/master/src/yuware/version.txt");
+                    ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+                    FileOutputStream fos = new FileOutputStream("C:\\Program Files\\Yuware™\\version.txt");
+                    fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+                    BufferedReader br = new BufferedReader(new FileReader(("C:\\Program Files\\Yuware™\\version.txt")));
+                    String ver = br.readLine();
+                    double Lv = Double.parseDouble(ver);
+                    double Cv = 5.0;
+                    jLabel14.setVisible(false);
+                    BufferedReader brr = null;
+                    try {
+                        brr = new BufferedReader(new FileReader(("C:\\Program Files\\Yuware™\\dncu.txt")));
+                    } catch (FileNotFoundException ex) {
+                    }
+                    try {
+                        if ("0".equals(brr.readLine())) {
+                            if (Lv > Cv) {
+                                String msg1 = "Download now";
+                                String msg2 = "I will do it later";
+                                Object[] msg = {msg1, msg2};
+                                String ms = " Download now\n Available version: " + Lv + "\n Current Version: " + Cv;
+                                Object[] msc = {ms, cb};
+                                int y = JOptionPane.showOptionDialog(null, msc, "Update Avaible", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msg, msg[0]);
+                                if (y == JOptionPane.YES_OPTION) {
+                                    Desktop.getDesktop().browse(new URI("http://forums.yuplaygod.com/threads/windows-yuware%E2%84%A2-gui.21967"));
+                                }
+                            } else {
+                                String ms1 = " No Update available!\n Your Yuware is Latest";
+                                Object[] msc1 = {ms1, cb};
+                                JOptionPane.showMessageDialog(null, msc1, "Up-To-Date", JOptionPane.INFORMATION_MESSAGE);
+                            }
+                            if (cb.isSelected()) {
+                                Process exec = Runtime.getRuntime().exec("cmd /c dncuY.bat", null, new File("C:/Program Files/Yuware™"));
+                            }
+                        } else if (Lv > Cv) {
+                            String msg1 = "Download now";
+                            String msg2 = "I will do it later";
+                            Object[] msg = {msg1, msg2};
+                            int y = JOptionPane.showOptionDialog(null, " Download now\n Available version: " + Lv + "\n Current Version: " + Cv, "Update Avaible", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msg, msg[0]);
+                            if (y == JOptionPane.YES_OPTION) {
+                                Desktop.getDesktop().browse(new URI("http://forums.yuplaygod.com/threads/windows-yuware%E2%84%A2-gui.21967"));
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, " No Update available!\n Your Yuware is Latest", "Up-To-Date", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    } catch (IOException e) {
+                    }
+                } catch (IOException | InterruptedException | NumberFormatException | HeadlessException | URISyntaxException e) {
+                    try {
+                        BufferedReader brr = new BufferedReader(new FileReader(("C:\\Program Files\\Yuware™\\dncu.txt")));
+                        try {
+                            if ("0".equals(brr.readLine())) {
+                                String msg = "Error while checking update."
+                                        + "Connect to Internet first";
+                                Object[] obj = {msg, cb};
+                                JOptionPane.showMessageDialog(null, obj, "Error", JOptionPane.ERROR_MESSAGE);
+                                if (cb.isSelected()) {
+                                    try {
+                                        Process exec = Runtime.getRuntime().exec("cmd /c dncuY.bat", null, new File("C:/Program Files/Yuware™"));
+                                    } catch (IOException ex) {
+                                    }
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Error while checking update."
+                                        + "Connect to Internet first", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } catch (IOException | HeadlessException ee) {
+                        }
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                    } finally {
+                        try {
+                            sock.close();
+                        } catch (Exception ee) {
+                        }
+                    }
+                }
+            }
+        }.start();
     }
 }
