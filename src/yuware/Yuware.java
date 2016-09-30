@@ -2673,28 +2673,32 @@ public class Yuware extends javax.swing.JFrame {
 
     private void drivers() {
         try {
-            String msg1 = "Yes!";
-            String msg2 = "No, start PDA Setup";
-            Object[] msg = {msg1, msg2};
-            int y = JOptionPane.showOptionDialog(null, " Do want to Download The drivers from official site ?", "Confirmation!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msg, msg[0]);
-            if (y == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, " Follow all instructions for Installing drivers by PDA Net software.", "Warning!", JOptionPane.INFORMATION_MESSAGE);
-                Runtime.getRuntime().exec("C:/Program Files/Yuware™/Pda");
-            } else if (y == JOptionPane.YES_OPTION) {
-                if (Byureka.isSelected() || Byurekap.isSelected()) {
-                    JOptionPane.showMessageDialog(null, " Sorry! But Official drivers are not available for Yureka or Yureka plus"
-                            + "\n How ever the official team is working on it..."
-                            + "\n Continue your drivers installation with PDA net!");
-                } else if (Byuphoria.isSelected()) {
-                    Desktop.getDesktop().browse(new URI("http://www.yuplaygod.com/files/YUPHORIA/YUPHORIA_drivers-v1.0.zip"));
-                } else if (Byutopia.isSelected()) {
-                    Desktop.getDesktop().browse(new URI("http://www.yuplaygod.com/files/YUTOPIA/YUTOPIA_adb_and_fastboot_packages.7z"));
-                } else if (Byunique.isSelected()) {
-                    int x = JOptionPane.showConfirmDialog(null, " Yunique drivers are installed by System itself or by PDA"
-                            + "\n But if you want to install manually then follow the official"
-                            + "\n Should i open Guide for you ?", "Information", JOptionPane.YES_NO_OPTION);
-                    if (x == JOptionPane.YES_OPTION) {
-                        Desktop.getDesktop().browse(new URI("http://forums.yuplaygod.com/threads/official-how-to-yunique-drivers-installation.23266/"));
+            if (Devices.getSelection() == null) {
+                JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                String msg1 = "Yes!";
+                String msg2 = "No, start PDA Setup";
+                Object[] msg = {msg1, msg2};
+                int y = JOptionPane.showOptionDialog(null, " Do want to Download The drivers from official site ?", "Confirmation!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msg, msg[0]);
+                if (y == JOptionPane.NO_OPTION) {
+                    JOptionPane.showMessageDialog(null, " Follow all instructions for Installing drivers by PDA Net software.", "Warning!", JOptionPane.INFORMATION_MESSAGE);
+                    Runtime.getRuntime().exec("C:/Program Files/Yuware™/Pda");
+                } else if (y == JOptionPane.YES_OPTION) {
+                    if (Byureka.isSelected() || Byurekap.isSelected()) {
+                        JOptionPane.showMessageDialog(null, " Sorry! But Official drivers are not available for Yureka or Yureka plus"
+                                + "\n How ever the official team is working on it..."
+                                + "\n Continue your drivers installation with PDA net!");
+                    } else if (Byuphoria.isSelected()) {
+                        Desktop.getDesktop().browse(new URI("http://www.yuplaygod.com/files/YUPHORIA/YUPHORIA_drivers-v1.0.zip"));
+                    } else if (Byutopia.isSelected()) {
+                        Desktop.getDesktop().browse(new URI("http://www.yuplaygod.com/files/YUTOPIA/YUTOPIA_adb_and_fastboot_packages.7z"));
+                    } else if (Byunique.isSelected()) {
+                        int x = JOptionPane.showConfirmDialog(null, " Yunique drivers are installed by System itself or by PDA"
+                                + "\n But if you want to install manually then follow the official"
+                                + "\n Should i open Guide for you ?", "Information", JOptionPane.YES_NO_OPTION);
+                        if (x == JOptionPane.YES_OPTION) {
+                            Desktop.getDesktop().browse(new URI("http://forums.yuplaygod.com/threads/official-how-to-yunique-drivers-installation.23266/"));
+                        }
                     }
                 }
             }
