@@ -1004,7 +1004,7 @@ public class Yuware extends javax.swing.JFrame {
                                 .addContainerGap())
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel10)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(55, 55, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel12)
