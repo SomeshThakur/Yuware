@@ -2874,15 +2874,14 @@ public class Yuware extends javax.swing.JFrame {
 
     private void DStatus() throws IOException {
         new Thread() {
+
             @Override
             public void run() {
                 try {
+                    fblog.setVisible(false);
                     fastboot();
-                    Thread.sleep(300);
+                    Thread.sleep(250);
                     String line2 = fblog.getText();
-                    //Thread.sleep(25);
-                    clear2();
-                    fblog.setText("");
                     String line;
                     String path = adbpath.getText();
                     Process process = Runtime.getRuntime().exec(path + "\\adb devices");
@@ -2921,14 +2920,18 @@ public class Yuware extends javax.swing.JFrame {
                             Dstatus.setForeground(Color.LIGHT_GRAY);
                             Dstatus.setBackground(Color.BLACK);
                         }
+
                         process.destroy();
                     } catch (IOException ex) {
                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    fblog.setText("");
+                    fblog.setVisible(true);
                 } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+
         }.start();
     }
 
