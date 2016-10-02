@@ -165,6 +165,7 @@ public class Yuware extends javax.swing.JFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Yuware™");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -1801,7 +1802,6 @@ public class Yuware extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {
-        setTitle("Yuware™");
         setIconImage(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("icon.png")));
         adblog.setLineWrap(true);
         adblog.setToolTipText("Connected Devices");
