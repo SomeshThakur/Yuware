@@ -1522,9 +1522,12 @@ public class Yuware extends javax.swing.JFrame {
             @Override
             public void run() {
                 try {
+                    String tmp = adblog.getText();
+                    clear();
                     adblog.append("\n Opening Guide.docx");
                     Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Guide.docx"));
                     clear();
+                    adblog.setText(tmp);
                 } catch (IOException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                 }
