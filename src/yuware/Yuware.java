@@ -808,10 +808,10 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Thread");
+        jMenu1.setText("Forums Support");
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdacon.png"))); // NOI18N
-        jMenuItem2.setText("XDA Thread");
+        jMenuItem2.setText("XDA Forum");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
