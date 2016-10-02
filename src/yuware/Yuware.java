@@ -2057,6 +2057,7 @@ public class Yuware extends javax.swing.JFrame {
                         String line;
                         String path = adbpath.getText();
                         Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf devices");
+                        process.waitFor();
                         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                         if ((line = reader.readLine()) != null) {
                             fblog.append("\n" + line);
@@ -2064,7 +2065,7 @@ public class Yuware extends javax.swing.JFrame {
                         } else {
                             fblog.setText("No device found");
                         }
-                    } catch (IOException ex) {
+                    } catch (IOException | InterruptedException ex) {
                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
@@ -2073,6 +2074,7 @@ public class Yuware extends javax.swing.JFrame {
                         String line;
                         String path = adbpath.getText();
                         Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 devices");
+                        process.waitFor();
                         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                         if ((line = reader.readLine()) != null) {
                             fblog.append("\n" + line);
@@ -2080,7 +2082,7 @@ public class Yuware extends javax.swing.JFrame {
                         } else {
                             fblog.setText("No device found");
                         }
-                    } catch (IOException ex) {
+                    } catch (IOException | InterruptedException ex) {
                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else if (Byunique.isSelected()) {
@@ -2089,6 +2091,7 @@ public class Yuware extends javax.swing.JFrame {
                         String line;
                         String path = adbpath.getText();
                         Process process = Runtime.getRuntime().exec(path + "\\fastboot devices");
+                        process.waitFor();
                         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                         if ((line = reader.readLine()) != null) {
                             fblog.append("\n" + line);
@@ -2096,7 +2099,7 @@ public class Yuware extends javax.swing.JFrame {
                         } else {
                             fblog.setText("No device found");
                         }
-                    } catch (IOException ex) {
+                    } catch (IOException | InterruptedException ex) {
                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
