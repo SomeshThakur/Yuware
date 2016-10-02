@@ -8,7 +8,6 @@ package yuware;
 import com.alee.laf.WebLookAndFeel;
 import java.awt.Color;
 import java.awt.Desktop;
-import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
