@@ -1105,6 +1105,7 @@ public class Yuware extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -1802,8 +1803,6 @@ public class Yuware extends javax.swing.JFrame {
     private void setIcon() {
         setTitle("Yuware™");
         setIconImage(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("icon.png")));
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         adblog.setLineWrap(true);
         adblog.setToolTipText("Connected Devices");
         fblog.setLineWrap(true);
