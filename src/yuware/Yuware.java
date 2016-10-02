@@ -2880,8 +2880,8 @@ public class Yuware extends javax.swing.JFrame {
 
             @Override
             public void run() {
+                fblog.setVisible(false);
                 try {
-                    fblog.setVisible(false);
                     fastboot();
                     Thread.sleep(250);
                     String line2 = fblog.getText();
@@ -2928,11 +2928,12 @@ public class Yuware extends javax.swing.JFrame {
                     } catch (IOException ex) {
                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    fblog.setText("");
-                    fblog.setVisible(true);
+
                 } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                fblog.setText("");
+                fblog.setVisible(true);
             }
 
         }.start();
