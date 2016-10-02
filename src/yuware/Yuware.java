@@ -2971,7 +2971,7 @@ public class Yuware extends javax.swing.JFrame {
                                         Dstatus.setForeground(Color.GREEN);
                                         Dstatus.setBackground(Color.BLUE);
                                     }
-                                } else if (line.endsWith("attached ")) {
+                                } else if (line.endsWith("attached")) {
                                     Dstatus.setText("Not found!");
                                     Dstatus.setForeground(Color.red);
                                     Dstatus.setBackground(Color.lightGray);
