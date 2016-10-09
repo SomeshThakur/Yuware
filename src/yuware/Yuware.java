@@ -45,7 +45,7 @@ public class Yuware extends javax.swing.JFrame {
     public Yuware() {
 
         initComponents();
-        setIcon();
+        HideComponents();
         try {
             startADB();
         } catch (IOException | InterruptedException ex) {
@@ -1870,7 +1870,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JMenuItem reportBugLabel;
     // End of variables declaration//GEN-END:variables
 
-    private void setIcon() {
+    private void HideComponents() {
         jMenuItem6.setVisible(false);
         jMenuItem9.setVisible(false);
         Bforced.setVisible(false);
