@@ -1550,7 +1550,8 @@ public class Yuware extends javax.swing.JFrame {
                     clear();
                     adblog.setText(tmp);
                 } catch (IOException ex) {
-                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Cannot open Guide Doc!! \nInstall Microsoft office suite or any application which can open documents", "Error!!", JOptionPane.ERROR_MESSAGE);
+                    clear();
                 }
             }
         }.start();
