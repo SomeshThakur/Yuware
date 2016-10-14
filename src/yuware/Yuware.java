@@ -2401,222 +2401,252 @@ public class Yuware extends javax.swing.JFrame {
     }
 
     private void flashrcvry() throws IOException, InterruptedException {
-        int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Flashing recovery will replace current recovery permanently"
-                + " \n"
-                + " I am not responsible for any damage caused to your device.\n"
-                + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
-        if (y == JOptionPane.YES_OPTION) {
-            if (Byureka.isSelected() || Byurekap.isSelected()) {
-                clear2();
-                final String path = adbpath.getText();
-                FileFilter filter = new FileNameExtensionFilter("img files", "img");
-                JFileChooser chooser = new JFileChooser();
-                chooser.setFileFilter(filter);
-                chooser.addChoosableFileFilter(filter);
-                int result = chooser.showOpenDialog(this);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    final File choosen = chooser.getSelectedFile();
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            try {
-                                Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf flash recovery \"" + choosen.getAbsolutePath() + "\"");
-                                process.waitFor();
-                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                        .getResource("done.png")));
-                                JOptionPane.showMessageDialog(
-                                        null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                                String line;
-                                if ((line = reader.readLine()) != null) {
-                                    fblog.append("\n" + line);
-                                    process.destroy();
-                                } else {
-                                    fblog.setText("Done!");
-                                }
-                            } catch (IOException | InterruptedException ex) {
-                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                    }.start();
-                }
-            } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
-                clear2();
-                final String path = adbpath.getText();
-                FileFilter filter = new FileNameExtensionFilter("img files", "img");
-                JFileChooser chooser = new JFileChooser();
-                chooser.setFileFilter(filter);
-                chooser.addChoosableFileFilter(filter);
-                int result = chooser.showOpenDialog(this);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    final File choosen = chooser.getSelectedFile();
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            try {
-                                Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 flash recovery \"" + choosen.getAbsolutePath() + "\"");
-                                process.waitFor();
-                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                        .getResource("done.png")));
-                                JOptionPane.showMessageDialog(
-                                        null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                                String line;
-                                if ((line = reader.readLine()) != null) {
-                                    fblog.append("\n" + line);
-                                    process.destroy();
-                                } else {
-                                    fblog.setText("Done!");
-                                }
-                            } catch (IOException | InterruptedException ex) {
-                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                    }.start();
-                }
-            } else if (Byunique.isSelected()) {
-                clear2();
-                final String path = adbpath.getText();
-                FileFilter filter = new FileNameExtensionFilter("img files", "img");
-                JFileChooser chooser = new JFileChooser();
-                chooser.setFileFilter(filter);
-                chooser.addChoosableFileFilter(filter);
-                int result = chooser.showOpenDialog(this);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    final File choosen = chooser.getSelectedFile();
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            try {
-                                Process process = Runtime.getRuntime().exec(path + "\\fastboot flash recovery \"" + choosen.getAbsolutePath() + "\"");
-                                process.waitFor();
-                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                        .getResource("done.png")));
-                                JOptionPane.showMessageDialog(
-                                        null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                                String line;
-                                if ((line = reader.readLine()) != null) {
-                                    fblog.append("\n" + line);
-                                    process.destroy();
-                                } else {
-                                    fblog.setText("Done!");
-                                }
-                            } catch (IOException | InterruptedException ex) {
-                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                    }.start();
-                }
+        try {
+            DStatus();
+            Thread.sleep(300);
+            if (Bforced.isSelected()) {
+                Dstatus.setText("Fastboot!");
+                Dstatus.setForeground(Color.LIGHT_GRAY);
+                Dstatus.setBackground(Color.BLACK);
             }
+            String tmp = Dstatus.getText();
+            if ("Fastboot!".equals(tmp)) {
+                int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Flashing recovery will replace current recovery permanently"
+                        + " \n"
+                        + " I am not responsible for any damage caused to your device.\n"
+                        + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
+                if (y == JOptionPane.YES_OPTION) {
+                    if (Byureka.isSelected() || Byurekap.isSelected()) {
+                        clear2();
+                        final String path = adbpath.getText();
+                        FileFilter filter = new FileNameExtensionFilter("img files", "img");
+                        JFileChooser chooser = new JFileChooser();
+                        chooser.setFileFilter(filter);
+                        chooser.addChoosableFileFilter(filter);
+                        int result = chooser.showOpenDialog(this);
+                        if (result == JFileChooser.APPROVE_OPTION) {
+                            final File choosen = chooser.getSelectedFile();
+                            new Thread() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf flash recovery \"" + choosen.getAbsolutePath() + "\"");
+                                        process.waitFor();
+                                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                                .getResource("done.png")));
+                                        JOptionPane.showMessageDialog(
+                                                null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                        String line;
+                                        if ((line = reader.readLine()) != null) {
+                                            fblog.append("\n" + line);
+                                            process.destroy();
+                                        } else {
+                                            fblog.setText("Done!");
+                                        }
+                                    } catch (IOException | InterruptedException ex) {
+                                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }.start();
+                        }
+                    } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
+                        clear2();
+                        final String path = adbpath.getText();
+                        FileFilter filter = new FileNameExtensionFilter("img files", "img");
+                        JFileChooser chooser = new JFileChooser();
+                        chooser.setFileFilter(filter);
+                        chooser.addChoosableFileFilter(filter);
+                        int result = chooser.showOpenDialog(this);
+                        if (result == JFileChooser.APPROVE_OPTION) {
+                            final File choosen = chooser.getSelectedFile();
+                            new Thread() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 flash recovery \"" + choosen.getAbsolutePath() + "\"");
+                                        process.waitFor();
+                                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                                .getResource("done.png")));
+                                        JOptionPane.showMessageDialog(
+                                                null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                        String line;
+                                        if ((line = reader.readLine()) != null) {
+                                            fblog.append("\n" + line);
+                                            process.destroy();
+                                        } else {
+                                            fblog.setText("Done!");
+                                        }
+                                    } catch (IOException | InterruptedException ex) {
+                                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }.start();
+                        }
+                    } else if (Byunique.isSelected()) {
+                        clear2();
+                        final String path = adbpath.getText();
+                        FileFilter filter = new FileNameExtensionFilter("img files", "img");
+                        JFileChooser chooser = new JFileChooser();
+                        chooser.setFileFilter(filter);
+                        chooser.addChoosableFileFilter(filter);
+                        int result = chooser.showOpenDialog(this);
+                        if (result == JFileChooser.APPROVE_OPTION) {
+                            final File choosen = chooser.getSelectedFile();
+                            new Thread() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Process process = Runtime.getRuntime().exec(path + "\\fastboot flash recovery \"" + choosen.getAbsolutePath() + "\"");
+                                        process.waitFor();
+                                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                                .getResource("done.png")));
+                                        JOptionPane.showMessageDialog(
+                                                null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                        String line;
+                                        if ((line = reader.readLine()) != null) {
+                                            fblog.append("\n" + line);
+                                            process.destroy();
+                                        } else {
+                                            fblog.setText("Done!");
+                                        }
+                                    } catch (IOException | InterruptedException ex) {
+                                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }.start();
+                        }
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IOException | InterruptedException | HeadlessException e) {
         }
     }
 
     private void bootrcvry() throws IOException {
-        int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Booting recovery will replace current recovery temporarily"
-                + " \n"
-                + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
-        if (y == JOptionPane.YES_OPTION) {
-            if (Byureka.isSelected() || Byurekap.isSelected()) {
-                clear2();
-                final String path = adbpath.getText();
-                FileFilter filter = new FileNameExtensionFilter("img files", "img");
-                JFileChooser chooser = new JFileChooser();
-                chooser.setFileFilter(filter);
-                chooser.addChoosableFileFilter(filter);
-                int result = chooser.showOpenDialog(this);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    final File choosen = chooser.getSelectedFile();
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            try {
-                                Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf boot \"" + choosen.getAbsolutePath() + "\"");
-                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                        .getResource("done.png")));
-                                JOptionPane.showMessageDialog(
-                                        null, "Recovery booted Sucessfully!\n Please wait 10secs until recovery appears on your phone", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                                String line;
-                                if ((line = reader.readLine()) != null) {
-                                    fblog.append("\n" + line);
-                                    process.destroy();
-                                } else {
-                                    fblog.setText("Done!");
-                                }
-                            } catch (IOException ex) {
-                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                    }.start();
-                }
-            } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
-                clear2();
-                final String path = adbpath.getText();
-                FileFilter filter = new FileNameExtensionFilter("img files", "img");
-                JFileChooser chooser = new JFileChooser();
-                chooser.setFileFilter(filter);
-                chooser.addChoosableFileFilter(filter);
-                int result = chooser.showOpenDialog(this);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    final File choosen = chooser.getSelectedFile();
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            try {
-                                Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 boot \"" + choosen.getAbsolutePath() + "\"");
-                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                        .getResource("done.png")));
-                                JOptionPane.showMessageDialog(
-                                        null, "Recovery booted Sucessfully!\n Please wait 10secs until recovery appears on your phone", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                                String line;
-                                if ((line = reader.readLine()) != null) {
-                                    fblog.append("\n" + line);
-                                    process.destroy();
-                                } else {
-                                    fblog.setText("Done!");
-                                }
-                            } catch (IOException ex) {
-                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                    }.start();
-                }
-            } else if (Byunique.isSelected()) {
-                clear2();
-                final String path = adbpath.getText();
-                FileFilter filter = new FileNameExtensionFilter("img files", "img");
-                JFileChooser chooser = new JFileChooser();
-                chooser.setFileFilter(filter);
-                chooser.addChoosableFileFilter(filter);
-                int result = chooser.showOpenDialog(this);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    final File choosen = chooser.getSelectedFile();
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            try {
-                                Process process = Runtime.getRuntime().exec(path + "\\fastboot boot \"" + choosen.getAbsolutePath() + "\"");
-                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                        .getResource("done.png")));
-                                JOptionPane.showMessageDialog(
-                                        null, "Recovery booted Sucessfully!\n Please wait 10secs until recovery appears on your phone", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                                String line;
-                                if ((line = reader.readLine()) != null) {
-                                    fblog.append("\n" + line);
-                                    process.destroy();
-                                } else {
-                                    fblog.setText("Done!");
-                                }
-                            } catch (IOException ex) {
-                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                    }.start();
-                }
+        try {
+            DStatus();
+            Thread.sleep(300);
+            if (Bforced.isSelected()) {
+                Dstatus.setText("Fastboot!");
+                Dstatus.setForeground(Color.LIGHT_GRAY);
+                Dstatus.setBackground(Color.BLACK);
             }
+            String tmp = Dstatus.getText();
+            if ("Fastboot!".equals(tmp)) {
+                int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Booting recovery will replace current recovery temporarily"
+                        + " \n"
+                        + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
+                if (y == JOptionPane.YES_OPTION) {
+                    if (Byureka.isSelected() || Byurekap.isSelected()) {
+                        clear2();
+                        final String path = adbpath.getText();
+                        FileFilter filter = new FileNameExtensionFilter("img files", "img");
+                        JFileChooser chooser = new JFileChooser();
+                        chooser.setFileFilter(filter);
+                        chooser.addChoosableFileFilter(filter);
+                        int result = chooser.showOpenDialog(this);
+                        if (result == JFileChooser.APPROVE_OPTION) {
+                            final File choosen = chooser.getSelectedFile();
+                            new Thread() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf boot \"" + choosen.getAbsolutePath() + "\"");
+                                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                                .getResource("done.png")));
+                                        JOptionPane.showMessageDialog(
+                                                null, "Recovery booted Sucessfully!\n Please wait 10secs until recovery appears on your phone", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                        String line;
+                                        if ((line = reader.readLine()) != null) {
+                                            fblog.append("\n" + line);
+                                            process.destroy();
+                                        } else {
+                                            fblog.setText("Done!");
+                                        }
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }.start();
+                        }
+                    } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
+                        clear2();
+                        final String path = adbpath.getText();
+                        FileFilter filter = new FileNameExtensionFilter("img files", "img");
+                        JFileChooser chooser = new JFileChooser();
+                        chooser.setFileFilter(filter);
+                        chooser.addChoosableFileFilter(filter);
+                        int result = chooser.showOpenDialog(this);
+                        if (result == JFileChooser.APPROVE_OPTION) {
+                            final File choosen = chooser.getSelectedFile();
+                            new Thread() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 boot \"" + choosen.getAbsolutePath() + "\"");
+                                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                                .getResource("done.png")));
+                                        JOptionPane.showMessageDialog(
+                                                null, "Recovery booted Sucessfully!\n Please wait 10secs until recovery appears on your phone", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                        String line;
+                                        if ((line = reader.readLine()) != null) {
+                                            fblog.append("\n" + line);
+                                            process.destroy();
+                                        } else {
+                                            fblog.setText("Done!");
+                                        }
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }.start();
+                        }
+                    } else if (Byunique.isSelected()) {
+                        clear2();
+                        final String path = adbpath.getText();
+                        FileFilter filter = new FileNameExtensionFilter("img files", "img");
+                        JFileChooser chooser = new JFileChooser();
+                        chooser.setFileFilter(filter);
+                        chooser.addChoosableFileFilter(filter);
+                        int result = chooser.showOpenDialog(this);
+                        if (result == JFileChooser.APPROVE_OPTION) {
+                            final File choosen = chooser.getSelectedFile();
+                            new Thread() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Process process = Runtime.getRuntime().exec(path + "\\fastboot boot \"" + choosen.getAbsolutePath() + "\"");
+                                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                                .getResource("done.png")));
+                                        JOptionPane.showMessageDialog(
+                                                null, "Recovery booted Sucessfully!\n Please wait 10secs until recovery appears on your phone", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                        String line;
+                                        if ((line = reader.readLine()) != null) {
+                                            fblog.append("\n" + line);
+                                            process.destroy();
+                                        } else {
+                                            fblog.setText("Done!");
+                                        }
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }.start();
+                        }
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IOException | InterruptedException | HeadlessException e) {
         }
     }
 
@@ -2624,47 +2654,63 @@ public class Yuware extends javax.swing.JFrame {
         new Thread() {
             @Override
             public void run() {
-                int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Make sure your is booted in fastboot mode!"
-                        + " \n"
-                        + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
-                if (y == JOptionPane.YES_OPTION) {
-                    if (Byureka.isSelected() || Byurekap.isSelected()) {
-                        try {
-                            clear2();
-                            String line;
-                            String path = adbpath.getText();
-                            Process process = Runtime.getRuntime().exec("cmd /c yurekainfo.bat", null, new File("C:/Program Files/Yuware™"));
-                            process.waitFor();
-                            Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yureka(+)_DeviceInfo.txt"));
-                            process.destroy();
-                        } catch (IOException | InterruptedException ex) {
-                            Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    DStatus();
+                    Thread.sleep(300);
+                    if (Bforced.isSelected()) {
+                        Dstatus.setText("Fastboot!");
+                        Dstatus.setForeground(Color.LIGHT_GRAY);
+                        Dstatus.setBackground(Color.BLACK);
+                    }
+                    String tmp = Dstatus.getText();
+                    if ("Fastboot!".equals(tmp)) {
+                        int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Make sure your is booted in fastboot mode!"
+                                + " \n"
+                                + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
+                        if (y == JOptionPane.YES_OPTION) {
+                            if (Byureka.isSelected() || Byurekap.isSelected()) {
+                                try {
+                                    clear2();
+                                    String line;
+                                    String path = adbpath.getText();
+                                    Process process = Runtime.getRuntime().exec("cmd /c yurekainfo.bat", null, new File("C:/Program Files/Yuware™"));
+                                    process.waitFor();
+                                    Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yureka(+)_DeviceInfo.txt"));
+                                    process.destroy();
+                                } catch (IOException | InterruptedException ex) {
+                                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                        } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
+                            try {
+                                clear2();
+                                String line;
+                                String path = adbpath.getText();
+                                Process process = Runtime.getRuntime().exec("cmd /c yuphoriainfo.bat", null, new File("C:/Program Files/Yuware™"));
+                                process.waitFor();
+                                Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yuphoria_DeviceInfo.txt"));
+                                process.destroy();
+                            } catch (IOException | InterruptedException ex) {
+                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        } else if (Byunique.isSelected()) {
+                            try {
+                                clear2();
+                                String line;
+                                String path = adbpath.getText();
+                                Process process = Runtime.getRuntime().exec("cmd /c yuniqueinfo.bat", null, new File("C:/Program Files/Yuware™"));
+                                process.waitFor();
+                                Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yunique_DeviceInfo.txt"));
+                                process.destroy();
+                            } catch (IOException | InterruptedException ex) {
+                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
                     }
-                } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
-                    try {
-                        clear2();
-                        String line;
-                        String path = adbpath.getText();
-                        Process process = Runtime.getRuntime().exec("cmd /c yuphoriainfo.bat", null, new File("C:/Program Files/Yuware™"));
-                        process.waitFor();
-                        Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yuphoria_DeviceInfo.txt"));
-                        process.destroy();
-                    } catch (IOException | InterruptedException ex) {
-                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else if (Byunique.isSelected()) {
-                    try {
-                        clear2();
-                        String line;
-                        String path = adbpath.getText();
-                        Process process = Runtime.getRuntime().exec("cmd /c yuniqueinfo.bat", null, new File("C:/Program Files/Yuware™"));
-                        process.waitFor();
-                        Desktop.getDesktop().edit(new File("C:/Program Files/Yuware™/Yunique_DeviceInfo.txt"));
-                        process.destroy();
-                    } catch (IOException | InterruptedException ex) {
-                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                } catch (IOException | InterruptedException ex) {
+                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }.start();
@@ -2674,69 +2720,86 @@ public class Yuware extends javax.swing.JFrame {
         new Thread() {
             @Override
             public void run() {
-                if (Byureka.isSelected() || Byurekap.isSelected()) {
-                    try {
-                        clear2();
-                        String line;
-                        String path = adbpath.getText();
-                        Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf reboot");
-                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                .getResource("done.png")));
-                        JOptionPane.showMessageDialog(
-                                null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                        if ((line = reader.readLine()) != null) {
-                            fblog.append("\n" + line);
-                            process.destroy();
-                        } else {
-                            fblog.setText("Done!");
-                        }
-                    } catch (IOException ex) {
-                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    DStatus();
+                    Thread.sleep(300);
+                    if (Bforced.isSelected()) {
+                        Dstatus.setText("Fastboot!");
+                        Dstatus.setForeground(Color.LIGHT_GRAY);
+                        Dstatus.setBackground(Color.BLACK);
                     }
-                } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
-                    try {
-                        clear2();
-                        String line;
-                        String path = adbpath.getText();
-                        Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 reboot");
-                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                .getResource("done.png")));
-                        JOptionPane.showMessageDialog(
-                                null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                        if ((line = reader.readLine()) != null) {
-                            fblog.append("\n" + line);
-                            process.destroy();
-                        } else {
-                            fblog.setText("Done!");
+                    String tmp = Dstatus.getText();
+                    if ("Fastboot!".equals(tmp)) {
+                        if (Byureka.isSelected() || Byurekap.isSelected()) {
+                            try {
+                                clear2();
+                                String line;
+                                String path = adbpath.getText();
+                                Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf reboot");
+                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                        .getResource("done.png")));
+                                JOptionPane.showMessageDialog(
+                                        null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                if ((line = reader.readLine()) != null) {
+                                    fblog.append("\n" + line);
+                                    process.destroy();
+                                } else {
+                                    fblog.setText("Done!");
+                                }
+                            } catch (IOException ex) {
+                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
+                            try {
+                                clear2();
+                                String line;
+                                String path = adbpath.getText();
+                                Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 reboot");
+                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                        .getResource("done.png")));
+                                JOptionPane.showMessageDialog(
+                                        null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                if ((line = reader.readLine()) != null) {
+                                    fblog.append("\n" + line);
+                                    process.destroy();
+                                } else {
+                                    fblog.setText("Done!");
+                                }
+                            } catch (IOException ex) {
+                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        } else if (Byunique.isSelected()) {
+                            try {
+                                clear2();
+                                String line;
+                                String path = adbpath.getText();
+                                Process process = Runtime.getRuntime().exec(path + "\\fastboot reboot");
+                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
+                                        .getResource("done.png")));
+                                JOptionPane.showMessageDialog(
+                                        null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                                if ((line = reader.readLine()) != null) {
+                                    fblog.append("\n" + line);
+                                    process.destroy();
+                                } else {
+                                    fblog.setText("Done!");
+                                }
+                            } catch (IOException ex) {
+                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
-                    } catch (IOException ex) {
-                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
                     }
-                } else if (Byunique.isSelected()) {
-                    try {
-                        clear2();
-                        String line;
-                        String path = adbpath.getText();
-                        Process process = Runtime.getRuntime().exec(path + "\\fastboot reboot");
-                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                .getResource("done.png")));
-                        JOptionPane.showMessageDialog(
-                                null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                        if ((line = reader.readLine()) != null) {
-                            fblog.append("\n" + line);
-                            process.destroy();
-                        } else {
-                            fblog.setText("Done!");
-                        }
-                    } catch (IOException ex) {
-                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                } catch (IOException | InterruptedException ex) {
+                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }.start();
+        }
+                .start();
     }
 
     private void drivers() {
