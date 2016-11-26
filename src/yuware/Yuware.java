@@ -1577,7 +1577,27 @@ public class Yuware extends javax.swing.JFrame {
         new Thread() {
             @Override
             public void run() {
-                push();
+                try {
+                    DStatus();
+                    Thread.sleep(300);
+                    String tmp = Dstatus.getText();
+                    if (null != tmp) {
+                        switch (tmp) {
+                            case "Connected!":
+                                push();
+                                break;
+                            case "Fastboot!":
+                                JOptionPane.showMessageDialog(null, "This Option will work if your device is connected on Switch ON mode\nFor rebooting from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                                break;
+                        }
+                    }
+                } catch (IOException | InterruptedException ex) {
+                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
         }.start();
     }//GEN-LAST:event_jButton37ActionPerformed
