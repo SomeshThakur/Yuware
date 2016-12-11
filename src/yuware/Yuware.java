@@ -3313,8 +3313,4 @@ public class Yuware extends javax.swing.JFrame {
             }
         }.start();
     }
-
-    private void resetLockScreen() {
-    
-    }
 }
