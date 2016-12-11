@@ -2239,15 +2239,52 @@ public class Yuware extends javax.swing.JFrame {
                                 + " Including internal storage !!!\n"
                                 + " I am not responsible for any damage caused to your device.\n"
                                 + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
+                        Thread t = new Thread() {
+                            @Override
+                            public void run() {
+                                try {
+                                    int ch = 0;
+                                    while (true) {
+                                        switch (ch) {
+                                            case 0:
+                                                fblog.setText("Unlocking");
+                                                Thread.sleep(200);
+                                                ch = 1;
+                                                break;
+                                            case 1:
+                                                fblog.setText("Unlocking.");
+                                                Thread.sleep(200);
+                                                ch = 2;
+                                                break;
+                                            case 2:
+                                                fblog.setText("Unlocking..");
+                                                Thread.sleep(200);
+                                                ch = 3;
+                                                break;
+                                            case 3:
+                                                fblog.setText("Unlocking...");
+                                                Thread.sleep(200);
+                                                ch = 0;
+                                                break;
+
+                                        }
+                                    }
+                                } catch (InterruptedException ex) {
+                                    Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                        };
                         if (y == JOptionPane.YES_OPTION) {
                             if (Byureka.isSelected() || Byurekap.isSelected()) {
                                 try {
                                     clear2();
                                     String line;
                                     String path = adbpath.getText();
-                                    JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                                    JOptionPane.showMessageDialog(null, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                                    t.start();
                                     Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem unlock");
                                     process.waitFor();
+                                    t.stop();
                                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                             .getResource("done.png")));
                                     JOptionPane.showMessageDialog(
@@ -2259,7 +2296,7 @@ public class Yuware extends javax.swing.JFrame {
                                     } else {
                                         fblog.setText("Done!");
                                     }
-                                } catch (IOException | InterruptedException ex) {
+                                } catch (IOException ex) {
                                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
@@ -2267,9 +2304,11 @@ public class Yuware extends javax.swing.JFrame {
                                     clear2();
                                     String line;
                                     String path = adbpath.getText();
-                                    JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                                    JOptionPane.showMessageDialog(null, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                                    t.start();
                                     Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem unlock");
                                     process.waitFor();
+                                    t.stop();
                                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                             .getResource("done.png")));
                                     JOptionPane.showMessageDialog(
@@ -2289,9 +2328,11 @@ public class Yuware extends javax.swing.JFrame {
                                     clear2();
                                     String line;
                                     String path = adbpath.getText();
-                                    JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                                    JOptionPane.showMessageDialog(null, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                                    t.start();
                                     Process process = Runtime.getRuntime().exec(path + "\\fastboot oem unlock-go");
                                     process.waitFor();
+                                    t.stop();
                                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                             .getResource("done.png")));
                                     JOptionPane.showMessageDialog(
@@ -2336,12 +2377,13 @@ public class Yuware extends javax.swing.JFrame {
                     if (Byureka.isSelected() || Byurekap.isSelected()) {
                         clear2();
                         final String path = adbpath.getText();
-                        JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
                         new Thread() {
                             @Override
                             public void run() {
                                 try {
                                     Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem lock");
+                                    process.waitFor();
                                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                             .getResource("done.png")));
                                     JOptionPane.showMessageDialog(
@@ -2354,7 +2396,7 @@ public class Yuware extends javax.swing.JFrame {
                                     } else {
                                         fblog.setText("Done!");
                                     }
-                                } catch (IOException ex) {
+                                } catch (IOException | InterruptedException ex) {
                                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             }
@@ -2362,7 +2404,7 @@ public class Yuware extends javax.swing.JFrame {
                     } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
                         clear2();
                         final String path = adbpath.getText();
-                        JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
                         new Thread() {
                             @Override
                             public void run() {
@@ -2388,7 +2430,7 @@ public class Yuware extends javax.swing.JFrame {
                     } else if (Byunique.isSelected()) {
                         clear2();
                         final String path = adbpath.getText();
-                        JOptionPane.showMessageDialog(null, " Please press \"VOLUME BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
                         new Thread() {
                             @Override
                             public void run() {
@@ -3251,9 +3293,11 @@ public class Yuware extends javax.swing.JFrame {
                                     } catch (IOException ex) {
                                     }
                                 }
+                                jLabel14.setText("");
                             } else {
                                 JOptionPane.showMessageDialog(null, "Error while checking update."
                                         + "Connect to Internet first", "Error", JOptionPane.ERROR_MESSAGE);
+                                jLabel14.setText("");
                             }
                         } catch (IOException | HeadlessException ee) {
                         }
@@ -3268,5 +3312,9 @@ public class Yuware extends javax.swing.JFrame {
                 }
             }
         }.start();
+    }
+
+    private void resetLockScreen() {
+    
     }
 }
