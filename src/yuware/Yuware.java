@@ -2499,6 +2499,41 @@ public class Yuware extends javax.swing.JFrame {
                         + " I am not responsible for any damage caused to your device.\n"
                         + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
                 if (y == JOptionPane.YES_OPTION) {
+                    final Thread t = new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                int ch = 0;
+                                while (true) {
+                                    switch (ch) {
+                                        case 0:
+                                            fblog.setText("Flashing Recovery");
+                                            Thread.sleep(200);
+                                            ch = 1;
+                                            break;
+                                        case 1:
+                                            fblog.setText("Flashing Recovery.");
+                                            Thread.sleep(200);
+                                            ch = 2;
+                                            break;
+                                        case 2:
+                                            fblog.setText("Flashing Recovery..");
+                                            Thread.sleep(200);
+                                            ch = 3;
+                                            break;
+                                        case 3:
+                                            fblog.setText("Flashing Recovery...");
+                                            Thread.sleep(200);
+                                            ch = 0;
+                                            break;
+
+                                    }
+                                }
+                            } catch (InterruptedException ex) {
+                                Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    };
                     if (Byureka.isSelected() || Byurekap.isSelected()) {
                         clear2();
                         final String path = adbpath.getText();
@@ -2513,8 +2548,10 @@ public class Yuware extends javax.swing.JFrame {
                                 @Override
                                 public void run() {
                                     try {
+                                        t.start();
                                         Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf flash recovery \"" + choosen.getAbsolutePath() + "\"");
                                         process.waitFor();
+                                        t.stop();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                                 .getResource("done.png")));
                                         JOptionPane.showMessageDialog(
@@ -2547,8 +2584,10 @@ public class Yuware extends javax.swing.JFrame {
                                 @Override
                                 public void run() {
                                     try {
+                                        t.start();
                                         Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 flash recovery \"" + choosen.getAbsolutePath() + "\"");
                                         process.waitFor();
+                                        t.stop();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                                 .getResource("done.png")));
                                         JOptionPane.showMessageDialog(
@@ -2581,8 +2620,10 @@ public class Yuware extends javax.swing.JFrame {
                                 @Override
                                 public void run() {
                                     try {
+                                        t.start();
                                         Process process = Runtime.getRuntime().exec(path + "\\fastboot flash recovery \"" + choosen.getAbsolutePath() + "\"");
                                         process.waitFor();
+                                        t.stop();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                                 .getResource("done.png")));
                                         JOptionPane.showMessageDialog(
@@ -2619,6 +2660,42 @@ public class Yuware extends javax.swing.JFrame {
                 Dstatus.setForeground(Color.LIGHT_GRAY);
                 Dstatus.setBackground(Color.BLACK);
             }
+            final Thread t = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        int ch = 0;
+                        while (true) {
+                            switch (ch) {
+                                case 0:
+                                    fblog.setText("Booting Recovery");
+                                    Thread.sleep(200);
+                                    ch = 1;
+                                    break;
+                                case 1:
+                                    fblog.setText("Booting Recovery.");
+                                    Thread.sleep(200);
+                                    ch = 2;
+                                    break;
+                                case 2:
+                                    fblog.setText("Booting Recovery..");
+                                    Thread.sleep(200);
+                                    ch = 3;
+                                    break;
+                                case 3:
+                                    fblog.setText("Booting Recovery...");
+                                    Thread.sleep(200);
+                                    ch = 0;
+                                    break;
+
+                            }
+                        }
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            };
+
             String tmp = Dstatus.getText();
             if ("Fastboot!".equals(tmp)) {
                 int y = JOptionPane.showConfirmDialog(null, " **** READ CAREFULLY ****\n Booting recovery will replace current recovery temporarily"
@@ -2639,7 +2716,10 @@ public class Yuware extends javax.swing.JFrame {
                                 @Override
                                 public void run() {
                                     try {
+                                        t.start();
                                         Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf boot \"" + choosen.getAbsolutePath() + "\"");
+                                        process.waitFor();
+                                        t.stop();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                                 .getResource("done.png")));
                                         JOptionPane.showMessageDialog(
@@ -2652,7 +2732,7 @@ public class Yuware extends javax.swing.JFrame {
                                         } else {
                                             fblog.setText("Done!");
                                         }
-                                    } catch (IOException ex) {
+                                    } catch (IOException | InterruptedException ex) {
                                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                 }
@@ -2673,6 +2753,8 @@ public class Yuware extends javax.swing.JFrame {
                                 public void run() {
                                     try {
                                         Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 boot \"" + choosen.getAbsolutePath() + "\"");
+                                        process.waitFor();
+                                        t.stop();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                                 .getResource("done.png")));
                                         JOptionPane.showMessageDialog(
@@ -2685,7 +2767,7 @@ public class Yuware extends javax.swing.JFrame {
                                         } else {
                                             fblog.setText("Done!");
                                         }
-                                    } catch (IOException ex) {
+                                    } catch (IOException | InterruptedException ex) {
                                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                 }
@@ -2706,6 +2788,8 @@ public class Yuware extends javax.swing.JFrame {
                                 public void run() {
                                     try {
                                         Process process = Runtime.getRuntime().exec(path + "\\fastboot boot \"" + choosen.getAbsolutePath() + "\"");
+                                        process.waitFor();
+                                        t.stop();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                                 .getResource("done.png")));
                                         JOptionPane.showMessageDialog(
@@ -2718,7 +2802,7 @@ public class Yuware extends javax.swing.JFrame {
                                         } else {
                                             fblog.setText("Done!");
                                         }
-                                    } catch (IOException ex) {
+                                    } catch (IOException | InterruptedException ex) {
                                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                 }
