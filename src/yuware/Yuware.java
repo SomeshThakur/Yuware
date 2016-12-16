@@ -1743,7 +1743,7 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void githubProfileLinkMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_githubProfileLinkMouseReleased
-      try {
+        try {
             Desktop.getDesktop().browse(new URI("https://github.com/SomeshThakur"));
         } catch (URISyntaxException | IOException ex) {
             Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
