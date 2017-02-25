@@ -1687,7 +1687,7 @@ public class Yuware extends javax.swing.JFrame {
     private void jLabel16MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseReleased
         JOptionPane.showMessageDialog(null, " Forced Mode is dummy simulation of Device"
                 + "\n It Makes the state of Device as Connected"
-                + "\n It is useful when your device is being not listed but can take coomands"
+                + "\n It is useful when your device is being not listed but can take commands"
                 + "\n Try to use it only if you have Device connected and Not able to detect.", "Information", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jLabel16MouseReleased
 
