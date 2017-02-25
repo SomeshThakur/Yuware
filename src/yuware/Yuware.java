@@ -785,14 +785,14 @@ public class Yuware extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(51, 153, 255));
         jLabel16.setText("Click Here to know more.");
         jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabel16MouseReleased(evt);
-            }
-        });
         jLabel16.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jLabel16FocusGained(evt);
+            }
+        });
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel16MouseReleased(evt);
             }
         });
 
@@ -1120,7 +1120,6 @@ public class Yuware extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton38)
                             .addComponent(jButton39))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -3212,6 +3211,10 @@ public class Yuware extends javax.swing.JFrame {
                                     Dstatus.setBackground(Color.BLACK);
                                 } else if (line.endsWith("unauthorized")) {
                                     Dstatus.setText("Unauthorized!");
+                                    Dstatus.setForeground(Color.yellow);
+                                    Dstatus.setBackground(Color.BLACK);
+                                } else if (line.endsWith("sideload")) {
+                                    Dstatus.setText("Sideload!");
                                     Dstatus.setForeground(Color.yellow);
                                     Dstatus.setBackground(Color.BLACK);
                                 }
