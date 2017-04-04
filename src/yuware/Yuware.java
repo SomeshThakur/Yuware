@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//Developed and Mainted by Somesh Thakur <someshthakur33@gmail.com>
 package yuware;
 
 import com.alee.laf.WebLookAndFeel;
@@ -1230,6 +1226,8 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        //Current ADB Version : Android Debug Bridge version 1.0.39
+        //Revision 5943271ace17-android
         JOptionPane.showMessageDialog(null, "Custom adb selected!", "", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton6ActionPerformed
 
