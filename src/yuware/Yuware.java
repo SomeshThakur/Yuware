@@ -3008,86 +3008,59 @@ public class Yuware extends javax.swing.JFrame {
                 + "\n !! Select system.img partition from list of all your partitions !! \n"
                 + "\n I am not responsible for any damage caused to your device.\n"
                 + " Do you wish to continue.", "Warning!", JOptionPane.YES_NO_OPTION);
+        clear2();
+        final String path = adbpath.getText();
+        FileFilter filter = new FileNameExtensionFilter("img files", "img");
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Select system.img");
+        chooser.setFileFilter(filter);
+        chooser.addChoosableFileFilter(filter);
+        chooser.setCurrentDirectory(new File(System.getProperty("user.home") + "\\Desktop"));
+        int result = chooser.showOpenDialog(this);
+        final File choosen = chooser.getSelectedFile();
+
         if (y == JOptionPane.YES_OPTION) {
             if (Byureka.isSelected() || Byurekap.isSelected()) {
-                clear2();
-                final String path = adbpath.getText();
-                FileFilter filter = new FileNameExtensionFilter("img files", "img");
-                JFileChooser chooser = new JFileChooser();
-                chooser.setDialogTitle("Select system.img");
-                chooser.setFileFilter(filter);
-                chooser.addChoosableFileFilter(filter);
-                chooser.setCurrentDirectory(new File(System.getProperty("user.home") + "\\Desktop"));
-                int result = chooser.showOpenDialog(this);
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    final File choosen = chooser.getSelectedFile();
                     new Thread() {
                         @Override
                         public void run() {
                             try {
                                 Process process = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\fastboot.exe\" " + "\"" + choosen.getParent() + "\"");
-                                process.waitFor();
+                                Process process1 = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\*.dll\" " + "\"" + choosen.getParent() + "\"");
                                 Process flashall = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\yurekaflasher.bat\" " + "\"" + choosen.getParent() + "\"");
-                                flashall.waitFor();
                                 Process flashing = Runtime.getRuntime().exec("cmd /c start \"Flashing all Partitions on Yureka/Yureka+\" yurekaflasher.bat", null, new File(choosen.getParent()));
-                                process.waitFor();
-                            } catch (IOException | InterruptedException ex) {
+                            } catch (IOException ex) {
                                 Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
                     }.start();
                 }
             } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
-                clear2();
-                final String path = adbpath.getText();
-                FileFilter filter = new FileNameExtensionFilter("img files", "img");
-                JFileChooser chooser = new JFileChooser();
-                chooser.setDialogTitle("Select system.img");
-                chooser.setFileFilter(filter);
-                chooser.addChoosableFileFilter(filter);
-                chooser.setCurrentDirectory(new File(System.getProperty("user.home") + "\\Desktop"));
-                int result = chooser.showOpenDialog(this);
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    final File choosen = chooser.getSelectedFile();
                     new Thread() {
                         @Override
                         public void run() {
                             try {
                                 Process process = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\fastboot.exe\" " + "\"" + choosen.getParent() + "\"");
-                                process.waitFor();
                                 Process flashall = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\yuphoriaflasher.bat\" " + "\"" + choosen.getParent() + "\"");
-                                flashall.waitFor();
                                 Process flashing = Runtime.getRuntime().exec("cmd /c start \"Flashing all Partitions on Yuphoria\" yuphoriaflasher.bat", null, new File(choosen.getParent()));
-                                process.waitFor();
-                            } catch (IOException | InterruptedException ex) {
+                            } catch (IOException ex) {
                                 Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
                     }.start();
                 }
             } else if (Byunique.isSelected()) {
-                clear2();
-                final String path = adbpath.getText();
-                FileFilter filter = new FileNameExtensionFilter("img files", "img");
-                JFileChooser chooser = new JFileChooser();
-                chooser.setDialogTitle("Select system.img");
-                chooser.setFileFilter(filter);
-                chooser.addChoosableFileFilter(filter);
-                chooser.setCurrentDirectory(new File(System.getProperty("user.home") + "\\Desktop"));
-                int result = chooser.showOpenDialog(this);
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    final File choosen = chooser.getSelectedFile();
                     new Thread() {
                         @Override
                         public void run() {
                             try {
                                 Process process = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\fastboot.exe\" " + "\"" + choosen.getParent() + "\"");
-                                process.waitFor();
                                 Process flashall = Runtime.getRuntime().exec("xcopy \"C:\\Program Files\\Yuware™\\yuniqueflasher.bat\" " + "\"" + choosen.getParent() + "\"");
-                                flashall.waitFor();
                                 Process flashing = Runtime.getRuntime().exec("cmd /c start \"Flashing all Partitions on Yunique\" yuniqueflasher.bat", null, new File(choosen.getParent()));
-                                process.waitFor();
-                            } catch (IOException | InterruptedException ex) {
+                            } catch (IOException ex) {
                                 Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
