@@ -242,7 +242,7 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Ok");
+        jButton6.setText("Change");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -1244,7 +1244,16 @@ public class Yuware extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         //Current ADB Version : Android Debug Bridge version 1.0.39
         //Revision 5943271ace17-android
-        JOptionPane.showMessageDialog(null, "Custom adb selected!", "", JOptionPane.INFORMATION_MESSAGE);
+        FileFilter filter = new FileNameExtensionFilter("exe files", "exe");
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileFilter(filter);
+        chooser.addChoosableFileFilter(filter);
+        int result = chooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            String path = chooser.getSelectedFile().getParent();
+            adbpath.setText(path);
+            JOptionPane.showMessageDialog(null, "Custom adb selected!", "", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -2152,7 +2161,7 @@ public class Yuware extends javax.swing.JFrame {
                     } catch (IOException | InterruptedException ex) {
                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } else if (Byunique.isSelected()||ByurekaB.isSelected()) {
+                } else if (Byunique.isSelected() || ByurekaB.isSelected()) {
                     try {
                         clear2();
                         String line;
