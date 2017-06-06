@@ -2152,7 +2152,7 @@ public class Yuware extends javax.swing.JFrame {
                     } catch (IOException | InterruptedException ex) {
                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } else if (Byunique.isSelected()) {
+                } else if (Byunique.isSelected()||ByurekaB.isSelected()) {
                     try {
                         clear2();
                         String line;
