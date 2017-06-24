@@ -149,6 +149,7 @@ public class Yuware extends javax.swing.JFrame {
         jButton19 = new javax.swing.JButton();
         githubProfileLink = new javax.swing.JLabel();
         ByurekaB = new javax.swing.JToggleButton();
+        jButton40 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -631,7 +632,7 @@ public class Yuware extends javax.swing.JFrame {
                         .addComponent(jButton16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton17)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -672,7 +673,7 @@ public class Yuware extends javax.swing.JFrame {
                 .addComponent(jButton14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton15)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -830,6 +831,13 @@ public class Yuware extends javax.swing.JFrame {
         ByurekaB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ByurekaBActionPerformed(evt);
+            }
+        });
+
+        jButton40.setText("Change DPI");
+        jButton40.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton40MouseClicked(evt);
             }
         });
 
@@ -994,7 +1002,8 @@ public class Yuware extends javax.swing.JFrame {
                                         .addComponent(jButton11))
                                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(3, 3, 3)
-                                .addComponent(jButton37)))
+                                .addComponent(jButton37))
+                            .addComponent(jButton40))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -1145,6 +1154,8 @@ public class Yuware extends javax.swing.JFrame {
                                     .addComponent(jButton10)
                                     .addComponent(jButton11)
                                     .addComponent(jButton37))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton40)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1783,6 +1794,10 @@ public class Yuware extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_ByurekaBActionPerformed
 
+    private void jButton40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton40MouseClicked
+        changeDPI_function();
+    }//GEN-LAST:event_jButton40MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1896,6 +1911,7 @@ public class Yuware extends javax.swing.JFrame {
     private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -3413,6 +3429,24 @@ public class Yuware extends javax.swing.JFrame {
                         } catch (Exception ee) {
                         }
                     }
+                }
+            }
+        }.start();
+    }
+
+    private void changeDPI_function() {
+        new Thread() {
+            @Override
+            public void run() {
+                String input;
+                input = JOptionPane.showInputDialog(Yuware.this, "Changing DPI can brick your device. Be Careful while entering the value.\n"
+                        + "Enter DPI here. Value ranges from 200 to 600", "Warning!", JOptionPane.INFORMATION_MESSAGE);
+                try {
+                    int value_dpi = Integer.parseInt(input);
+                    Process changeDpi_process = Runtime.getRuntime().exec(adbpath.getText() + "\\adb shell wm density " + value_dpi);
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(Yuware.this, "Input Error! Enter correct value.\nLog :  " + e, "Error!", JOptionPane.ERROR_MESSAGE);
+                } catch (IOException ex) {
                 }
             }
         }.start();
