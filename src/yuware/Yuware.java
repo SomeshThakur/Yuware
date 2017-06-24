@@ -2355,7 +2355,7 @@ public class Yuware extends javax.swing.JFrame {
                                     t.start();
                                     Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem unlock");
                                     process.waitFor();
-                                    t.stop();
+                                    t.interrupt();
                                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                             .getResource("done.png")));
                                     JOptionPane.showMessageDialog(
@@ -2379,7 +2379,7 @@ public class Yuware extends javax.swing.JFrame {
                                     t.start();
                                     Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem unlock");
                                     process.waitFor();
-                                    t.stop();
+                                    t.interrupt();
                                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                             .getResource("done.png")));
                                     JOptionPane.showMessageDialog(
@@ -2403,7 +2403,7 @@ public class Yuware extends javax.swing.JFrame {
                                     t.start();
                                     Process process = Runtime.getRuntime().exec(path + "\\fastboot oem unlock-go");
                                     process.waitFor();
-                                    t.stop();
+                                    t.interrupt();
                                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                             .getResource("done.png")));
                                     JOptionPane.showMessageDialog(
@@ -2601,7 +2601,7 @@ public class Yuware extends javax.swing.JFrame {
                                         t.start();
                                         Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf flash recovery \"" + choosen.getAbsolutePath() + "\"");
                                         process.waitFor();
-                                        t.stop();
+                                        t.interrupt();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                                 .getResource("done.png")));
                                         JOptionPane.showMessageDialog(
@@ -2637,7 +2637,7 @@ public class Yuware extends javax.swing.JFrame {
                                         t.start();
                                         Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 flash recovery \"" + choosen.getAbsolutePath() + "\"");
                                         process.waitFor();
-                                        t.stop();
+                                        t.interrupt();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                                 .getResource("done.png")));
                                         JOptionPane.showMessageDialog(
@@ -2673,7 +2673,7 @@ public class Yuware extends javax.swing.JFrame {
                                         t.start();
                                         Process process = Runtime.getRuntime().exec(path + "\\fastboot flash recovery \"" + choosen.getAbsolutePath() + "\"");
                                         process.waitFor();
-                                        t.stop();
+                                        t.interrupt();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                                 .getResource("done.png")));
                                         JOptionPane.showMessageDialog(
@@ -2770,7 +2770,7 @@ public class Yuware extends javax.swing.JFrame {
                                         t.start();
                                         Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf boot \"" + choosen.getAbsolutePath() + "\"");
                                         process.waitFor();
-                                        t.stop();
+                                        t.interrupt();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                                 .getResource("done.png")));
                                         JOptionPane.showMessageDialog(
@@ -2797,7 +2797,7 @@ public class Yuware extends javax.swing.JFrame {
                                     try {
                                         Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 boot \"" + choosen.getAbsolutePath() + "\"");
                                         process.waitFor();
-                                        t.stop();
+                                       t.interrupt();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                                 .getResource("done.png")));
                                         JOptionPane.showMessageDialog(
@@ -2824,7 +2824,7 @@ public class Yuware extends javax.swing.JFrame {
                                     try {
                                         Process process = Runtime.getRuntime().exec(path + "\\fastboot boot \"" + choosen.getAbsolutePath() + "\"");
                                         process.waitFor();
-                                        t.stop();
+                                        t.interrupt();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
                                                 .getResource("done.png")));
                                         JOptionPane.showMessageDialog(
@@ -3436,7 +3436,6 @@ public class Yuware extends javax.swing.JFrame {
 
     private void changeDPI_function() {
         new Thread() {
-            @Override
             public void run() {
                 String input;
                 input = JOptionPane.showInputDialog(Yuware.this, "Changing DPI can brick your device. Be Careful while entering the value.\n"
