@@ -26,6 +26,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -3439,22 +3440,35 @@ public class Yuware extends javax.swing.JFrame {
         new Thread() {
             @Override
             public void run() {
-                String input;
-                input = JOptionPane.showInputDialog(Yuware.this, "Changing DPI can brick your device. Be Careful while entering the value.\n"
-                        + "Enter DPI here. Value ranges from 200 to 600", "Warning!", JOptionPane.INFORMATION_MESSAGE);
+                String input, prevVal = "NULL";
+                JTextField inputField = new JTextField();
+                Process getDPI;
                 try {
-                    int value_dpi = Integer.parseInt(input);
-                    if (value_dpi < 200 || value_dpi > 600) {
-                        JOptionPane.showMessageDialog(Yuware.this, "Input Error! Enter correct value.", "Error!", JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        Process changeDpi_process = Runtime.getRuntime().exec(adbpath.getText() + "\\adb shell wm density " + value_dpi);
-                        changeDpi_process.waitFor();
-                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                        JOptionPane.showMessageDialog(Yuware.this, "DPI Changed Successfully!", "Success!", JOptionPane.INFORMATION_MESSAGE, icon);
+                    getDPI = Runtime.getRuntime().exec(adbpath.getText() + "\\adb shell wm density");
+                    BufferedReader br = new BufferedReader(new InputStreamReader(getDPI.getInputStream()));
+                    prevVal = br.readLine();
+                } catch (IOException ex) {
+                }
+                String message = "Changing DPI can brick your device. Be Careful while entering the value.\n"
+                        + "Enter DPI here. Value ranges from 200 to 600\n\n                 Current " + prevVal + "\n  ";
+                Object obj[] = {message, inputField};
+                int y = JOptionPane.showConfirmDialog(Yuware.this, obj, "Warning!", JOptionPane.OK_CANCEL_OPTION);
+                if (y == JOptionPane.OK_OPTION) {
+                    try {
+                        input = inputField.getText();
+                        int value_dpi = Integer.parseInt(input);
+                        if (value_dpi < 200 || value_dpi > 600) {
+                            JOptionPane.showMessageDialog(Yuware.this, "Input Error! Enter correct value.", "Error!", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            Process changeDpi_process = Runtime.getRuntime().exec(adbpath.getText() + "\\adb shell wm density " + value_dpi);
+                            changeDpi_process.waitFor();
+                            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                            JOptionPane.showMessageDialog(Yuware.this, "DPI Changed Successfully!", "Success!", JOptionPane.INFORMATION_MESSAGE, icon);
+                        }
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(Yuware.this, "Input Error! Enter correct value.\nLog :  " + e, "Error!", JOptionPane.ERROR_MESSAGE);
+                    } catch (IOException | InterruptedException ex) {
                     }
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(Yuware.this, "Input Error! Enter correct value.\nLog :  " + e, "Error!", JOptionPane.ERROR_MESSAGE);
-                } catch (IOException | InterruptedException ex) {
                 }
             }
         }.start();
