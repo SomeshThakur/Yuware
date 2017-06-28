@@ -170,7 +170,8 @@ public class Yuware extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Yuware™");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setIconImage(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("icon.png")));
+        setFocusableWindowState(false);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("/images/icon.png")));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -178,7 +179,7 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/title.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/title.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Select your device. Current working device:");
@@ -739,7 +740,7 @@ public class Yuware extends javax.swing.JFrame {
         jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel12.setFocusable(false);
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/refresh.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
         jLabel13.setToolTipText("Refresh Device Status");
         jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -794,7 +795,7 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
 
-        facebookIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/facebook.png"))); // NOI18N
+        facebookIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facebook.png"))); // NOI18N
         facebookIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         facebookIcon.setFocusable(false);
         facebookIcon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -803,7 +804,7 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
 
-        googleplusIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/googleplus.png"))); // NOI18N
+        googleplusIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/googleplus.png"))); // NOI18N
         googleplusIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         googleplusIcon.setFocusable(false);
         googleplusIcon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -819,7 +820,7 @@ public class Yuware extends javax.swing.JFrame {
             }
         });
 
-        githubProfileLink.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/githubLink.png"))); // NOI18N
+        githubProfileLink.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/githubLink.png"))); // NOI18N
         githubProfileLink.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 githubProfileLinkMouseReleased(evt);
@@ -843,7 +844,7 @@ public class Yuware extends javax.swing.JFrame {
 
         jMenu1.setText("Forums Support");
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/xdacon.png"))); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/xdacon.png"))); // NOI18N
         jMenuItem2.setText("XDA Forum");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -852,7 +853,7 @@ public class Yuware extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/yucon.png"))); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/yucon.png"))); // NOI18N
         jMenuItem3.setText("YUOfficialForum");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -913,7 +914,7 @@ public class Yuware extends javax.swing.JFrame {
 
         jMenu3.setText("About");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/yucon.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/yucon.png"))); // NOI18N
         jMenuItem1.setText("Yuware");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -922,7 +923,7 @@ public class Yuware extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem1);
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/github.png"))); // NOI18N
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/github.png"))); // NOI18N
         jMenuItem7.setText("Github");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -931,7 +932,7 @@ public class Yuware extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem7);
 
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/update.png"))); // NOI18N
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         jMenuItem10.setText("Check for Update");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -940,7 +941,7 @@ public class Yuware extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem10);
 
-        reportBugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yuware/reportbug.png"))); // NOI18N
+        reportBugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reportbug.png"))); // NOI18N
         reportBugLabel.setText("Report Bug!");
         reportBugLabel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
