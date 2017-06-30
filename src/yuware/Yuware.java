@@ -168,10 +168,9 @@ public class Yuware extends javax.swing.JFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
         reportBugLabel = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Yuware™");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setFocusableWindowState(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("/images/icon.png")));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -1190,7 +1189,7 @@ public class Yuware extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("About.png")));
-        JOptionPane.showMessageDialog(null, " Yuware is free software for YU devices \n"
+        JOptionPane.showMessageDialog(Yuware.this, " Yuware is free software for YU devices \n"
                 + " It is designed for User Friendly GUI, Easy to use and Premium look purpose. \n"
                 + " All Copyrights© are reserved by Somesh Thakur. \n (The Dev behind this software)"
                 + "     Contact : Someshthakur33@gmail.com \n"
@@ -1265,7 +1264,7 @@ public class Yuware extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             String path = chooser.getSelectedFile().getParent();
             adbpath.setText(path);
-            JOptionPane.showMessageDialog(null, "Custom adb selected!", "", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Custom adb selected!", "", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -1318,7 +1317,7 @@ public class Yuware extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         if (Devices.getSelection() == null) {
-            JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
                 fastboot();
@@ -1350,7 +1349,7 @@ public class Yuware extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         if (Devices.getSelection() == null) {
-            JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
                 unlockBL();
@@ -1362,7 +1361,7 @@ public class Yuware extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         if (Devices.getSelection() == null) {
-            JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
                 lockBL();
@@ -1374,7 +1373,7 @@ public class Yuware extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         if (Devices.getSelection() == null) {
-            JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
                 flashrcvry();
@@ -1386,7 +1385,7 @@ public class Yuware extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         if (Devices.getSelection() == null) {
-            JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
                 bootrcvry();
@@ -1399,7 +1398,7 @@ public class Yuware extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         if (Devices.getSelection() == null) {
-            JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
                 deviceInfo();
@@ -1411,7 +1410,7 @@ public class Yuware extends javax.swing.JFrame {
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         if (Devices.getSelection() == null) {
-            JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
                 rebootFbSys();
@@ -1467,7 +1466,7 @@ public class Yuware extends javax.swing.JFrame {
         try {
             process = Runtime.getRuntime().exec("cmd /c ss.bat", null, new File("C:/Program Files/Yuware™"));
             process.waitFor();
-            JOptionPane.showMessageDialog(null, "Screenshot has been saved on your desktop!", "Sucess!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Screenshot has been saved on your desktop!", "Sucess!", JOptionPane.INFORMATION_MESSAGE);
         } catch (InterruptedException | IOException ex) {
             Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1540,7 +1539,7 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton31ActionPerformed
 
     private void BrecorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BrecorderActionPerformed
-        JOptionPane.showMessageDialog(null, " A command prompt will appear now! Close it to stop recording.\n Video will be saved in your internal storage.\n With the name of \"CURRENT-YEAR-DATE-MONTH-TIME-YuwareScreenRecorder.mp4", "", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(Yuware.this, " A command prompt will appear now! Close it to stop recording.\n Video will be saved in your internal storage.\n With the name of \"CURRENT-YEAR-DATE-MONTH-TIME-YuwareScreenRecorder.mp4", "", JOptionPane.INFORMATION_MESSAGE);
         try {
             Process process = Runtime.getRuntime().exec("cmd /c recorder.bat", null, new File("C:/Program Files/Yuware™"));
         } catch (IOException ex) {
@@ -1563,7 +1562,7 @@ public class Yuware extends javax.swing.JFrame {
                 Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Select Your Device first", "Oops", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Select Your Device first", "Oops", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton33ActionPerformed
 
@@ -1597,7 +1596,7 @@ public class Yuware extends javax.swing.JFrame {
                     clear();
                     adblog.setText(tmp);
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null, "Cannot open Guide Doc!! \nInstall Microsoft office suite or any application which can open documents", "Error!!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(Yuware.this, "Cannot open Guide Doc!! \nInstall Microsoft office suite or any application which can open documents", "Error!!", JOptionPane.ERROR_MESSAGE);
                     clear();
                 }
             }
@@ -1606,7 +1605,7 @@ public class Yuware extends javax.swing.JFrame {
 
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
         if (Devices.getSelection() == null) {
-            JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             flashAll();
         }
@@ -1614,7 +1613,7 @@ public class Yuware extends javax.swing.JFrame {
 
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
         if (Devices.getSelection() == null) {
-            JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             formatAll();
         }
@@ -1634,10 +1633,10 @@ public class Yuware extends javax.swing.JFrame {
                                 push();
                                 break;
                             case "Fastboot!":
-                                JOptionPane.showMessageDialog(null, "This Option will work if your device is connected on Switch ON mode\nFor rebooting from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, "This Option will work if your device is connected on Switch ON mode\nFor rebooting from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                             default:
-                                JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                         }
                     }
@@ -1720,7 +1719,7 @@ public class Yuware extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel16FocusGained
 
     private void jLabel16MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseReleased
-        JOptionPane.showMessageDialog(null, " Forced Mode is dummy simulation of Device"
+        JOptionPane.showMessageDialog(Yuware.this, " Forced Mode is dummy simulation of Device"
                 + "\n It Makes the state of Device as Connected"
                 + "\n It is useful when your device is being not listed but can take commands"
                 + "\n Try to use it only if you have Device connected and Not able to detect.", "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -1769,8 +1768,8 @@ public class Yuware extends javax.swing.JFrame {
         try {
             Process exec = Runtime.getRuntime().exec("cmd /c fixDrivers.bat", null, new File("C:/Program Files/Yuware™"));
             exec.waitFor();
-            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-            JOptionPane.showMessageDialog(null, "Fixed Divers Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("/images/done.png")));
+            JOptionPane.showMessageDialog(Yuware.this, "Fixed Divers Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
         } catch (IOException | InterruptedException ex) {
             Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1987,14 +1986,14 @@ public class Yuware extends javax.swing.JFrame {
                                 String path = adbpath.getText();
                                 Process re = Runtime.getRuntime().exec(path + "\\adb reboot");
                                 re.waitFor();
-                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                                JOptionPane.showMessageDialog(null, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("/images/done.png")));
+                                JOptionPane.showMessageDialog(Yuware.this, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                 break;
                             case "Fastboot!":
-                                JOptionPane.showMessageDialog(null, "This Option will work if your device is connected on Switch ON mode\nFor rebooting from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, "This Option will work if your device is connected on Switch ON mode\nFor rebooting from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                             default:
-                                JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                         }
                     }
@@ -2019,17 +2018,17 @@ public class Yuware extends javax.swing.JFrame {
                                 String path = adbpath.getText();
                                 Process re = Runtime.getRuntime().exec(path + "\\adb reboot recovery");
                                 re.waitFor();
-                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                                JOptionPane.showMessageDialog(null, "Rebooted to recovery Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("/images/done.png")));
+                                JOptionPane.showMessageDialog(Yuware.this, "Rebooted to recovery Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                 break;
                             case "Recovery!":
-                                JOptionPane.showMessageDialog(null, "Your Device is already in recovery mode!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, "Your Device is already in recovery mode!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                             case "Fastboot!":
-                                JOptionPane.showMessageDialog(null, "This Option will work if your device is connected on Switch ON mode\nRebooting to recovery directly from fastboot is not possible!\nFor rebooting to system from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, "This Option will work if your device is connected on Switch ON mode\nRebooting to recovery directly from fastboot is not possible!\nFor rebooting to system from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                             default:
-                                JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                         }
                     }
@@ -2055,14 +2054,14 @@ public class Yuware extends javax.swing.JFrame {
                                 String path = adbpath.getText();
                                 Process re = Runtime.getRuntime().exec(path + "\\adb reboot-bootloader");
                                 re.waitFor();
-                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                                JOptionPane.showMessageDialog(null, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("/images/done.png")));
+                                JOptionPane.showMessageDialog(Yuware.this, "Rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                 break;
                             case "Fastboot!":
-                                JOptionPane.showMessageDialog(null, "Your device is already in Fastboot mode!", "", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, "Your device is already in Fastboot mode!", "", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                             default:
-                                JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                         }
                     }
@@ -2105,8 +2104,8 @@ public class Yuware extends javax.swing.JFrame {
                         }
                     }
                 }.start();
-                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                JOptionPane.showMessageDialog(null, " Sideloaded Sucessfully!\n Check ADB Log box for more details", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("/images/done.png")));
+                JOptionPane.showMessageDialog(Yuware.this, " Sideloaded Sucessfully!\n Check ADB Log box for more details", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
     }
@@ -2228,7 +2227,7 @@ public class Yuware extends javax.swing.JFrame {
                                 Process re = Runtime.getRuntime().exec(path + "\\adb install " + "\"" + pathoffile + "\"");
                                 re.waitFor();
                                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                        .getResource("done.png")));
+                                        .getResource("/images/done.png")));
                                 JOptionPane.showMessageDialog(
                                         null, "Installed App Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                             } catch (IOException | InterruptedException ex) {
@@ -2238,11 +2237,11 @@ public class Yuware extends javax.swing.JFrame {
                     }.start();
                 }
             } else if ("Recovery!".equals(tmp)) {
-                JOptionPane.showMessageDialog(null, "Your Device is in recovery mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(Yuware.this, "Your Device is in recovery mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
             } else if ("Fastboot!".equalsIgnoreCase(tmp)) {
-                JOptionPane.showMessageDialog(null, "Your Device is in Fastboot mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(Yuware.this, "Your Device is in Fastboot mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(Yuware.this, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (InterruptedException ex) {
             Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
@@ -2256,7 +2255,7 @@ public class Yuware extends javax.swing.JFrame {
             final String pathA = System.getProperty("user.home") + "\\Desktop";
             File appfolder = new File(pathA + "\\Apks folder");
             appfolder.mkdir();
-            JOptionPane.showMessageDialog(null, " Place all your apks under folder named \"Apks Folder\".\n Folder is on your desktop.", "", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, " Place all your apks under folder named \"Apks Folder\".\n Folder is on your desktop.", "", JOptionPane.INFORMATION_MESSAGE);
             int y = JOptionPane.showConfirmDialog(null, " DID YOU PLACED ALL YOUR APKS UNDER \"Apks folder\"??"
                     + " \n It takes time to install all apps please check your phone for apps. Have patience!!! "
                     + "\n Note: Do not place any other stuff in that folder, it may be deleted.", "Warning!", JOptionPane.YES_NO_OPTION);
@@ -2275,7 +2274,7 @@ public class Yuware extends javax.swing.JFrame {
                             install.waitFor();
 
                             final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                    .getResource("done.png")));
+                                    .getResource("/images/done.png")));
                             JOptionPane.showMessageDialog(
                                     null, " All apks were started installing...\n Check Log file placed in Apks folder for more info!", "Sucess!", JOptionPane.INFORMATION_MESSAGE, icon);
                         } catch (IOException | InterruptedException ex) {
@@ -2286,11 +2285,11 @@ public class Yuware extends javax.swing.JFrame {
                 }.start();
             }
         } else if ("Recovery!".equals(tmp)) {
-            JOptionPane.showMessageDialog(null, "Your Device is in recovery mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Your Device is in recovery mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
         } else if ("Fastboot!".equalsIgnoreCase(tmp)) {
-            JOptionPane.showMessageDialog(null, "Your Device is in Fastboot mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "Your Device is in Fastboot mode! \nConnect in Switch on mode to perform this action", "Oops!", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(Yuware.this, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -2353,13 +2352,13 @@ public class Yuware extends javax.swing.JFrame {
                                     clear2();
                                     String line;
                                     String path = adbpath.getText();
-                                    JOptionPane.showMessageDialog(null, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                                    JOptionPane.showMessageDialog(Yuware.this, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
                                     t.start();
                                     Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem unlock");
                                     process.waitFor();
                                     t.interrupt();
                                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                            .getResource("done.png")));
+                                            .getResource("/images/done.png")));
                                     JOptionPane.showMessageDialog(
                                             null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2377,13 +2376,13 @@ public class Yuware extends javax.swing.JFrame {
                                     clear2();
                                     String line;
                                     String path = adbpath.getText();
-                                    JOptionPane.showMessageDialog(null, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                                    JOptionPane.showMessageDialog(Yuware.this, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
                                     t.start();
                                     Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem unlock");
                                     process.waitFor();
                                     t.interrupt();
                                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                            .getResource("done.png")));
+                                            .getResource("/images/done.png")));
                                     JOptionPane.showMessageDialog(
                                             null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2401,21 +2400,20 @@ public class Yuware extends javax.swing.JFrame {
                                     clear2();
                                     String line;
                                     String path = adbpath.getText();
-                                    JOptionPane.showMessageDialog(null, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                                    JOptionPane.showMessageDialog(Yuware.this, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
                                     t.start();
                                     Process process = Runtime.getRuntime().exec(path + "\\fastboot oem unlock-go");
+                                    BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
                                     process.waitFor();
                                     t.interrupt();
                                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                            .getResource("done.png")));
+                                            .getResource("/images/done.png")));
                                     JOptionPane.showMessageDialog(
                                             null, "Device Unlocked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                                     if ((line = reader.readLine()) != null) {
                                         fblog.append("\n" + line);
                                         process.destroy();
-                                    } else {
-                                        fblog.setText("Done!");
                                     }
                                 } catch (IOException | InterruptedException ex) {
                                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
@@ -2423,7 +2421,7 @@ public class Yuware extends javax.swing.JFrame {
                             }
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(Yuware.this, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (IOException | InterruptedException ex) {
                 }
@@ -2450,7 +2448,7 @@ public class Yuware extends javax.swing.JFrame {
                     if (Byureka.isSelected() || Byurekap.isSelected()) {
                         clear2();
                         final String path = adbpath.getText();
-                        JOptionPane.showMessageDialog(null, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(Yuware.this, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
                         new Thread() {
                             @Override
                             public void run() {
@@ -2458,7 +2456,7 @@ public class Yuware extends javax.swing.JFrame {
                                     Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf oem lock");
                                     process.waitFor();
                                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                            .getResource("done.png")));
+                                            .getResource("/images/done.png")));
                                     JOptionPane.showMessageDialog(
                                             null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2477,14 +2475,14 @@ public class Yuware extends javax.swing.JFrame {
                     } else if (Byuphoria.isSelected() || Byutopia.isSelected()) {
                         clear2();
                         final String path = adbpath.getText();
-                        JOptionPane.showMessageDialog(null, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(Yuware.this, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
                         new Thread() {
                             @Override
                             public void run() {
                                 try {
                                     Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 oem lock");
                                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                            .getResource("done.png")));
+                                            .getResource("/images/done.png")));
                                     JOptionPane.showMessageDialog(
                                             null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2503,14 +2501,14 @@ public class Yuware extends javax.swing.JFrame {
                     } else if (Byunique.isSelected() || ByurekaB.isSelected()) {
                         clear2();
                         final String path = adbpath.getText();
-                        JOptionPane.showMessageDialog(null, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(Yuware.this, " Please press \"VOLUME UP BUTTON\" of your device to confirm after clicking \"OK\"", "Waiting for confirmation!", JOptionPane.INFORMATION_MESSAGE);
                         new Thread() {
                             @Override
                             public void run() {
                                 try {
                                     Process process = Runtime.getRuntime().exec(path + "\\fastboot oem lock");
                                     final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                            .getResource("done.png")));
+                                            .getResource("/images/done.png")));
                                     JOptionPane.showMessageDialog(
                                             null, "Device locked Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                     BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2529,7 +2527,7 @@ public class Yuware extends javax.swing.JFrame {
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(Yuware.this, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (IOException | InterruptedException ex) {
         }
@@ -2605,7 +2603,7 @@ public class Yuware extends javax.swing.JFrame {
                                         process.waitFor();
                                         t.interrupt();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                                .getResource("done.png")));
+                                                .getResource("/images/done.png")));
                                         JOptionPane.showMessageDialog(
                                                 null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2641,7 +2639,7 @@ public class Yuware extends javax.swing.JFrame {
                                         process.waitFor();
                                         t.interrupt();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                                .getResource("done.png")));
+                                                .getResource("/images/done.png")));
                                         JOptionPane.showMessageDialog(
                                                 null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2677,7 +2675,7 @@ public class Yuware extends javax.swing.JFrame {
                                         process.waitFor();
                                         t.interrupt();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                                .getResource("done.png")));
+                                                .getResource("/images/done.png")));
                                         JOptionPane.showMessageDialog(
                                                 null, "Recovery flashed Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2697,7 +2695,7 @@ public class Yuware extends javax.swing.JFrame {
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(Yuware.this, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (IOException | InterruptedException | HeadlessException e) {
         }
@@ -2774,7 +2772,7 @@ public class Yuware extends javax.swing.JFrame {
                                         process.waitFor();
                                         t.interrupt();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                                .getResource("done.png")));
+                                                .getResource("/images/done.png")));
                                         JOptionPane.showMessageDialog(
                                                 null, "Recovery booted Sucessfully!\n Please wait 10secs until recovery appears on your phone", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2801,7 +2799,7 @@ public class Yuware extends javax.swing.JFrame {
                                         process.waitFor();
                                         t.interrupt();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                                .getResource("done.png")));
+                                                .getResource("/images/done.png")));
                                         JOptionPane.showMessageDialog(
                                                 null, "Recovery booted Sucessfully!\n Please wait 10secs until recovery appears on your phone", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2828,7 +2826,7 @@ public class Yuware extends javax.swing.JFrame {
                                         process.waitFor();
                                         t.interrupt();
                                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                                .getResource("done.png")));
+                                                .getResource("/images/done.png")));
                                         JOptionPane.showMessageDialog(
                                                 null, "Recovery booted Sucessfully!\n Please wait 10secs until recovery appears on your phone", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2848,7 +2846,7 @@ public class Yuware extends javax.swing.JFrame {
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(Yuware.this, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (IOException | InterruptedException | HeadlessException e) {
         }
@@ -2911,7 +2909,7 @@ public class Yuware extends javax.swing.JFrame {
                             }
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(Yuware.this, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
@@ -2941,7 +2939,7 @@ public class Yuware extends javax.swing.JFrame {
                                 String path = adbpath.getText();
                                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x1ebf reboot");
                                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                        .getResource("done.png")));
+                                        .getResource("/images/done.png")));
                                 JOptionPane.showMessageDialog(
                                         null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2961,7 +2959,7 @@ public class Yuware extends javax.swing.JFrame {
                                 String path = adbpath.getText();
                                 Process process = Runtime.getRuntime().exec(path + "\\fastboot -i 0x2A96 reboot");
                                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                        .getResource("done.png")));
+                                        .getResource("/images/done.png")));
                                 JOptionPane.showMessageDialog(
                                         null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2981,7 +2979,7 @@ public class Yuware extends javax.swing.JFrame {
                                 String path = adbpath.getText();
                                 Process process = Runtime.getRuntime().exec(path + "\\fastboot reboot");
                                 final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                        .getResource("done.png")));
+                                        .getResource("/images/done.png")));
                                 JOptionPane.showMessageDialog(
                                         null, "Device rebooted Sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -2996,7 +2994,7 @@ public class Yuware extends javax.swing.JFrame {
                             }
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(Yuware.this, "Connect your device in fastboot first", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (IOException | InterruptedException ex) {
                     Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
@@ -3009,18 +3007,18 @@ public class Yuware extends javax.swing.JFrame {
     private void drivers() {
         try {
             if (Devices.getSelection() == null) {
-                JOptionPane.showMessageDialog(null, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(Yuware.this, "Please select device first!", "Oops!", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 String msg1 = "Yes!";
                 String msg2 = "No, start PDA Setup";
                 Object[] msg = {msg1, msg2};
                 int y = JOptionPane.showOptionDialog(null, " Do want to Download The drivers from official site ?", "Confirmation!", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msg, msg[0]);
                 if (y == JOptionPane.NO_OPTION) {
-                    JOptionPane.showMessageDialog(null, " Follow all instructions for Installing drivers by PDA Net software.", "Warning!", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(Yuware.this, " Follow all instructions for Installing drivers by PDA Net software.", "Warning!", JOptionPane.INFORMATION_MESSAGE);
                     Runtime.getRuntime().exec("C:/Program Files/Yuware™/Pda");
                 } else if (y == JOptionPane.YES_OPTION) {
                     if (Byureka.isSelected() || Byurekap.isSelected()) {
-                        JOptionPane.showMessageDialog(null, " Sorry! But Official drivers are not available for Yureka or Yureka plus"
+                        JOptionPane.showMessageDialog(Yuware.this, " Sorry! But Official drivers are not available for Yureka or Yureka plus"
                                 + "\n How ever the official team is working on it..."
                                 + "\n Continue your drivers installation with PDA net!");
                     } else if (Byuphoria.isSelected()) {
@@ -3035,7 +3033,7 @@ public class Yuware extends javax.swing.JFrame {
                             Desktop.getDesktop().browse(new URI("http://forums.yuplaygod.com/threads/official-how-to-yunique-drivers-installation.23266/"));
                         }
                     } else if (ByurekaB.isSelected()) {
-                        JOptionPane.showMessageDialog(null, "A link to Download USB Drivers will be opened. Install It on Your Machine.");
+                        JOptionPane.showMessageDialog(Yuware.this, "A link to Download USB Drivers will be opened. Install It on Your Machine.");
                         Desktop.getDesktop().browse(new URI("https://www.androidfilehost.com/?fid=961840155545571489"));
                     }
                 }
@@ -3176,7 +3174,7 @@ public class Yuware extends javax.swing.JFrame {
                         Process re = Runtime.getRuntime().exec(path + "\\adb push " + "\"" + pathoffile + "\"" + " /sdcard/");
                         re.waitFor();
                         final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class
-                                .getResource("done.png")));
+                                .getResource("/images/done.png")));
                         JOptionPane.showMessageDialog(
                                 null, "Pushed file Sucessfully!\n It is saved in your internal storage", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                     } catch (IOException | InterruptedException ex) {
@@ -3266,7 +3264,7 @@ public class Yuware extends javax.swing.JFrame {
                     if (null != tmp) {
                         switch (tmp) {
                             case "Connected!":
-                                JOptionPane.showMessageDialog(null, "Your backup will be stored in a folder name BACKUP on your desktop", "Message!", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, "Your backup will be stored in a folder name BACKUP on your desktop", "Message!", JOptionPane.INFORMATION_MESSAGE);
                                 String path = adbpath.getText();
                                 final String pathA = System.getProperty("user.home") + "\\Desktop";
                                 File f = new File(pathA + "\\Backup\\");
@@ -3275,10 +3273,10 @@ public class Yuware extends javax.swing.JFrame {
                                 backup.waitFor();
                                 break;
                             case "Fastboot!":
-                                JOptionPane.showMessageDialog(null, "This Option will work if your device is connected on Switch ON mode\nFor rebooting from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, "This Option will work if your device is connected on Switch ON mode\nFor rebooting from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                             default:
-                                JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                         }
                     }
@@ -3298,7 +3296,7 @@ public class Yuware extends javax.swing.JFrame {
             if (null != tmp) {
                 switch (tmp) {
                     case "Connected!":
-                        JOptionPane.showMessageDialog(null, "Select the .ab file which is a ADB backup file", "Message!", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(Yuware.this, "Select the .ab file which is a ADB backup file", "Message!", JOptionPane.INFORMATION_MESSAGE);
                         final String path = adbpath.getText();
                         FileFilter filter = new FileNameExtensionFilter("ab files", "ab");
                         JFileChooser chooser = new JFileChooser();
@@ -3312,13 +3310,13 @@ public class Yuware extends javax.swing.JFrame {
                                 public void run() {
                                     Process restore;
                                     try {
-                                        JOptionPane.showMessageDialog(null, " Open phone and continue the restoring process instructions!", "Message", JOptionPane.INFORMATION_MESSAGE);
+                                        JOptionPane.showMessageDialog(Yuware.this, " Open phone and continue the restoring process instructions!", "Message", JOptionPane.INFORMATION_MESSAGE);
                                         clear();
                                         adblog.setText("Restoring Backup...");
                                         restore = Runtime.getRuntime().exec(path + "adb restore " + choosen.getAbsolutePath());
                                         restore.waitFor();
-                                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
-                                        JOptionPane.showMessageDialog(null, "Backup restored sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
+                                        final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("/images/done.png")));
+                                        JOptionPane.showMessageDialog(Yuware.this, "Backup restored sucessfully!", "Sucess", JOptionPane.INFORMATION_MESSAGE, icon);
                                     } catch (IOException | InterruptedException ex) {
                                         Logger.getLogger(Yuware.class.getName()).log(Level.SEVERE, null, ex);
                                     }
@@ -3327,10 +3325,10 @@ public class Yuware extends javax.swing.JFrame {
                         }
                         break;
                     case "Fastboot!":
-                        JOptionPane.showMessageDialog(null, "This Option will work if your device is connected on Switch ON mode\nFor rebooting from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(Yuware.this, "This Option will work if your device is connected on Switch ON mode\nFor rebooting from fastboot mode click on\"Reboot to System\" in Fastboot option", "", JOptionPane.INFORMATION_MESSAGE);
                         break;
                     default:
-                        JOptionPane.showMessageDialog(null, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(Yuware.this, "It looks your device is diconnected!\nPlease connect again to perform this action\nMake sure you install drivers properly!", "Oops! Warnings", JOptionPane.INFORMATION_MESSAGE);
                         break;
                 }
             }
@@ -3382,7 +3380,7 @@ public class Yuware extends javax.swing.JFrame {
                             } else {
                                 String ms1 = " No Update available!\n Your Yuware is Latest";
                                 Object[] msc1 = {ms1, cb};
-                                JOptionPane.showMessageDialog(null, msc1, "Up-To-Date", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, msc1, "Up-To-Date", JOptionPane.INFORMATION_MESSAGE);
                             }
                             if (cb.isSelected()) {
                                 Process exec = Runtime.getRuntime().exec("cmd /c dncuY.bat", null, new File("C:/Program Files/Yuware™"));
@@ -3396,7 +3394,7 @@ public class Yuware extends javax.swing.JFrame {
                                 Desktop.getDesktop().browse(new URI("http://forums.yuplaygod.com/threads/windows-yuware%E2%84%A2-gui.21967"));
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null, " No Update available!\n Your Yuware is Latest", "Up-To-Date", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(Yuware.this, " No Update available!\n Your Yuware is Latest", "Up-To-Date", JOptionPane.INFORMATION_MESSAGE);
                         }
                     } catch (IOException e) {
                     }
@@ -3408,7 +3406,7 @@ public class Yuware extends javax.swing.JFrame {
                                 String msg = "Error while checking update."
                                         + "Connect to Internet first";
                                 Object[] obj = {msg, cb};
-                                JOptionPane.showMessageDialog(null, obj, "Error", JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(Yuware.this, obj, "Error", JOptionPane.ERROR_MESSAGE);
                                 if (cb.isSelected()) {
                                     try {
                                         Process exec = Runtime.getRuntime().exec("cmd /c dncuY.bat", null, new File("C:/Program Files/Yuware™"));
@@ -3417,7 +3415,7 @@ public class Yuware extends javax.swing.JFrame {
                                 }
                                 jLabel14.setText("");
                             } else {
-                                JOptionPane.showMessageDialog(null, "Error while checking update."
+                                JOptionPane.showMessageDialog(Yuware.this, "Error while checking update."
                                         + "Connect to Internet first", "Error", JOptionPane.ERROR_MESSAGE);
                                 jLabel14.setText("");
                             }
@@ -3462,7 +3460,7 @@ public class Yuware extends javax.swing.JFrame {
                         } else {
                             Process changeDpi_process = Runtime.getRuntime().exec(adbpath.getText() + "\\adb shell wm density " + value_dpi);
                             changeDpi_process.waitFor();
-                            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("done.png")));
+                            final ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(Yuware.class.getResource("/images/done.png")));
                             JOptionPane.showMessageDialog(Yuware.this, "DPI Changed Successfully!", "Success!", JOptionPane.INFORMATION_MESSAGE, icon);
                         }
                     } catch (NumberFormatException e) {
